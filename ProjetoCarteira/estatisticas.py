@@ -18,8 +18,7 @@ def percentualCategoria():
     pass
 
 
-def menuEstatisticas():
-    while True:  
+def menuEstatisticas(): 
         u.limparTela()
         print('===============================')
         print('--- ESTATÍSTICAS ---')
@@ -31,21 +30,22 @@ def menuEstatisticas():
         print('5 - PERCENTUAL POR CATEGORIA')
         print('0 - VOLTAR')
         print('===============================')
-        opcao = int(input('Digite a opção desejada: '))
+        opcao = input('Digite a opção desejada: ')
         print('===============================')
-        if opcao == 1:
+        if opcao == '1':
             mediaGastos()
-        elif opcao == 2:
+        elif opcao == '2':
             maiorMenorDespesa()
-        elif opcao == 3:
+        elif opcao == '3':
             maiorMenorEntrada()
-        elif opcao == 4:
+        elif opcao == '4':
             desvioPadrao()
-        elif opcao == 5:
+        elif opcao == '5':
             percentualCategoria()
-        elif opcao == 0:
+        elif opcao == '0':
             m.mainMenu()
         else:
+            u.limparTela()
             print('Opcão Inválida')
             u.readKey()
             menuEstatisticas()

@@ -3,15 +3,12 @@ import utils as u
 from estruturasDados import lista_categorias
 
 def listarCategorias():
-    u.limparTela()
     for indice,categoria in enumerate(lista_categorias):
         print(f'{indice+1}  -  {categoria["nome"]}')
 
-    u.readKey()
-    menuCategorias()
+   
 
 def criarCatPersonalizada():
-    u.limparTela()
     nomeCategoria = input('Digite o nome da nova categoria: ').strip().title()
 
     if u.existeCategoria(nomeCategoria,lista_categorias):
@@ -27,7 +24,6 @@ def criarCatPersonalizada():
     
 
 def editarCatPersonalizada():
-    u.limparTela()
     nomeCategoria = input('Digite o nome da categoria que deseja editar: ').strip().title()
 
     if u.existeCategoria(nomeCategoria,lista_categorias):
@@ -51,7 +47,7 @@ def editarCatPersonalizada():
     
 
 def excluirCatPersonalizada():
-    u.limparTela()
+  
     nomeCategoria = input('Digite o nome da categoria que deseja remover: ').strip().title()
 
     if u.existeCategoria(nomeCategoria,lista_categorias):
@@ -103,16 +99,29 @@ def menuCategorias():
     print('===============================')
 
     if opcao == '1':
+        u.limparTela()
         listarCategorias()
+        u.readKey()
+        menuCategorias()
+
     elif opcao == '2':
+        u.limparTela()
         criarCatPersonalizada()
+
     elif opcao == '3':
+        u.limparTela()
         editarCatPersonalizada()
+
     elif opcao == '4':
+        u.limparTela()
         excluirCatPersonalizada()
+
     elif opcao == '0':
+        u.limparTela()
         m.mainMenu()
+
     else:
+        u.limparTela()
         print('Opcão Inválida')
         u.readKey()
         menuCategorias()

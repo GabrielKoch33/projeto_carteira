@@ -18,9 +18,7 @@ def tendenciaSaldo():
     pass
 
 
-def menuAnalises():
-    while True:  
-        u.limparTela()
+def menuAnalises():  
         print('===============================')
         print('--- ANÁLISES DO USUÁRIO ---')
         print('===============================')
@@ -31,21 +29,28 @@ def menuAnalises():
         print('5 - TENDÊNCIA DO SALDO')
         print('0 - VOLTAR')
         print('===============================')
-        opcao = int(input('Digite a opção desejada: '))
+        opcao = input('Digite a opção desejada: ')
         print('===============================')
-        if opcao == 1:
+        if opcao == '1':
+            u.limparTela()
             categoriaMaiorConsumo()
-        elif opcao == 2:
+        elif opcao == '2':
+            u.limparTela()
             mesMaiorGasto()
-        elif opcao == 3:
+        elif opcao == '3':
+            u.limparTela()
             mesMenorGasto()
-        elif opcao == 4:
+        elif opcao == '4':
+            u.limparTela()
             taxaMediaEconomia()
-        elif opcao == 5:
+        elif opcao == '5':
+            u.limparTela()
             tendenciaSaldo()
-        elif opcao == 0:
+        elif opcao == '0':
+            u.limparTela()
             m.mainMenu()
         else:
+            u.limparTela()
             print('Opcão Inválida')
             u.readKey()
             menuAnalises()

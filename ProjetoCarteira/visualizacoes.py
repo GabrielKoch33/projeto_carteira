@@ -15,8 +15,7 @@ def linhaDespesas():
     pass
 
 
-def menuVisualizacoes():
-    while True:  
+def menuVisualizacoes(): 
         u.limparTela()
         print('===============================')
         print('--- VISUALIZAÇÕES & GRÁFICOS ---')
@@ -27,19 +26,24 @@ def menuVisualizacoes():
         print('4 - LINHA DE DESPESAS')
         print('5 - VOLTAR')
         print('===============================')
-        opcao = int(input('Digite a opção desejada: '))
+        opcao = input('Digite a opção desejada: ')
         print('===============================')
-        if opcao == 1:
+        if opcao == '1':
+            u.limparTela()
             pizzaCategoria()
-        elif opcao == 2:
+        elif opcao == '2':
+            u.limparTela()
             barrasCategoria()
-        elif opcao == 3:
+        elif opcao == '3':
+            u.limparTela()
             evolSaldo()
-        elif opcao == 4:
+        elif opcao == '4':
+            u.limparTela()
             linhaDespesas()
-        elif opcao == 5:
+        elif opcao == '5':
             m.mainMenu()
         else:
+            u.limparTela()
             print('Opcão Inválida')
             u.readKey()
             menuVisualizacoes()

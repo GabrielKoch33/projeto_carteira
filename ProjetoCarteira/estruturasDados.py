@@ -5,17 +5,14 @@ lista_categorias = [
   {"nome":"Saúde","default":True},
   {"nome":"Educação","default":True},
   {"nome":"Lazer","default":True},
+  {"nome":"Parcelas","default":True},
   {"nome":"Salário","default":True},
   {"nome":"Investimentos","default":True},
   {"nome":"Outros","default":True}
 ]
 
-print(f'{i+1} categoria')
-...
-print('escolha categoria: ')
-input(i - Valor)
-
 lista_entradas =[
     # lista de dicionários
   
 ]
+

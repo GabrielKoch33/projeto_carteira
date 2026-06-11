@@ -17,8 +17,7 @@ def listarMetasPercent():
 #Campos: nome, valor alvo, prazo
 #Indicadores: percentual concluído e valor restante
 #Dar uma sugestão de X por Mês para atingir a Meta
-def menuMetas():
-    while True:  
+def menuMetas(): 
         u.limparTela()
         print('===============================')
         print('--- METAS ---')
@@ -31,17 +30,22 @@ def menuMetas():
         print('===============================')
         opcao = int(input('Digite a opção desejada: '))
         print('===============================')
-        if opcao == 1:
+        if opcao == '1':
+            u.limparTela()
             criarMeta()
-        elif opcao == 2:
+        elif opcao == '2':
+            u.limparTela()
             editarMeta()
-        elif opcao == 3:
+        elif opcao == '3':
+            u.limparTela()
             excluirMeta()
-        elif opcao == 4:
+        elif opcao == '4':
+            u.limparTela()
             listarMetasPercent()
-        elif opcao == 0:
+        elif opcao == '0':
             m.mainMenu()
         else:
+            u.limparTela()
             print('Opcão Inválida')
             u.readKey()
             menuMetas()

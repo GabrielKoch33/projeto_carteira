@@ -1,24 +1,33 @@
 import utils as u
 import main as m
 import datetime 
-id = 1
+from categorias import listarCategorias
+from estruturasDados import lista_entradas, lista_categorias
 
 def adicionarEntradas():
-    print('Digite o valor da entrada: ') #125.5
-    valorEntrada = u.converteMoeda(valorEntrada).replace(' ','')
+    valorEntrada = input('Digite o valor em R$ da entrada: ').replace(' ','') #125.5
+    valorEntrada = u.converteMoeda(valorEntrada)
     if type(valorEntrada) == str:
+        print('Só são aceitos valores numéricos e positivos!')
         u.readKey()
         menuEntradas()
-    descricaoEntrada = input('Digite a fonte da entrata (salário, proventos, etc..): ').replace(' ','').title()
-    dataAtual = datetime.date.today()
-    listarEntradas.append({"id":u.calculaId(),
-                           "valor":valorEntrada,
-                           "descricao":descricaoEntrada,
-                           "data":dataAtual})
-    
+    else: #Esse else ñ é necessário, afinal a função pode retornar ou str, ou float
+        descricaoEntrada = input('Digite a fonte da entrada (salário, proventos, etc..): ').strip().title()
+        dataAtual = datetime.date.today()# ano, mês, dia
+        dataDMA = dataAtual.strftime("%d/%m/%Y")#dia(0%),mês(0%),XXXX
+        listarCategorias()
+        categoriaIndex = int(input('Digite o Nº da categoria desta entrada: '))
+        lista_entradas.append({"id":u.calculaId(lista_entradas),
+                            "valor":valorEntrada,
+                            "descricao":descricaoEntrada,
+                            "categoria":lista_categorias[categoriaIndex-1]["nome"],
+                            "data":dataDMA})
+        
+        print('Entrada cadastrada!')
+        u.readKey()
+        menuEntradas()
 
-    u.readKey()
-    menuEntradas()
+    
 def editarEntradas():
     u.readKey()
     pass
@@ -26,8 +35,21 @@ def removerEntradas():
     u.readKey()
     pass
 def listarEntradas():
+    if len(lista_entradas) == 0:
+        print('Nenhuma entrada foi registrada ainda!')
+    else:
+        print(f'{"ID":<5} {"VALOR":<10} {"DESCRIÇÃO":<20} {"CATEGORIA":<15} {"DATA":<12}')
+        for item in lista_entradas:
+           print(
+            f'{item["id"]:<5} '
+            f'{item["valor"]:<10.2f} '#.2f = duas casas decimais
+            f'{item["descricao"]:<20} '
+            f'{item["categoria"]:<15} '
+            f'{item["data"]:<12}'#Alinha para ESQUERDA e reserva 12 espaços
+            )
     u.readKey()
-    pass
+    menuEntradas()
+
 def buscarPorDescricao():
     u.readKey()
     pass
@@ -47,7 +69,6 @@ def buscarPorPeriodo():
 '''
 #Campos: Data, Descrição, Valor
 def menuEntradas():
-    while True:
         u.limparTela()
         print('===============================')
         print('--- ENTRADAS ---')
@@ -61,25 +82,33 @@ def menuEntradas():
         print('7 - BUSCA POR PERÍODO')
         print('0 - VOLTAR')
         print('===============================')
-        opcao = int(input('Digite a opção desejada: '))
+        opcao = input('Digite a opção desejada: ')
         print('===============================')
-        if opcao == 1:
+        if opcao == '1':
+            u.limparTela()
             adicionarEntradas()
-        elif opcao == 2:
+        elif opcao == '2':
+            u.limparTela()
             editarEntradas()
-        elif opcao == 3:
+        elif opcao == '3':
+            u.limparTela()
             removerEntradas()
-        elif opcao == 4:
+        elif opcao == '4':
+            u.limparTela()
             listarEntradas()
-        elif opcao == 5:
+        elif opcao == '5':
+            u.limparTela()
             buscarPorDescricao()
-        elif opcao == 6:
+        elif opcao == '6':
+            u.limparTela()
             buscarPorCategoria()
-        elif opcao == 7:
+        elif opcao == '7':
+            u.limparTela()
             buscarPorPeriodo()
-        elif opcao == 0:
+        elif opcao == '0':
             m.mainMenu()
         else:
+            u.limparTela()
             print('Opcão Inválida')
             u.readKey()
             menuEntradas()

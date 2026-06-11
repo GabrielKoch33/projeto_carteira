@@ -38,18 +38,21 @@ def converteMoeda(valor):
     if valor == '':
         return 'Valores vazios não são permitidos'
     
-    elif valor <= 0:
-        return 'Valores negativos ou nulos não são permitidos'
     try:
         valor = valor.replace('.', '')
         valor = valor.replace(',', '.')
-        return float(valor)
+        valor = float(valor)
 
-    except ValueError:
+    except (ValueError,AttributeError):
         return 'Formato inválido'
+    
+    if valor <= 0:
+        return 'Valores negativos ou nulos não são permitidos'
+    
+    return valor
     
 def calculaId(lista):
     if not lista:
         return 1
     else:
-        return max(item["id"] for item in lista)
+        return max(item["id"] for item in lista) + 1

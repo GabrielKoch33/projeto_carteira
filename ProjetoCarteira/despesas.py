@@ -24,7 +24,6 @@ def buscarPorPeriodo():
 
 #Campos: id, Data, Descrição, Categoria, Valor
 def menuDespesa():
-    while True:
         u.limparTela()
         print('===============================')
         print('--- DESPESAS ---')
@@ -38,25 +37,33 @@ def menuDespesa():
         print('7 - BUSCA POR PERÍODO')
         print('0 - VOLTAR')
         print('===============================')
-        opcao = int(input('Digite a opção desejada: '))
+        opcao = input('Digite a opção desejada: ')
         print('===============================')
-        if opcao == 1:
+        if opcao == '1':
+            u.limparTela()
             adicionarDespesa()
-        elif opcao == 2:
+        elif opcao == '2':
+            u.limparTela()
             editarDespesa()
-        elif opcao == 3:
+        elif opcao == '3':
+            u.limparTela()
             removerDespesa()
-        elif opcao == 4:
+        elif opcao == '4':
+            u.limparTela()
             listarDespesa()
-        elif opcao == 5:
+        elif opcao == '5':
+            u.limparTela()
             buscarPorDescricao()
-        elif opcao == 6:
+        elif opcao == '6':
+            u.limparTela()
             buscarPorCategoria()
-        elif opcao == 7:
+        elif opcao == '7':
+            u.limparTela()
             buscarPorPeriodo()
-        elif opcao == 0:
+        elif opcao == '0':
             m.mainMenu()
         else:
+            u.limparTela()
             print('Opcão Inválida')
             u.readKey()
             menuDespesa()

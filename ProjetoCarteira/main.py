@@ -25,25 +25,25 @@ def mainMenu():
         print('8 - METAS FINANCEIRAS')
         print('0 - SALVAR E SAIR')
         print('===============================')
-        opcao = int(input('Digite a opção desejada: '))
+        opcao = input('Digite a opção desejada: ')
         print('===============================')
-        if opcao == 1:
+        if opcao == '1':
             ent.menuEntradas()
-        elif opcao == 2:
+        elif opcao == '2':
             des.menuDespesa()
-        elif opcao == 3:
+        elif opcao == '3':
             cat.menuCategorias()
-        elif opcao == 4:
+        elif opcao == '4':
             rel.menuRelatorio()
-        elif opcao == 5:
+        elif opcao == '5':
             est.menuEstatisticas()
-        elif opcao == 6:
+        elif opcao == '6':
             views.menuVisualizacoes()
-        elif opcao == 7:
+        elif opcao == '7':
             anl.menuAnalises()
-        elif opcao == 8:
+        elif opcao == '8':
             met.menuMetas()
-        elif opcao == 0:
+        elif opcao == '0':
             print('Salvando...')
             u.pause()
             break
