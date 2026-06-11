@@ -12,7 +12,7 @@ def listarCategorias():
 
 def criarCatPersonalizada():
     u.limparTela()
-    nomeCategoria = input('Digite o nome da nova categoria: ').title().strip()
+    nomeCategoria = input('Digite o nome da nova categoria: ').strip().title()
 
     if u.existeCategoria(nomeCategoria,lista_categorias):
         print(f'{nomeCategoria} já existe, duplicadas não são válidas')
@@ -28,7 +28,7 @@ def criarCatPersonalizada():
 
 def editarCatPersonalizada():
     u.limparTela()
-    nomeCategoria = input('Digite o nome da categoria que deseja editar: ').title().strip()
+    nomeCategoria = input('Digite o nome da categoria que deseja editar: ').strip().title()
 
     if u.existeCategoria(nomeCategoria,lista_categorias):
         if u.existeCategoria(nomeCategoria,lista_categorias,True):
@@ -36,7 +36,7 @@ def editarCatPersonalizada():
             u.readKey()
             menuCategorias()
         else:
-            novaCategoria = input('Digite o nome que você deseja alterar: ').title().strip()
+            novaCategoria = input('Digite o nome que você deseja alterar: ').strip().title()
             print(f'Alterada: "{nomeCategoria}" -> "{novaCategoria}"')
             for item in lista_categorias:
                 if item["nome"] == nomeCategoria:
@@ -52,7 +52,7 @@ def editarCatPersonalizada():
 
 def excluirCatPersonalizada():
     u.limparTela()
-    nomeCategoria = input('Digite o nome da categoria que deseja remover: ').title().strip()
+    nomeCategoria = input('Digite o nome da categoria que deseja remover: ').strip().title()
 
     if u.existeCategoria(nomeCategoria,lista_categorias):
         if u.existeCategoria(nomeCategoria,lista_categorias,True):

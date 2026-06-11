@@ -1,9 +1,24 @@
 import utils as u
 import main as m
+import datetime 
+id = 1
 
 def adicionarEntradas():
+    print('Digite o valor da entrada: ') #125.5
+    valorEntrada = u.converteMoeda(valorEntrada).replace(' ','')
+    if type(valorEntrada) == str:
+        u.readKey()
+        menuEntradas()
+    descricaoEntrada = input('Digite a fonte da entrata (salário, proventos, etc..): ').replace(' ','').title()
+    dataAtual = datetime.date.today()
+    listarEntradas.append({"id":u.calculaId(),
+                           "valor":valorEntrada,
+                           "descricao":descricaoEntrada,
+                           "data":dataAtual})
+    
+
     u.readKey()
-    pass
+    menuEntradas()
 def editarEntradas():
     u.readKey()
     pass
@@ -22,7 +37,14 @@ def buscarPorCategoria():
 def buscarPorPeriodo():
     u.readKey()
     pass
-
+'''
+{
+    "id": 1,
+    "descricao": "Salário",
+    "valor": 3500.00,
+    "data": "2026-06-10"
+}
+'''
 #Campos: Data, Descrição, Valor
 def menuEntradas():
     while True:
@@ -64,11 +86,3 @@ def menuEntradas():
 
 if __name__ == '__main__':
     menuEntradas()
-'''
-{
-    "id": 1,
-    "descricao": "Salário",
-    "valor": 3500.00,
-    "data": "2026-06-10"
-}
-'''

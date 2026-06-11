@@ -16,20 +16,40 @@ def pause():
 def readKey():
     input("Pressione ENTER para voltar ao menu...")
 
-def existeCategoria(valor: str,ref_lista: list,padrao=None)->bool:
+def existeCategoria(ref_categoria: str,ref_lista: list,padrao=None)->bool:
     '''
     padrao == none: apenas verificamos se existe
     padrao == true: verificamos o campo default
     '''
     if padrao == None:
-        for item in ref_lista:
-            if item['nome'] == valor:
-                return True
+        return [ True for item in ref_categoria if item['nome'] == ref_categoria]
         
     elif padrao == True:
         for item in ref_lista:
-            if item['nome'] == valor and item['default'] == padrao:
+            if item['nome'] == ref_categoria and item['default'] == padrao:
                 return True
-            elif item['nome'] == valor and item['default'] == (not padrao):
+            elif item['nome'] == ref_categoria and item['default'] == (not padrao):
                 return False
                 
+def converteMoeda(valor):
+    '''
+    Aprender Try/Except e revisar essa função
+    '''
+    if valor == '':
+        return 'Valores vazios não são permitidos'
+    
+    elif valor <= 0:
+        return 'Valores negativos ou nulos não são permitidos'
+    try:
+        valor = valor.replace('.', '')
+        valor = valor.replace(',', '.')
+        return float(valor)
+
+    except ValueError:
+        return 'Formato inválido'
+    
+def calculaId(lista):
+    if not lista:
+        return 1
+    else:
+        return max(item["id"] for item in lista)

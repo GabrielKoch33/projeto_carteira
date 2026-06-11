@@ -9,3 +9,13 @@ lista_categorias = [
   {"nome":"Investimentos","default":True},
   {"nome":"Outros","default":True}
 ]
+
+print(f'{i+1} categoria')
+...
+print('escolha categoria: ')
+input(i - Valor)
+
+lista_entradas =[
+    # lista de dicionários
+  
+]

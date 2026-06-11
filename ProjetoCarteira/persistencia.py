@@ -8,5 +8,4 @@ def carregarDespesas():
     pass
 def salvarMetas():
     pass
-def carregarMetas():
-    pass
+def carregarMetas():pass
