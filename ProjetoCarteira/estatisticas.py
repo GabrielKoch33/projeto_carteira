@@ -18,7 +18,8 @@ def percentualCategoria():
     pass
 
 
-def menuEstatisticas(): 
+def menuEstatisticas():
+    while True:
         u.limparTela()
         print('===============================')
         print('--- ESTATÍSTICAS ---')
@@ -43,12 +44,13 @@ def menuEstatisticas():
         elif opcao == '5':
             percentualCategoria()
         elif opcao == '0':
-            m.mainMenu()
+            u.limparTela()
+            break
         else:
             u.limparTela()
             print('Opcão Inválida')
             u.readKey()
-            menuEstatisticas()
+
 
 if __name__ == '__main__':
     menuEstatisticas()

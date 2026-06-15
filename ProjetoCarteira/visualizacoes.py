@@ -15,7 +15,8 @@ def linhaDespesas():
     pass
 
 
-def menuVisualizacoes(): 
+def menuVisualizacoes():
+    while True:
         u.limparTela()
         print('===============================')
         print('--- VISUALIZAÇÕES & GRÁFICOS ---')
@@ -41,12 +42,12 @@ def menuVisualizacoes():
             u.limparTela()
             linhaDespesas()
         elif opcao == '5':
-            m.mainMenu()
+            u.limparTela()
+            break
         else:
             u.limparTela()
             print('Opcão Inválida')
             u.readKey()
-            menuVisualizacoes()
 
 if __name__ == '__main__':
     menuVisualizacoes()

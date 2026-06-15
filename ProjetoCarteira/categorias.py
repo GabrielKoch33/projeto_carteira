@@ -68,55 +68,52 @@ def excluirCatPersonalizada():
 
 
 def menuCategorias():
-    u.limparTela()
-    print('===============================')
-    print('--- CATEGORIAS ---')
-    print('===============================')
-    print('1 - LISTAR CATEGORIAS')
-    print('2 - CRIAR CATEGORIA PERSONALIZADA')
-    print('3 - EDITAR CATEGORIA PERSONALIZADA')
-    print('4 - EXCLUIR CATEGORIA PERSONALIZADA')
-    print('0 - VOLTAR')
-    print('===============================')
-    opcao = input('Digite a opção desejada: ')
-    print('===============================')
+    while True:
+        u.limparTela()
+        print('===============================')
+        print('--- CATEGORIAS ---')
+        print('===============================')
+        print('1 - LISTAR CATEGORIAS')
+        print('2 - CRIAR CATEGORIA PERSONALIZADA')
+        print('3 - EDITAR CATEGORIA PERSONALIZADA')
+        print('4 - EXCLUIR CATEGORIA PERSONALIZADA')
+        print('0 - VOLTAR')
+        print('===============================')
+        opcao = input('Digite a opção desejada: ')
+        print('===============================')
 
-    if opcao == '1':
-        u.limparTela()
-        listarCategorias()
-        u.readKey()
-        menuCategorias()
+        if opcao == '1':
+            u.limparTela()
+            listarCategorias()
+            u.readKey()
 
-    elif opcao == '2':
-        u.limparTela()
-        msg =criarCatPersonalizada()
-        print(msg)
-        u.readKey()
-        menuCategorias()
-        
-    elif opcao == '3':
-        u.limparTela()
-        msg = editarCatPersonalizada()
-        print(msg)
-        u.readKey()
-        menuCategorias()
+        elif opcao == '2':
+            u.limparTela()
+            msg = criarCatPersonalizada()
+            print(msg)
+            u.readKey()
 
-    elif opcao == '4':
-        u.limparTela()
-        msg = excluirCatPersonalizada()
-        print(msg)
-        u.readKey()
-        menuCategorias()
+        elif opcao == '3':
+            u.limparTela()
+            msg = editarCatPersonalizada()
+            print(msg)
+            u.readKey()
 
-    elif opcao == '0':
-        u.limparTela()
-        m.mainMenu()
+        elif opcao == '4':
+            u.limparTela()
+            msg = excluirCatPersonalizada()
+            print(msg)
+            u.readKey()
 
-    else:
-        u.limparTela()
-        print('Opcão Inválida')
-        u.readKey()
-        menuCategorias()
+        elif opcao == '0':
+            u.limparTela()
+            break
+
+        else:
+            u.limparTela()
+            print('Opcão Inválida')
+            u.readKey()
+
 
 if __name__ == '__main__':
     menuCategorias()

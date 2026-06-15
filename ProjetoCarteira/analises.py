@@ -18,7 +18,9 @@ def tendenciaSaldo():
     pass
 
 
-def menuAnalises():  
+def menuAnalises():
+    while True:
+        u.limparTela()
         print('===============================')
         print('--- ANÁLISES DO USUÁRIO ---')
         print('===============================')
@@ -48,12 +50,12 @@ def menuAnalises():
             tendenciaSaldo()
         elif opcao == '0':
             u.limparTela()
-            m.mainMenu()
+            break
         else:
             u.limparTela()
             print('Opcão Inválida')
             u.readKey()
-            menuAnalises()
+
             
 if __name__ == '__main__':
     menuAnalises()

@@ -22,8 +22,9 @@ def buscarPorPeriodo():
     u.readKey()
     pass
 
-#Campos: id, Data, Descrição, Categoria, Valor
+
 def menuDespesa():
+    while True:
         u.limparTela()
         print('===============================')
         print('--- DESPESAS ---')
@@ -61,12 +62,13 @@ def menuDespesa():
             u.limparTela()
             buscarPorPeriodo()
         elif opcao == '0':
-            m.mainMenu()
+            u.limparTela()
+            break
         else:
             u.limparTela()
             print('Opcão Inválida')
             u.readKey()
-            menuDespesa()
+            
 
 if __name__ == '__main__':
     menuDespesa()

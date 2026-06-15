@@ -24,7 +24,8 @@ def relatorioAnual():
     pass
 
 
-def menuRelatorio(): 
+def menuRelatorio():
+    while True:
         u.limparTela()
         print('===============================')
         print('--- RELATÓRIOS ---')
@@ -40,34 +41,42 @@ def menuRelatorio():
         print('===============================')
         opcao = input('Digite a opção desejada: ')
         print('===============================')
+        
         if opcao == '1':
             u.limparTela()
             saldoAtual()
+
         elif opcao == '2':
             u.limparTela()
             totalEntradas()
+
         elif opcao == '3':
             u.limparTela()
             totalDespesdas()
+
         elif opcao == '4':
             u.limparTela()
             gastosPorCategoria()
+
         elif opcao == '5':
             u.limparTela()
             entradasPorCategoria()
+
         elif opcao == '6':
             u.limparTela()
             relatorioMensal()
+
         elif opcao == '7':
             u.limparTela()
             relatorioAnual()
+
         elif opcao == '8':
-            m.mainMenu()
+            u.limparTela()
+            break
         else:
             u.limparTela()
             print('Opcão Inválida')
             u.readKey()
-            menuRelatorio()
 
 if __name__ == '__main__':
     menuRelatorio()

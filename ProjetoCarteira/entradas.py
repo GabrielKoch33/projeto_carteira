@@ -70,7 +70,7 @@ def listarEntradas():
            print(
             f'{item["id"]:<5} '
             f'{item["valor"]:<10.2f} '#.2f = duas casas decimais
-            f'{item["descricao"]:<20} '
+            f'{' '.join(item["descricao"]):<15}'
             f'{item["categoria"]:<15} '
             f'{item["data"]:<12}'#Alinha para ESQUERDA e reserva 12 espaços
             )
@@ -94,8 +94,8 @@ def buscarPorPeriodo():
     "data": "2026-06-10"
 }
 '''
-#Campos: Data, Descrição, Valor
 def menuEntradas():
+    while True:
         u.limparTela()
         print('===============================')
         print('--- ENTRADAS ---')
@@ -117,55 +117,47 @@ def menuEntradas():
             msg = listarEntradas()
             print(msg)
             u.readKey()
-            menuEntradas()
 
         elif opcao == '2':
             u.limparTela()
             msg = editarEntradas()
             print(msg)
             u.readKey()
-            menuEntradas()
 
         elif opcao == '3':
             u.limparTela()
             msg = removerEntradas()
             print(msg)
             u.readKey()
-            menuEntradas()
 
         elif opcao == '4':
             u.limparTela()
             adicionarEntradas()
             u.readKey()
-            menuEntradas()
 
         elif opcao == '5':
             u.limparTela()
             buscarPorDescricao()
             u.readKey()
-            menuEntradas()
 
         elif opcao == '6':
             u.limparTela()
             buscarPorCategoria()
             u.readKey()
-            menuEntradas()
 
         elif opcao == '7':
             u.limparTela()
             buscarPorPeriodo()
             u.readKey()
-            menuEntradas()
 
         elif opcao == '0':
             u.limparTela()
-            m.mainMenu()
+            break
 
         else:
             u.limparTela()
             print('Opcão Inválida')
             u.readKey()
-            menuEntradas()
 
 if __name__ == '__main__':
     menuEntradas()
