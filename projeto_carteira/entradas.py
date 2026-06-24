@@ -5,7 +5,7 @@
 '''
 import utils as u
 from categorias import listar_categorias
-from estruturasDados import lista_entradas, lista_categorias
+import estruturas_dados as est
 
 def adicionar_entradas():
     valor_entrada = input('Digite o valor em R$ da entrada: ')
@@ -16,7 +16,14 @@ def adicionar_entradas():
     
     else: 
         # descrição será uma lista, assim podemos procurar por plavras chaves
-        descricao_entrada = input('Insira uma descrição para a entrada: ').strip().title().split(' ')
+        descricao_entrada = input('Insira uma descrição para a entrada: ').strip().lower().split(' ')
+        #for palavra in descricao_entrada:
+            #if palavra not in est.palavras_desc_entradas:
+        '''ajustar input descricao de forma a salvar cada palavra em 
+            palavras_desc_entradas = {} após o id ser gerado
+            acredito ser só criar uma variavel que recebe o id gerado
+            depois salvar as palavras, e depois criar todo o dict de lista_entradas
+        '''
 
         while True:
             data = u.converte_data()
@@ -29,32 +36,37 @@ def adicionar_entradas():
 
             else:
                 break # senão, valor válido e insere data
-        '''
-        REVER ESSE BLOCO PARA EVITAR INSERIR UM ID INEXISTÊNTE
-        '''
+
         u.line()
         listar_categorias()
         u.line()
-        categoria_index = int(input('Digite o ID da categoria desta entrada: '))
-    
-        lista_entradas.append({"id":u.gera_id(lista_entradas),
-                            "valor":valor_entrada,
-                            "descricao":descricao_entrada,
-                            "categoria":lista_categorias[categoria_index-1]["nome"],
-                            "data":data})
-            
-        u.line()    
+        while True:
+            categoria_index = u.ler_valida_id()
+            achou, indice_categoria = u.encontra_id_e_retorna_index(categoria_index, est.lista_categorias)
+
+            if achou:
+                est.lista_entradas.append({"id":u.gera_id(est.lista_entradas),
+                                    "valor":valor_entrada,
+                                    "descricao":descricao_entrada,
+                                    "categoria":est.lista_categorias[indice_categoria]["nome"],
+                                    "data":data})
+                break
+
+            else: 
+                print('Tente Novamente!')
+                continue
+
         return('Entrada cadastrada!')
 
     
 def editar_entradas():
 
-    if lista_entradas: #se conter logs de entrada, da inicio ao processo
+    if est.lista_entradas: #se conter logs de entrada, da inicio ao processo
         listar_entradas()
 
         id_entrada = u.ler_valida_id() #while true e try/except para ler id informado
 
-        achou, indice = u.encontra_id_e_retorna_index(id_entrada, lista_entradas)
+        achou, indice_log_editar = u.encontra_id_e_retorna_index(id_entrada, est.lista_entradas)
                         # verifica se o id informado pelo user existe e se existir retorna sua posição
                         # indice será usado para sabermos onde o id informado está 
         if not achou:
@@ -63,13 +75,17 @@ def editar_entradas():
         else:
             print('Qual campo dessa entrada você deseja editar? ')
             u.line()
+
             while True:
                 campo = input(f'[1] - VALOR\n[2] - DESCRIÇÃO\n[3] - CATEGORIA\n[4] - DATA\nR: ').strip()
-                if campo not in ('1234'):
+
+                if campo not in {'1','2','3','4'}:
                     continue
                 else:
                     break
+
             match campo:
+
                 case '1':
                     u.line()
                     novo_valor = input('Digite o novo valor em R$ da entrada: ')
@@ -78,13 +94,13 @@ def editar_entradas():
                     if type(novo_valor) == str:
                         return novo_valor
                     else:
-                        lista_entradas[indice]["valor"] = novo_valor
+                        est.lista_entradas[indice_log_editar]["valor"] = novo_valor
                         return 'Campo "VALOR" alterado com sucesso!'
                                     
                 case '2':
                     u.line()
                     nova_descricao = input('Digite a nova descrição: ').strip().title().split(' ')
-                    lista_entradas[indice]['descricao'] = nova_descricao                        
+                    est.lista_entradas[indice_log_editar]['descricao'] = nova_descricao                        
                     return 'Campo "DESCRIÇÃO" alterado com sucesso!'
 
                 case '3':
@@ -92,10 +108,10 @@ def editar_entradas():
                     listar_categorias()
                     while True:
                         id_nova_categoria = u.ler_valida_id()                           
-                        encontrou_id, indice_categoria = u.encontra_id_e_retorna_index(id_nova_categoria, lista_categorias)
+                        encontrou_id, indice_categoria = u.encontra_id_e_retorna_index(id_nova_categoria, est.lista_categorias)
 
                         if encontrou_id:
-                            lista_entradas[indice]['categoria'] = lista_categorias[indice_categoria]['nome']
+                            est.lista_entradas[indice_log_editar]['categoria'] = est.lista_categorias[indice_categoria]['nome']
                             return 'Campo "CATEGORIA" alterado com sucesso!'
                         else:
                             print('Tente novamente!')
@@ -111,8 +127,9 @@ def editar_entradas():
                             print(data)
                             u.line()
                             continue # se voltar erro, pede data novamente
-                        else:                                break # senão, valor é válido e insere data
-                    lista_entradas[indice]['data'] = data
+                        else:                               
+                            break # senão, valor é válido e insere data
+                    est.lista_entradas[indice_log_editar]['data'] = data
                     return 'Campo "DATA" alterado com sucesso!'
 
                 case _: # _ é como se fosse um 'ELSE'. usar | (barra reta) é como um OR
@@ -123,20 +140,33 @@ def editar_entradas():
         
     
 def remover_entradas():
-    
-    listar_entradas()
 
-    return 'INCOMPLETO'
+    if est.lista_entradas: #se conter logs de entrada, da inicio ao processo
+        listar_entradas()
+
+        id_entrada = u.ler_valida_id() #while true e try/except para ler id informado
+
+        achou, indice_log_remover = u.encontra_id_e_retorna_index(id_entrada, est.lista_entradas)
+                        # verifica se o id informado pelo user existe e se existir retorna sua posição
+                        # indice será usado para sabermos onde o id informado está 
+        if not achou:
+            return 'Entrada não encontrada ou cadastrada!'
+                
+        else:
+            return (f'Entrada de ID: {est.lista_entradas[indice_log_remover]['id']} foi removida!',est.lista_entradas.pop(indice_log_remover))
+            
+    else:
+        return('Nenhuma entrada foi registrada ainda! Nada para remover!')
 
 def listar_entradas():
 
-    if len(lista_entradas) == 0:
+    if len(est.lista_entradas) == 0:
         return 'Registro de entradas vazio. Nenhuma entrada para listar!'
     
     else:
         print(f'{"ID":<5}{"VALOR":<10}{"DESCRIÇÃO":<20}{"CATEGORIA":<15}{"DATA":<10}')
 
-        for item in lista_entradas:
+        for item in est.lista_entradas:
            print(
             f'{item["id"]:<5}'
             f'{item["valor"]:<10.2f}'#.2f = duas casas decimais
@@ -148,7 +178,8 @@ def listar_entradas():
         return 'Lista retornada com sucesso!'
 
 def buscar_por_descricao():
-    u.read_key()
+    palavra_chave = input('Insira uma Palavra-Chave para a busca: ')
+
     pass
 
 def buscar_por_categoria():

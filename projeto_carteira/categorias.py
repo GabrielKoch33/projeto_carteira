@@ -1,5 +1,5 @@
 import utils as u
-from estruturasDados import lista_categorias
+from estruturas_dados import lista_categorias
 
 '''
 aprender isInstance()
