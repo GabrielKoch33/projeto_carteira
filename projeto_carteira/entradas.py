@@ -207,7 +207,6 @@ def remover_entradas():
 
             for item in est.lista_entradas[indice_log_remover]['descricao']:
                 est.palavras_desc_entradas[item].discard(id_removido)
-                
                 if not est.palavras_desc_entradas[item]: # se o set ficou vazio (a palavra (key) so aparecia nesse log) então exclui a key
                     del est.palavras_desc_entradas[item]
 
@@ -219,10 +218,10 @@ def remover_entradas():
 
 def buscar_por_descricao():
 
-    if u.lista_categorias:
+    if est.lista_entradas:
 
         while True:
-            palavra_chave_busca = input('Insira uma palavra-chave para a busca: ').strip().lower()
+            palavra_chave_busca = input('Insira UMA palavra-chave para a busca: ').strip().lower()
             if not palavra_chave_busca:
                 print('Tente novamente!')
             else:
@@ -256,38 +255,9 @@ def buscar_por_descricao():
         return('Nenhuma entrada foi registrada ainda! Nada para consultar!')
 
 def buscar_por_categoria():
+    u.read_key()
+    pass
     
-    if u.lista_categorias:
-
-        palavra_chave_busca = input('Insira uma palavra-chave para a busca: ').strip().lower()
-
-        if palavra_chave_busca not in est.palavras_desc_entradas:
-            return ('Nenhuma descrição com essa palavra-chave foi encontrada!')
-        else:
-            ids_encontrados = est.palavras_desc_entradas[palavra_chave_busca] #recebe os id das entradas da respectiva palavra chave
-
-            u.double_line()
-            print('LISTA DE ENTRADAS'.center(u.size,' '))
-            u.double_line()
-            print(f'{"ID":<5}{"VALOR":<15}{"DESCRIÇÃO":<30}{"CATEGORIA":<20}{"DATA":<12}')
-            u.line()
-
-            for item in est.lista_entradas: #percorre a lista de entradas comparando [id] com os id relacionados a palavra-chave
-                if item['id'] in ids_encontrados:
-                    descricao = ' '.join(item['descricao'])
-                    print(
-                        f'{item["id"]:<5}'
-                        f'R${item["valor"]:<10.2f}'
-                        f'{descricao:<20}'
-                        f'{item["categoria"]:<15}'
-                        f'{item["data"]:<10}'
-                    )
-
-            u.double_line()
-            return ('Consulta por descrição retornada com sucesso!')
-    else:
-        return('Nenhuma entrada foi registrada ainda! Nada para consultar!')
-
 def buscar_por_periodo():
     u.read_key()
     pass
