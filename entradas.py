@@ -17,7 +17,7 @@ def adicionar_entradas():
             if not descricao_entrada:
                 print('Tente novamente!')
             else:
-                descricao_entrada = descricao_entrada.split(' ')
+                descricao_entrada = descricao_entrada.split()
                 break
 
 
@@ -128,7 +128,7 @@ def editar_entradas():
                                     
                 case '2':
                     u.double_line()
-                    nova_descricao = input('Digite a nova descrição: ').strip().lower().split(' ')
+                    nova_descricao = input('Digite a nova descrição: ').strip().lower().split()
                     # antiga = oi meu amor id = 1 // nova = eae mano
                     if nova_descricao == est.lista_entradas[indice]['descricao']:
                         return 'Campo "DESCRIÇÃO" alterado com sucesso!'
@@ -189,7 +189,7 @@ def remover_entradas():
         listar_entradas()
 
         id_entrada = u.ler_valida_id()
-        achou, indice = u.encontra_campo_e_indice(id_entrada, est.lista_categorias,'id')
+        achou, indice = u.encontra_campo_e_indice(id_entrada, est.lista_entradas,'id')
                         # verifica se o id informado pelo user existe e se existir retorna sua posição
                         # indice será usado para sabermos onde o id informado está 
         if not achou:
@@ -351,7 +351,8 @@ def menu_entradas():
 
         elif opcao == 6:
             u.limpar_tela()
-            buscar_por_categoria()
+            msg = buscar_por_categoria()
+            print(msg)
             u.double_line()
             u.read_key()
 
