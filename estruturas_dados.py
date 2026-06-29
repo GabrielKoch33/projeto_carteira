@@ -30,5 +30,6 @@ lista_entradas =[
 
 palavras_desc_entradas ={
     "mercado": {2, 7},
+    "churrasco": {7}
 }
 
