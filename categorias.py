@@ -46,10 +46,11 @@ def editar_cat_personalizada():
                    # impede o user de por valores inexistentes, editar cat defaults ou valores inválidos
     id_categoria = u.valida_editar_ou_excluir_categoria(est.lista_categorias)
                    # retorna o id que o user inseriu 
-    if type(id_categoria) == int:
-                        # vai usar o valor de id informado para checar se existe essa categoria criada
+    if isinstance(id_categoria,int):
+        # vai usar o valor de id informado para checar se existe essa categoria criada
         achou, indice = u.encontra_campo_e_indice(id_categoria,est.lista_categorias,'id')
-        if achou:       # ao encontrar, vai retornar a posição de alteração correta    
+
+        if achou: # ao encontrar, vai retornar a posição de alteração correta    
             novoValor = input('Qual será o novo nome?: ').lower()
             est.lista_categorias[indice]["nome"] = novoValor
             return 'Campo alterado com sucesso!'
@@ -63,7 +64,7 @@ def editar_cat_personalizada():
 def excluir_cat_personalizada():
     id_categoria = u.valida_editar_ou_excluir_categoria(est.lista_categorias)
 
-    if type(id_categoria) == int:
+    if isinstance(id_categoria,int):
 
         achou, indice = u.encontra_campo_e_indice(id_categoria,est.lista_categorias,'id')
         if achou:

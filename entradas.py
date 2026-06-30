@@ -7,7 +7,9 @@ def adicionar_entradas():
     valor_entrada = input('Digite o valor em R$ da entrada: ')
     valor_entrada = u.converte_moeda(valor_entrada)
 
-    if type(valor_entrada) == str:
+    # isinstance(varivael que vamos verificar, tipo esperado)
+    # retorna True se valor_entrada for str / caso o tipo for tupla e o valor um elemento q esta na tupla, ent True
+    if isinstance(valor_entrada,str):
         return valor_entrada
     
     else: 
@@ -120,7 +122,7 @@ def editar_entradas():
                     novo_valor = input('Digite o novo valor em R$ da entrada: ')
                     novo_valor = u.converte_moeda(novo_valor)
 
-                    if type(novo_valor) == str:
+                    if isinstance(novo_valor,str):
                         return novo_valor
                     else:
                         est.lista_entradas[indice]["valor"] = novo_valor
