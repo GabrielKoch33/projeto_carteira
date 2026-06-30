@@ -1,7 +1,9 @@
 import utils as u
 from categorias import listar_categorias
 import estruturas_dados as est
-
+'''
+-> output lista: total de registros, categoria mais usada
+'''
 def adicionar_entradas():
 
     valor_entrada = input('Digite o valor em R$ da entrada: ')
@@ -26,9 +28,9 @@ def adicionar_entradas():
         while True:
             data = u.converte_data()
 
-            if data[0] == 'E':
+            if not data:
                 u.double_line()
-                print(data)
+                print("Erro: Digite exatamente 8 números.")
                 u.double_line()
                 continue # se voltar erro, pede data novamente
 
@@ -169,9 +171,9 @@ def editar_entradas():
                     while True:
                         data = u.converte_data()
 
-                        if data[0] == 'E':
+                        if not data:
                             u.double_line()
-                            print(data)
+                            print("Erro: Digite exatamente 8 números.")
                             u.double_line()
                             continue # se voltar erro, pede data novamente
                         else:                               
@@ -295,6 +297,13 @@ def buscar_por_categoria():
         return('Nenhuma entrada foi registrada ainda! Nada para consultar!')
 
 def buscar_por_periodo():
+    '''
+    user informa:
+    -> data inicio
+    -> data fim
+    -> exibir lista
+    -> contador de registro por categoria
+    '''
     u.read_key()
     pass
 

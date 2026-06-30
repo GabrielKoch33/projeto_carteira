@@ -1,10 +1,6 @@
 import utils as u
 import estruturas_dados as est
 
-'''
-aprender isInstance()
-'''
-
 def listar_categorias():
     u.double_line()
     print('LISTA DE CATEGORIAS'.center(u.size,' '))

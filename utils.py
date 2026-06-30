@@ -1,6 +1,7 @@
 import subprocess
 import sys
 import time
+from datetime import date,datetime, timedelta
 from categorias import *
 
 def limpar_tela():
@@ -75,11 +76,14 @@ def converte_data():
     entrada = input("Digite a data (apenas números, ex: 25122026): ").strip()
 
     if len(entrada) == 8 and entrada.isdigit():
-        data_formatada = f"{entrada[:2]}/{entrada[2:4]}/{entrada[4:]}"
+        texto_data = f"{entrada[:2]}/{entrada[2:4]}/{entrada[4:]}"
+        data_formatada = datetime.strptime(
+            texto_data,
+            "%d/%m?Y")
         return data_formatada
-
+        # data agora é um OBJETO DATETIME, não string
     else:
-        return "Erro: Digite exatamente 8 números."
+        return False
 
 def valida_editar_ou_excluir_categoria(lista):
     '''
@@ -104,7 +108,7 @@ def valida_editar_ou_excluir_categoria(lista):
                 return id_informado #quando a entrada for validada e não der erro, retorna o id da categoria que o user quer usar
 
 def ler_valida_id ():
-    ''' faz a validação de id'''
+    '''força o usuário a digitar um int válido'''
     while True: # valida entrada valida de valores
         try:
             id_entrada = int(input('Digite o ID: '))
