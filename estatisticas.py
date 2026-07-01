@@ -1,37 +1,37 @@
-import utils as u
+import funcoes as f
 
 def media_gastos():
-    u.read_key()
+    f.read_key()
     pass
 def maior_menor_despesa():
-    u.read_key()
+    f.read_key()
     pass
 def maior_menor_entrada():
-    u.read_key()
+    f.read_key()
     pass
 def desvio_padrao():
-    u.read_key()
+    f.read_key()
     pass
 def percentual_categoria():
-    u.read_key()
+    f.read_key()
     pass
 
 
 def menu_estatisticas():
     while True:
-        u.limpar_tela()
-        u.double_line()
-        print('ESTATÍSTICAS'.center(u.size,' '))
-        u.double_line()
+        f.limpar_tela()
+        f.double_line()
+        print('ESTATÍSTICAS'.center(f.size,' '))
+        f.double_line()
         print('1 - MÉDIA DE GASTOS')
         print('2 - MAIOR E MENOR DESPESA')
         print('3 - MAIOR E MENOR ENTRADA')
         print('4 - DESVIO PADRÃO')
         print('5 - PERCENTUAL POR CATEGORIA')
         print('0 - VOLTAR')
-        u.double_line()
-        opcao = u.ler_opcao_menu(5)
-        u.double_line()
+        f.double_line()
+        opcao = f.ler_opcao_menu(5)
+        f.double_line()
         
         if opcao == 1:
             media_gastos()
@@ -49,7 +49,7 @@ def menu_estatisticas():
             percentual_categoria()
 
         elif opcao == 0:
-            u.limpar_tela()
+            f.limpar_tela()
             break
 
 

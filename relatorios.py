@@ -1,34 +1,34 @@
-import utils as u
+import funcoes as f
 
-def saldo_atual():
-    u.read_key()
+def saldo_atfal():
+    f.read_key()
     pass
 def total_entradas():
-    u.read_key()
+    f.read_key()
     pass
-def total_despesdas():
-    u.read_key()
+def total_despesas():
+    f.read_key()
     pass
 def gastos_por_categoria(): 
-    u.read_key()
+    f.read_key()
     pass
 def entradas_por_categoria():
-    u.read_key()
+    f.read_key()
     pass
 def relatorio_mensal():
-    u.read_key()
+    f.read_key()
     pass
 def relatorio_anual():
-    u.read_key()
+    f.read_key()
     pass
 
 
 def menu_relatorio():
     while True:
-        u.limpar_tela()
-        u.double_line()
-        print('RELATÓRIOS'.center(u.size,' '))
-        u.double_line()
+        f.limpar_tela()
+        f.double_line()
+        print('RELATÓRIOS'.center(f.size,' '))
+        f.double_line()
         print('1 - SALDO ATUAL')
         print('2 - TOTAL DE ENTRADAS')
         print('3 - TOTAL DE DESPESAS')
@@ -37,40 +37,40 @@ def menu_relatorio():
         print('6 - RELATÓRIO MENSAL')
         print('7 - RELATÓRIO ANUAL')
         print('0 - VOLTAR')
-        u.double_line()
-        opcao = u.ler_opcao_menu(7)
-        u.double_line()
+        f.double_line()
+        opcao = f.ler_opcao_menu(7)
+        f.double_line()
         
         if opcao == 1:
-            u.limpar_tela()
-            saldo_atual()
+            f.limpar_tela()
+            saldo_atfal()
 
         elif opcao == 2:
-            u.limpar_tela()
+            f.limpar_tela()
             total_entradas()
 
         elif opcao == 3:
-            u.limpar_tela()
-            total_despesdas()
+            f.limpar_tela()
+            total_despesas()
 
         elif opcao == 4:
-            u.limpar_tela()
+            f.limpar_tela()
             gastos_por_categoria()
 
         elif opcao == 5:
-            u.limpar_tela()
+            f.limpar_tela()
             entradas_por_categoria()
 
         elif opcao == 6:
-            u.limpar_tela()
+            f.limpar_tela()
             relatorio_mensal()
 
         elif opcao == 7:
-            u.limpar_tela()
+            f.limpar_tela()
             relatorio_anual()
 
         elif opcao == 0:
-            u.limpar_tela()
+            f.limpar_tela()
             break
 
 if __name__ == '__main__':

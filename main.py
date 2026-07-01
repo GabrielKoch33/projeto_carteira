@@ -4,18 +4,18 @@ import despesas as des
 import categorias as cat
 import relatorios as rel
 import estatisticas as est
-import visualizacoes as views
+import projeto_carteira.graficos as views
 import analises as anl
 import metas as met
-import utils as u
+import funcoes as f
 import dados
 
 def main_menu():
     while True:
-        u.limpar_tela()
-        u.double_line()
-        print('CARTEIRA DE GABRIEL'.center(u.size,' '))
-        u.double_line()
+        f.limpar_tela()
+        f.double_line()
+        print('CARTEIRA DE GABRIEL'.center(f.size,' '))
+        f.double_line()
         print('1 - ENTRADAS')
         print('2 - DESPESAS')
         print('3 - CATEGORIAS')
@@ -25,9 +25,9 @@ def main_menu():
         print('7 - ANÁLISES AUTOMÁTICAS')
         print('8 - METAS FINANCEIRAS')
         print('0 - SALVAR E SAIR')
-        u.double_line()
-        opcao = u.ler_opcao_menu(8)
-        u.double_line()
+        f.double_line()
+        opcao = f.ler_opcao_menu(8)
+        f.double_line()
         if opcao == 1:
             ent.menu_entradas()
         elif opcao == 2:
@@ -46,7 +46,7 @@ def main_menu():
             met.menu_metas()
         elif opcao == 0:
             print('Salvando...')
-            u.pause()
+            f.pause()
             break
 
 if __name__ == '__main__':
@@ -56,22 +56,22 @@ if __name__ == '__main__':
     Senão, Abrimos o arquivos e pegamos o saldo armazenado.
     '''
     while True:
-        u.saldo = input('Qual é o seu saldo atual?: ').strip()
+        f.saldo = input('Qual é o seu saldo atual?: ').strip()
 
-        if not u.saldo:
+        if not f.saldo:
             print('Valores vazios não são permitidos!')
             continue
 
         try:
-            u.saldo = u.saldo.replace('.', '')
-            u.saldo = u.saldo.replace(',', '.')
-            u.saldo = float(u.saldo)
+            f.saldo = f.saldo.replace('.', '')
+            f.saldo = f.saldo.replace(',', '.')
+            f.saldo = float(f.saldo)
 
         except:
             print('Por favor, insira um valor numérico válido.')
             continue
 
-        if u.saldo < 0:
+        if f.saldo < 0:
             print('Valores negativos não são permitidos!')
             continue
 

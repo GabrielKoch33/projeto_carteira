@@ -1,12 +1,12 @@
-import utils as u
+import projeto_carteira.funcoes as f
 import estruturas_dados as est
 
 def listar_categorias():
-    u.double_line()
-    print('LISTA DE CATEGORIAS'.center(u.size,' '))
-    u.double_line()
+    f.double_line()
+    print('LISTA DE CATEGORIAS'.center(f.size,' '))
+    f.double_line()
     print(f'{'ID':<5}{'CATEGORIA':<10}')
-    u.line()
+    f.line()
     for categoria in est.lista_categorias:
         print(f'{categoria["id"]:<5}{categoria["nome"]:<10}')
 
@@ -28,11 +28,11 @@ def criar_cat_personalizada():
             print('Insira um nome válido (não vazio)!')
             continue       
     # verifica se o nome que o user inserir ja existe na lista de categorias
-    if u.encontra_campo_e_indice(nome_categoria,est.lista_categorias,'nome'):
+    if f.encontra_campo_e_indice(nome_categoria,est.lista_categorias,'nome'):
         return 'Essa categoria já existe, duplicadas não são permitidas!'
     
     else:
-        est.lista_categorias.append({"id":u.gera_id(est.lista_categorias),
+        est.lista_categorias.append({"id":f.gera_id(est.lista_categorias),
                                  "nome":nome_categoria,"default":False})
         
         return 'Categoria adicionada!'
@@ -40,11 +40,11 @@ def criar_cat_personalizada():
 
 def editar_cat_personalizada():
                    # impede o user de por valores inexistentes, editar cat defaults ou valores inválidos
-    id_categoria = u.valida_editar_ou_excluir_categoria(est.lista_categorias)
+    id_categoria = f.valida_editar_ou_excluir_categoria(est.lista_categorias)
                    # retorna o id que o user inseriu 
     if isinstance(id_categoria,int):
         # vai usar o valor de id informado para checar se existe essa categoria criada
-        achou, indice = u.encontra_campo_e_indice(id_categoria,est.lista_categorias,'id')
+        achou, indice = f.encontra_campo_e_indice(id_categoria,est.lista_categorias,'id')
 
         if achou: # ao encontrar, vai retornar a posição de alteração correta    
             novoValor = input('Qual será o novo nome?: ').lower()
@@ -58,11 +58,11 @@ def editar_cat_personalizada():
         return id_categoria
 
 def excluir_cat_personalizada():
-    id_categoria = u.valida_editar_ou_excluir_categoria(est.lista_categorias)
+    id_categoria = f.valida_editar_ou_excluir_categoria(est.lista_categorias)
 
     if isinstance(id_categoria,int):
 
-        achou, indice = u.encontra_campo_e_indice(id_categoria,est.lista_categorias,'id')
+        achou, indice = f.encontra_campo_e_indice(id_categoria,est.lista_categorias,'id')
         if achou:
             est.lista_categorias.pop(indice)
             return 'Campo removido com sucesso!'
@@ -76,51 +76,49 @@ def excluir_cat_personalizada():
 
 def menu_categorias():
     while True:
-        u.limpar_tela()
-        u.double_line()
-        print('CATEGORIAS'.center(u.size,' '))
-        u.double_line()
+        f.limpar_tela()
+        f.double_line()
+        print('CATEGORIAS'.center(f.size,' '))
+        f.double_line()
         print('1 - LISTAR CATEGORIAS')
         print('2 - CRIAR CATEGORIA PERSONALIZADA')
         print('3 - EDITAR CATEGORIA PERSONALIZADA')
         print('4 - EXCLUIR CATEGORIA PERSONALIZADA')
         print('0 - VOLTAR')
-        u.double_line()
-        opcao = u.ler_opcao_menu(4)
-        u.double_line()
+        f.double_line()
+        opcao = f.ler_opcao_menu(4)
+        f.double_line()
         
         if opcao == 1:
-            u.limpar_tela()
+            f.limpar_tela()
             listar_categorias()
-            u.double_line()
-            u.read_key()
+            f.double_line()
+            f.read_key()
 
         elif opcao == 2:
-            u.limpar_tela()
+            f.limpar_tela()
             msg = criar_cat_personalizada()
             print(msg)
-            u.double_line()
-            u.read_key()
+            f.double_line()
+            f.read_key()
 
         elif opcao == 3:
-            u.limpar_tela()
+            f.limpar_tela()
             msg = editar_cat_personalizada()
             print(msg)
-            u.double_line()
-            u.read_key()
+            f.double_line()
+            f.read_key()
 
         elif opcao == 4:
-            u.limpar_tela()
+            f.limpar_tela()
             msg = excluir_cat_personalizada()
             print(msg)
-            u.double_line()
-            u.read_key()
+            f.double_line()
+            f.read_key()
 
         elif opcao == 0:
-            u.limpar_tela()
+            f.limpar_tela()
             break
-
-
 
 if __name__ == '__main__':
     menu_categorias()

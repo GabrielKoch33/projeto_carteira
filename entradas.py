@@ -1,13 +1,13 @@
-import utils as u
+import funcoes as f
 from categorias import listar_categorias
 import estruturas_dados as est
 '''
--> output lista: total de registros, categoria mais usada
+-> output lista: total de registros
 '''
 def adicionar_entradas():
 
     valor_entrada = input('Digite o valor em R$ da entrada: ')
-    valor_entrada = u.converte_moeda(valor_entrada)
+    valor_entrada = f.converte_moeda(valor_entrada)
 
     # isinstance(varivael que vamos verificar, tipo esperado que ela seja)
     # retorna True se valor_entrada for str / caso o tipo for tupla e o valor um elemento q esta na tupla, ent True
@@ -26,27 +26,27 @@ def adicionar_entradas():
 
 
         while True:
-            data = u.converte_data()
+            data = f.converte_data()
 
             if not data:
-                u.double_line()
+                f.double_line()
                 print("Erro: Digite exatamente 8 números.")
-                u.double_line()
+                f.double_line()
                 continue # se voltar erro, pede data novamente
 
             else:
                 break # senão, valor válido e insere data
 
         listar_categorias()
-        u.double_line()
+        f.double_line()
 
         while True:
             # Parte responsável por permitir entrada válida de ID de categoria
-            id_entrada = u.ler_valida_id()
-            achou, indice = u.encontra_campo_e_indice(id_entrada, est.lista_categorias,'id')
+            id_entrada = f.ler_valida_id()
+            achou, indice = f.encontra_campo_e_indice(id_entrada, est.lista_categorias,'id')
 
             if achou:
-                id = u.gera_id(est.lista_entradas)# depois que tudo dá certo é gerado um ID
+                id = f.gera_id(est.lista_entradas)# depois que tudo dá certo é gerado um ID
 
                 for palavra in descricao_entrada: # como descrição é uma lista, cada palavra vai ser uma chave em um dicionario
                     if palavra not in est.palavras_desc_entradas:
@@ -76,7 +76,7 @@ def listar_entradas():
     
     else:
         
-        u.imprime_colunas('ENTRADAS')
+        f.imprime_colunas('ENTRADAS')
 
         num_registros = 0
         for item in est.lista_entradas:
@@ -89,7 +89,7 @@ def listar_entradas():
                 f'{item["categoria"]:<20}'
                 f'{item["data"]:<12}'
             )
-        u.double_line()
+        f.double_line()
         print(f'Total de registros: {num_registros}') 
         return 'Lista retornada com sucesso!'
     
@@ -97,10 +97,10 @@ def editar_entradas():
 
     if est.lista_entradas: #se conter logs de entrada, da inicio ao processo
         listar_entradas()
-        u.double_line()
+        f.double_line()
 
-        id_entrada = u.ler_valida_id() #while true e try/except para ler id informado
-        achou, indice = u.encontra_campo_e_indice(id_entrada,est.lista_entradas,'id')
+        id_entrada = f.ler_valida_id() #while true e try/except para ler id informado
+        achou, indice = f.encontra_campo_e_indice(id_entrada,est.lista_entradas,'id')
                         # verifica se o id informado pelo user existe e se existir retorna sua posição
                         # indice será usado para sabermos onde o id informado está 
         if not achou:
@@ -108,7 +108,7 @@ def editar_entradas():
                 
         else:
             print('Qual campo dessa entrada você deseja editar? ')
-            u.double_line()
+            f.double_line()
 
             while True:
                 campo = input(f'[1] - VALOR\n[2] - DESCRIÇÃO\n[3] - CATEGORIA\n[4] - DATA\nR: ').strip()
@@ -121,9 +121,9 @@ def editar_entradas():
             match campo:
 
                 case '1':
-                    u.double_line()
+                    f.double_line()
                     novo_valor = input('Digite o novo valor em R$ da entrada: ')
-                    novo_valor = u.converte_moeda(novo_valor)
+                    novo_valor = f.converte_moeda(novo_valor)
 
                     if isinstance(novo_valor,str):
                         return novo_valor
@@ -132,7 +132,7 @@ def editar_entradas():
                         return 'Campo "VALOR" alterado com sucesso!'
                                     
                 case '2':
-                    u.double_line()
+                    f.double_line()
                     nova_descricao = input('Digite a nova descrição: ').strip().lower().split()
                     # antiga = oi meu amor id = 1 // nova = eae mano
                     if nova_descricao == est.lista_entradas[indice]['descricao']:
@@ -154,11 +154,11 @@ def editar_entradas():
                     return 'Campo "DESCRIÇÃO" alterado com sucesso!'
 
                 case '3':
-                    u.double_line()
+                    f.double_line()
                     listar_categorias()
                     while True:
-                        id_nova_categoria = u.ler_valida_id()                           
-                        encontrou_id, indice_categoria = u.encontra_campo_e_indice(id_nova_categoria, est.lista_categorias,'id')
+                        id_nova_categoria = f.ler_valida_id()                           
+                        encontrou_id, indice_categoria = f.encontra_campo_e_indice(id_nova_categoria, est.lista_categorias,'id')
 
                         if encontrou_id:
                             est.lista_entradas[indice]['categoria'] = est.lista_categorias[indice_categoria]['nome']
@@ -168,14 +168,14 @@ def editar_entradas():
                             continue
 
                 case '4':
-                    u.double_line()
+                    f.double_line()
                     while True:
-                        data = u.converte_data()
+                        data = f.converte_data()
 
                         if not data:
-                            u.double_line()
+                            f.double_line()
                             print("Erro: Digite exatamente 8 números.")
-                            u.double_line()
+                            f.double_line()
                             continue # se voltar erro, pede data novamente
                         else:                               
                             break # senão, valor é válido e insere data
@@ -183,7 +183,7 @@ def editar_entradas():
                     return 'Campo "DATA" alterado com sucesso!'
 
                 case _: # _ é como se fosse um 'ELSE'. usar | (barra reta) é como um OR
-                    u.double_line()
+                    f.double_line()
                     return('Insira um campo válido!')      
     else:
         return('Nenhuma entrada foi registrada ainda! Nada para editar')
@@ -192,10 +192,10 @@ def remover_entradas():
     
     if est.lista_entradas: #se conter logs de entrada, da inicio ao processo
         listar_entradas()
-        u.double_line()
+        f.double_line()
 
-        id_entrada = u.ler_valida_id()
-        achou, indice = u.encontra_campo_e_indice(id_entrada, est.lista_entradas,'id')
+        id_entrada = f.ler_valida_id()
+        achou, indice = f.encontra_campo_e_indice(id_entrada, est.lista_entradas,'id')
                         # verifica se o id informado pelo user existe e se existir retorna sua posição
                         # indice será usado para sabermos onde o id informado está 
         if not achou:
@@ -233,7 +233,7 @@ def buscar_por_descricao():
         else:
             ids_encontrados = est.palavras_desc_entradas[palavra_chave_busca] #recebe os id das entradas da respectiva palavra chave
 
-            u.imprime_colunas('ENTRADAS')
+            f.imprime_colunas('ENTRADAS')
             
             num_registros = 0
             for item in est.lista_entradas: #percorre a lista de entradas comparando [id] com os id relacionados a palavra-chave
@@ -247,7 +247,7 @@ def buscar_por_descricao():
                         f'{item["categoria"]:<20}'
                         f'{item["data"]:<12}'
                     )
-            u.double_line()
+            f.double_line()
             print(f'Total de registros: {num_registros}')
             return ('Consulta por descrição retornada com sucesso!')
     else:
@@ -257,23 +257,23 @@ def buscar_por_categoria():
     
     if est.lista_entradas: #verifica se a lista de entrada possui elementos
 
-        u.listar_categorias()
-        u.double_line()
+        f.listar_categorias()
+        f.double_line()
 
-        id_entrada = u.ler_valida_id()
-        achou, indice = u.encontra_campo_e_indice(id_entrada, est.lista_categorias,'id')
+        id_entrada = f.ler_valida_id()
+        achou, indice = f.encontra_campo_e_indice(id_entrada, est.lista_categorias,'id')
                         # verifica se o id informado pelo user existe e se existir retorna sua posição
                         # indice será usado para sabermos onde o id informado está 
         if not achou: 
             return 'Não existe categoria com o ID informado!'
             #verifica se existem categoria com o ID informado
         else:
-            u.limpar_tela()
+            f.limpar_tela()
             nome_categoria = est.lista_categorias[indice]['nome']
 
-            if u.encontra_campo_e_indice(nome_categoria, est.lista_entradas,'categoria')[0]:
+            if f.encontra_campo_e_indice(nome_categoria, est.lista_entradas,'categoria')[0]:
                 
-                u.imprime_colunas('ENTRADAS')
+                f.imprime_colunas('ENTRADAS')
 
                 num_registros = 0
                 for item in est.lista_entradas:
@@ -287,7 +287,7 @@ def buscar_por_categoria():
                             f'{item["categoria"]:<20}'
                             f'{item["data"]:<12}'
                         )
-                u.double_line()
+                f.double_line()
                 print(f'Total de registros: {num_registros}')
                 return 'Lista retornada com sucesso!'
             else:
@@ -304,15 +304,15 @@ def buscar_por_periodo():
     -> exibir lista
     -> contador de registro por categoria
     '''
-    u.read_key()
+    f.read_key()
     pass
 
 def menu_entradas():
     while True:
-        u.limpar_tela()
-        u.double_line()
-        print('ENTRADAS'.center(u.size,' '))
-        u.double_line()
+        f.limpar_tela()
+        f.double_line()
+        print('ENTRADAS'.center(f.size,' '))
+        f.double_line()
         print('1 - ADICIONAR ENTRADA')
         print('2 - EDITAR ENTRADA')
         print('3 - REMOVER ENTRADA')
@@ -321,60 +321,60 @@ def menu_entradas():
         print('6 - BUSCA POR CATEGORIA')
         print('7 - BUSCA POR PERÍODO')
         print('0 - VOLTAR')
-        u.double_line()
-        opcao = u.ler_opcao_menu(7)
-        u.double_line()
+        f.double_line()
+        opcao = f.ler_opcao_menu(7)
+        f.double_line()
 
         if opcao == 1:
-            u.limpar_tela()
+            f.limpar_tela()
             msg = adicionar_entradas()
             print(msg)
-            u.double_line()
-            u.read_key()
+            f.double_line()
+            f.read_key()
 
         elif opcao == 2:
-            u.limpar_tela()
+            f.limpar_tela()
             msg = editar_entradas()
             print(msg)
-            u.double_line()
-            u.read_key()
+            f.double_line()
+            f.read_key()
 
         elif opcao == 3:
-            u.limpar_tela()
+            f.limpar_tela()
             msg = remover_entradas()
             print(msg)
-            u.double_line()
-            u.read_key()
+            f.double_line()
+            f.read_key()
 
         elif opcao == 4:
-            u.limpar_tela()
+            f.limpar_tela()
             msg = listar_entradas()
             print(msg)
-            u.double_line()
-            u.read_key()
+            f.double_line()
+            f.read_key()
 
         elif opcao == 5:
-            u.limpar_tela()
+            f.limpar_tela()
             msg = buscar_por_descricao()
             print(msg)
-            u.double_line()
-            u.read_key()
+            f.double_line()
+            f.read_key()
 
         elif opcao == 6:
-            u.limpar_tela()
+            f.limpar_tela()
             msg = buscar_por_categoria()
             print(msg)
-            u.double_line()
-            u.read_key()
+            f.double_line()
+            f.read_key()
 
         elif opcao == 7:
-            u.limpar_tela()
+            f.limpar_tela()
             buscar_por_periodo()
-            u.double_line()
-            u.read_key()
+            f.double_line()
+            f.read_key()
 
         elif opcao == 0:
-            u.limpar_tela()
+            f.limpar_tela()
             break
         
 if __name__ == '__main__':
