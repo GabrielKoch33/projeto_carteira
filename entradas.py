@@ -78,7 +78,6 @@ def listar_entradas():
         return 'Registro de entradas vazio. Nenhuma entrada para listar!'
     
     else:
-        
         f.imprime_colunas('ENTRADAS')
 
         num_registros = 0
@@ -302,28 +301,45 @@ def buscar_por_categoria():
 
 def buscar_por_periodo():
     if est.lista_entradas:
-
         while True:
-            f.double_line()
-            print('Data inicial: ')
-            data_inicio = f.converte_data()
 
-            f.double_line()
-            print('Data final: ')
-            data_fim = f.converte_data()
+            while True:
+                f.double_line()
+                print('Data inicial: ')
+                data_inicio = f.converte_data()
+
+                if not data_inicio:
+                    f.double_line()
+                    print("Erro: Digite exatamente 8 números.")
+                    f.double_line()
+                    continue # se voltar erro, pede data novamente
+                break
+
+            while True:
+                f.double_line()
+                print('Data final: ')
+                data_fim = f.converte_data()
+
+                if not data_fim:
+                    print("Erro: Digite exatamente 8 números.")
+                    f.double_line()
+                    continue # se voltar erro, pede data novamente
+                break
 
             if data_inicio > data_fim:
                 f.double_line()
                 print('A data de inicial não pode ser mais que a data final! Tente novamente.')
                 continue
             else:
-                if len(est.lista_entradas) == 1 and est.lista_entradas[0]['data'] < data_inicio :
-                    return('Não existem entradas dentro do período fornecido, considere buscar uma data de início mais antiga!')
                 break    
         
         indice_inicio = 0
         while indice_inicio < len(est.lista_entradas) and est.lista_entradas[indice_inicio]['data'] < data_inicio:
             indice_inicio += 1
+        
+        if indice_inicio == len(est.lista_entradas):
+            return 'Não existem entradas dentro do período fornecido, considere buscar uma data de início mais antiga!'
+
         primeiro_reg = est.lista_entradas[indice_inicio]['data']
 
         f.imprime_colunas('ENTRADAS')
@@ -343,16 +359,22 @@ def buscar_por_periodo():
                )
             indice_inicio += 1
             num_registros += 1
-        ultimo_reg = est.lista_entradas[indice_inicio-1]['data']
 
         f.double_line()
-        anos, meses, dias = f.calcula_tempo(primeiro_reg,ultimo_reg)
-        print(f'Foram registrados um total de registros: {num_registros} em: {dias} dias, {anos} anos e {meses} meses.')
+
+        if num_registros == 0:
+            print('Nenhum registro encontrado dentro do período informado.')
+        else:
+            ultimo_reg = est.lista_entradas[indice_inicio-1]['data']
+            dias = f.calcula_dias_totais(primeiro_reg, ultimo_reg)
+            print(f'Foram registrados um total de registros: {num_registros}\nEm um período de {dias} dias!')
+
+        f.double_line()
         return 'Lista retornada com sucesso!'
-    
+
     else:
         return('Nenhuma entrada foi registrada ainda! Nada para consultar!')
-    
+
 def menu_entradas():
     while True:
         f.limpar_tela()
