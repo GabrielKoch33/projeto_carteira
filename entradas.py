@@ -1,6 +1,7 @@
 import funcoes as f
 from categorias import listar_categorias
 import estruturas_dados as est
+
 '''
 -> output lista: total de registros
 '''
@@ -303,49 +304,52 @@ def buscar_por_periodo():
     if est.lista_entradas:
 
         while True:
-            f.double_lineine()
+            f.double_line()
             print('Data inicial: ')
             data_inicio = f.converte_data()
-            
-            f.double_lineine()
+
+            f.double_line()
             print('Data final: ')
             data_fim = f.converte_data()
 
             if data_inicio > data_fim:
-                f.double_lineine()
+                f.double_line()
                 print('A data de inicial não pode ser mais que a data final! Tente novamente.')
                 continue
             else:
-                break
-
-        achou_inicio, indice_inicio = f.encontra_campo_e_indice(data_inicio, est.lista_entradas,'data')
-        #achou_fim, indice_fim = f.encontra_campo_e_indice(data_fim, est.lista_entradas,'data')     
+                if len(est.lista_entradas) == 1 and est.lista_entradas[0]['data'] < data_inicio :
+                    return('Não existem entradas dentro do período fornecido, considere buscar uma data de início mais antiga!')
+                break    
         
-        if achou_inicio:# and achou_fim:
-            f.imprime_colunas('ENTRADAS')
-            num_registros = 0
+        indice_inicio = 0
+        while indice_inicio < len(est.lista_entradas) and est.lista_entradas[indice_inicio]['data'] < data_inicio:
+            indice_inicio += 1
+        primeiro_reg = est.lista_entradas[indice_inicio]['data']
 
-            while indice_inicio <= len(est.lista_entradas)-1 and est.lista_entradas[indice_inicio]['data'] <= data_fim:
+        f.imprime_colunas('ENTRADAS')
+        num_registros = 0
 
-                descricao = ' '.join(est.lista_entradas[indice_inicio]['descricao'])
-                data_ = est.lista_entradas[indice_inicio]['data'].strftime("%d/%m/%Y")
+        while indice_inicio <= len(est.lista_entradas)-1 and est.lista_entradas[indice_inicio]['data'] <= data_fim:
 
-                print(
-                    f'{est.lista_entradas[indice_inicio]["id"]:<5}'
-                    f'R${est.lista_entradas[indice_inicio]["valor"]:<13.2f}'
-                    f'{descricao:<30}'
-                    f'{est.lista_entradas[indice_inicio]["categoria"]:<20}'
-                    f'{data_:<12}'
-                    )
-                indice_inicio += 1
-                num_registros += 1
+            descricao = ' '.join(est.lista_entradas[indice_inicio]['descricao'])
+            data_ = est.lista_entradas[indice_inicio]['data'].strftime("%d/%m/%Y")
 
-            f.double_line()
-            print(f'Total de registros: {num_registros}')
-            return 'Lista retornada com sucesso!'
+            print(
+                f'{est.lista_entradas[indice_inicio]["id"]:<5}'
+                f'R${est.lista_entradas[indice_inicio]["valor"]:<13.2f}'
+                f'{descricao:<30}'
+                f'{est.lista_entradas[indice_inicio]["categoria"]:<20}'
+                f'{data_:<12}'
+               )
+            indice_inicio += 1
+            num_registros += 1
+        ultimo_reg = est.lista_entradas[indice_inicio-1]['data']
 
-        else:
-            return('Erro ao achar data inicial, verifique se ela existe!')
+        f.double_line()
+        anos, meses, dias = f.calcula_tempo(primeiro_reg,ultimo_reg)
+        print(f'Foram registrados um total de registros: {num_registros} em: {dias} dias, {anos} anos e {meses} meses.')
+        return 'Lista retornada com sucesso!'
+    
     else:
         return('Nenhuma entrada foi registrada ainda! Nada para consultar!')
     
@@ -411,7 +415,8 @@ def menu_entradas():
 
         elif opcao == 7:
             f.limpar_tela()
-            buscar_por_periodo()
+            msg = buscar_por_periodo()
+            print(msg)
             f.double_line()
             f.read_key()
 

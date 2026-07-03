@@ -144,4 +144,11 @@ def encontra_campo_e_indice(ref_valor, ref_lista,campo_alvo):
     else:  
         return False, -1
     
+def calcula_tempo(ref_inicio,ref_fim):
+    periodo = ref_fim - ref_inicio
+    dias = periodo.days
+    anos = dias // 365
+    meses = (dias % 365) // 30
+    dias_restantes = (dias % 365) % 30
+    return anos, meses, dias_restantes
 
