@@ -1,4 +1,4 @@
-import projeto_carteira.funcoes as f
+import funcoes as f
 import estruturas_dados as est
 
 def listar_categorias():

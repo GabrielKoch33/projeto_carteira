@@ -2,7 +2,7 @@ import subprocess
 import sys
 import time
 from datetime import date,datetime, timedelta
-from categorias import *
+from categorias import listar_categorias
 
 # variaveis importantes
 size = 82
@@ -92,7 +92,7 @@ def converte_data():
         texto_data = f"{entrada[:2]}/{entrada[2:4]}/{entrada[4:]}"
         data_formatada = datetime.strptime(
             texto_data,
-            "%d/%m?Y")
+            "%d/%m/%Y")
         return data_formatada
         # data agora é um OBJETO DATETIME, não string
     else:
@@ -135,8 +135,7 @@ def ler_valida_id ():
     
 def encontra_campo_e_indice(ref_valor, ref_lista,campo_alvo):
     '''
-    verificamos se o campo 'nome' de categoria
-    existe em algum registro da lista de entrada
+    Campo alvo deve existir como key dentro do dicionário
     '''
 
     for index, item in enumerate(ref_lista):
@@ -145,3 +144,4 @@ def encontra_campo_e_indice(ref_valor, ref_lista,campo_alvo):
     else:  
         return False, -1
     
+

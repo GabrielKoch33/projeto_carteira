@@ -36,7 +36,8 @@ def adicionar_entradas():
 
             else:
                 break # senão, valor válido e insere data
-
+        
+        f.limpar_tela()
         listar_categorias()
         f.double_line()
 
@@ -66,7 +67,8 @@ def adicionar_entradas():
             else: 
                 print('Tente Novamente!')
                 continue
-
+        
+        f.limpar_tela()
         return('Entrada cadastrada!')
 
 def listar_entradas():
@@ -81,13 +83,14 @@ def listar_entradas():
         num_registros = 0
         for item in est.lista_entradas:
            descricao = ' '.join(item['descricao'])
+           data_ = item['data'].strftime("%d/%m/%Y")
            num_registros += 1
            print(
                 f'{item["id"]:<5}'
                 f'R${item["valor"]:<13.2f}'#.2f = duas casas decimais
                 f"{descricao:<30}"
                 f'{item["categoria"]:<20}'
-                f'{item["data"]:<12}'
+                f'{data_:<12}'
             )
         f.double_line()
         print(f'Total de registros: {num_registros}') 
@@ -297,16 +300,55 @@ def buscar_por_categoria():
         return('Nenhuma entrada foi registrada ainda! Nada para consultar!')
 
 def buscar_por_periodo():
-    '''
-    user informa:
-    -> data inicio
-    -> data fim
-    -> exibir lista
-    -> contador de registro por categoria
-    '''
-    f.read_key()
-    pass
+    if est.lista_entradas:
 
+        while True:
+            f.double_lineine()
+            print('Data inicial: ')
+            data_inicio = f.converte_data()
+            
+            f.double_lineine()
+            print('Data final: ')
+            data_fim = f.converte_data()
+
+            if data_inicio > data_fim:
+                f.double_lineine()
+                print('A data de inicial não pode ser mais que a data final! Tente novamente.')
+                continue
+            else:
+                break
+
+        achou_inicio, indice_inicio = f.encontra_campo_e_indice(data_inicio, est.lista_entradas,'data')
+        #achou_fim, indice_fim = f.encontra_campo_e_indice(data_fim, est.lista_entradas,'data')     
+        
+        if achou_inicio:# and achou_fim:
+            f.imprime_colunas('ENTRADAS')
+            num_registros = 0
+
+            while indice_inicio <= len(est.lista_entradas)-1 and est.lista_entradas[indice_inicio]['data'] <= data_fim:
+
+                descricao = ' '.join(est.lista_entradas[indice_inicio]['descricao'])
+                data_ = est.lista_entradas[indice_inicio]['data'].strftime("%d/%m/%Y")
+
+                print(
+                    f'{est.lista_entradas[indice_inicio]["id"]:<5}'
+                    f'R${est.lista_entradas[indice_inicio]["valor"]:<13.2f}'
+                    f'{descricao:<30}'
+                    f'{est.lista_entradas[indice_inicio]["categoria"]:<20}'
+                    f'{data_:<12}'
+                    )
+                indice_inicio += 1
+                num_registros += 1
+
+            f.double_line()
+            print(f'Total de registros: {num_registros}')
+            return 'Lista retornada com sucesso!'
+
+        else:
+            return('Erro ao achar data inicial, verifique se ela existe!')
+    else:
+        return('Nenhuma entrada foi registrada ainda! Nada para consultar!')
+    
 def menu_entradas():
     while True:
         f.limpar_tela()
