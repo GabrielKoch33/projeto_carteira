@@ -100,7 +100,7 @@ def converte_data():
 
 def valida_editar_ou_excluir_categoria(lista):
     '''
-    requer: ser chamada para validar o ID que da entrada que o user informar
+    requer ser chamada para validar o ID que da entrada que o user informar
     '''
     if len(lista) == 10:
         return 'Categorias padrões não são editáveis/removíveis'
