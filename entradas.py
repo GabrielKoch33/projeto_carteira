@@ -242,13 +242,14 @@ def buscar_por_descricao():
             for item in est.lista_entradas: #percorre a lista de entradas comparando [id] com os id relacionados a palavra-chave
                 if item['id'] in ids_encontrados:
                     descricao = ' '.join(item['descricao'])
+                    data_ = item['data'].strftime("%d/%m/%Y")
                     num_registros += 1
                     print(
                         f'{item["id"]:<5}'
                         f'R${item["valor"]:<13.2f}'
                         f'{descricao:<30}'
                         f'{item["categoria"]:<20}'
-                        f'{item["data"]:<12}'
+                        f'{data_:<12}'
                     )
             f.double_line()
             print(f'Total de registros: {num_registros}')
@@ -282,13 +283,14 @@ def buscar_por_categoria():
                 for item in est.lista_entradas:
                     if item['categoria'] == nome_categoria:
                         descricao = ' '.join(item['descricao'])
+                        data_ = item['data'].strftime("%d/%m/%Y")
                         num_registros += 1
                         print(
                             f'{item["id"]:<5}'
                             f'R${item["valor"]:<13.2f}'
                             f'{descricao:<30}'
                             f'{item["categoria"]:<20}'
-                            f'{item["data"]:<12}'
+                            f'{data_:<12}'
                         )
                 f.double_line()
                 print(f'Total de registros: {num_registros}')

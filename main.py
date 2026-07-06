@@ -10,20 +10,27 @@ import metas as met
 import funcoes as f
 import dados
 
+''' TO DO
+-> Solicitação de saldo e total em cofrinhos ao iniciar o programa pela primeira vez.
+-> Salvamento de dados.
+-> Função que calcula saldo.
+'''
+
+
 def main_menu():
     while True:
         f.limpar_tela()
         f.double_line()
         print('CARTEIRA DE GABRIEL'.center(f.size,' '))
         f.double_line()
-        print('1 - ENTRADAS')
-        print('2 - DESPESAS')
-        print('3 - CATEGORIAS')
-        print('4 - RELATÓRIOS')
-        print('5 - ESTATÍSTICAS')
-        print('6 - VISUALIZAÇÕES')#graficos
-        print('7 - ANÁLISES AUTOMÁTICAS')
-        print('8 - METAS FINANCEIRAS')
+        print('1 - ENTRADAS')              # FEITO
+        print('2 - DESPESAS')              # FEITO
+        print('3 - CATEGORIAS')            # FEITO
+        print('4 - RELATÓRIOS')            #
+        print('5 - ESTATÍSTICAS')          #
+        print('6 - VISUALIZAÇÕES')         #
+        print('7 - ANÁLISES AUTOMÁTICAS')  #
+        print('8 - METAS FINANCEIRAS')     #
         print('0 - SALVAR E SAIR')
         f.double_line()
         opcao = f.ler_opcao_menu(8)
@@ -50,11 +57,7 @@ def main_menu():
             break
 
 if __name__ == '__main__':
-    '''
-    Fazer verificação: se o arquivo que guarda os dados estiver vazio
-    Então pedimos o saldo pela 1ª e única vez
-    Senão, Abrimos o arquivos e pegamos o saldo armazenado.
-    '''
+
     while True:
         f.saldo = input('Qual é o seu saldo atual?: ').strip()
 

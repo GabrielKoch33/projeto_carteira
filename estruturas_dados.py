@@ -11,25 +11,26 @@ lista_categorias = [
   {"id":10,"nome":"outros","default":True}
 ]
 
-lista_entradas =[
+lista_entradas = [
     # {
     #     "id": 2,
     #     "valor": 120.50,
     #     "descricao": ["mercado", "mensal"],
     #     "categoria": "alimentação",
     #     "data": "06/06/2026"
-    # },
-    # {
-    #     "id": 7,
-    #     "valor": 300.00,
-    #     "descricao": ["mercado", "churrasco"],
-    #     "categoria": "alimentação",
-    #     "data": "11/06/2026"
     # }
 ]
 
-palavras_desc_entradas ={
+lista_despesas = [
+
+]
+
+palavras_desc_entradas = {
     # "mercado": {2, 7},
     # "churrasco": {7}
+}
+
+palavras_desc_despesas = {
+
 }
 
