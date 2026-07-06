@@ -16,7 +16,6 @@ def percentual_categoria():
     f.read_key()
     pass
 
-
 def menu_estatisticas():
     while True:
         f.limpar_tela()
@@ -51,7 +50,6 @@ def menu_estatisticas():
         elif opcao == 0:
             f.limpar_tela()
             break
-
 
 if __name__ == '__main__':
     menu_estatisticas()

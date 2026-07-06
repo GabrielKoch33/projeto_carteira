@@ -10,7 +10,6 @@ def listar_categorias():
     for categoria in est.lista_categorias:
         print(f'{categoria["id"]:<5}{categoria["nome"]:<10}')
 
-   
 def criar_cat_personalizada():
     '''
     Para o python, '' é visto como Falsy, enquanto '  ' é Truthy
@@ -36,7 +35,6 @@ def criar_cat_personalizada():
                                  "nome":nome_categoria,"default":False})
         
         return 'Categoria adicionada!'
-
 
 def editar_cat_personalizada():
                    # impede o user de por valores inexistentes, editar cat defaults ou valores inválidos
@@ -72,7 +70,6 @@ def excluir_cat_personalizada():
 
     else:
         return id_categoria
-
 
 def menu_categorias():
     while True:

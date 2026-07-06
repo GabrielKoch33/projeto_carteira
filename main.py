@@ -16,7 +16,6 @@ import dados
 -> Função que calcula saldo.
 '''
 
-
 def main_menu():
     while True:
         f.limpar_tela()

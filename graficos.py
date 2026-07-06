@@ -13,7 +13,6 @@ def grafico_linha_despesas():
     f.read_key()
     pass
 
-
 def menu_visualizacoes():
     while True:
         f.limpar_tela()
@@ -48,6 +47,5 @@ def menu_visualizacoes():
             f.limpar_tela()
             break
         
-
 if __name__ == '__main__':
     menu_visualizacoes()

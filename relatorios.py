@@ -22,7 +22,6 @@ def relatorio_anual():
     f.read_key()
     pass
 
-
 def menu_relatorio():
     while True:
         f.limpar_tela()
@@ -75,7 +74,5 @@ def menu_relatorio():
 
 if __name__ == '__main__':
     menu_relatorio()
-
-
 
 #Campos: Data, Descrição, Categoria, Valor

@@ -16,7 +16,6 @@ def tendencia_saldo():
     f.read_key()
     pass
 
-
 def menu_analises():
     while True:
         f.limpar_tela()
@@ -55,8 +54,7 @@ def menu_analises():
         elif opcao == 0:
             f.limpar_tela()
             break
-
-            
+    
 if __name__ == '__main__':
     menu_analises()
 
