@@ -137,7 +137,6 @@ def encontra_campo_e_indice(ref_valor, ref_lista,campo_alvo):
     '''
     Campo alvo deve existir como key dentro do dicionário
     '''
-
     for index, item in enumerate(ref_lista):
         if item [campo_alvo] == ref_valor:
             return True, index
