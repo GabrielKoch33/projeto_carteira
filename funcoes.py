@@ -6,7 +6,7 @@ from categorias import listar_categorias
 
 # variaveis importantes
 size = 82
-saldo = ''
+
 
 def limpar_tela():
     # Usa o módulo subprocess, recomendado pelas diretrizes atuais do Python
@@ -36,7 +36,20 @@ def imprime_colunas(ref_modulo):
     print(f'{"ID":<5}{"VALOR":<15}{"DESCRIÇÃO":<30}{"CATEGORIA":<20}{"DATA":<12}')
     line()
 
+saldo = ''
+saldo_inicial = 0
 def calcula_saldo():
+    '''
+    common cases:
+    *Entradas*
+    -> add entrada: saldo += valor_entr
+    -> exc entrada: saldo -= valor_entr_excluida
+    -> upd entrada: 
+        -> vl_novo > vl_velho: saldo += (vl_novo - vl_velho)
+        -> vl_novo < vl_velho: saldo -= (vl_velho - vl_novo)
+    *Saídas*
+    ->
+    '''
     pass
 
 def ler_opcao_menu(num_max_opcao):

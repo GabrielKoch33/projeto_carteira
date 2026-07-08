@@ -4,7 +4,7 @@ import despesas as des
 import categorias as cat
 import relatorios as rel
 import estatisticas as est
-import projeto_carteira.graficos as views
+import graficos as views
 import analises as anl
 import metas as met
 import funcoes as f
@@ -58,7 +58,7 @@ def main_menu():
 if __name__ == '__main__':
 
     while True:
-        f.saldo = input('Qual é o seu saldo atual?: ').strip()
+        f.saldo = input('Qual é o seu saldo atual?\nLembre-se: O saldo não poderá ser alterado posteriormente!\nSaldo: ').strip()
 
         if not f.saldo:
             print('Valores vazios não são permitidos!')
@@ -76,7 +76,8 @@ if __name__ == '__main__':
         if f.saldo < 0:
             print('Valores negativos não são permitidos!')
             continue
-
+        
+        f.saldo_inicial = f.saldo
         break
 
     print('Iniciando...')

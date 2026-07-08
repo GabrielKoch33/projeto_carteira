@@ -1,4 +1,4 @@
-import projeto_carteira.funcoes as f
+import funcoes as f
 
 def grafico_pizza_por_categoria():
     f.read_key()

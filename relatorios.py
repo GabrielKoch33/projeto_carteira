@@ -1,6 +1,7 @@
 import funcoes as f
 
-def saldo_atfal():
+def saldo_atual():
+    print()
     f.read_key()
     pass
 def total_entradas():
@@ -28,7 +29,7 @@ def menu_relatorio():
         f.double_line()
         print('RELATÓRIOS'.center(f.size,' '))
         f.double_line()
-        print('1 - SALDO ATUAL')
+        print('1 - SALDO INICIAL X SALDO ATUAL')
         print('2 - TOTAL DE ENTRADAS')
         print('3 - TOTAL DE DESPESAS')
         print('4 - GASTOS POR CATEGORIA')
@@ -42,7 +43,7 @@ def menu_relatorio():
         
         if opcao == 1:
             f.limpar_tela()
-            saldo_atfal()
+            saldo_atual()
 
         elif opcao == 2:
             f.limpar_tela()
