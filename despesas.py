@@ -47,13 +47,8 @@ def adicionar_despesa():
             if achou:
                 id = f.gera_id(est.lista_despesas)# depois que tudo dá certo é gerado um ID
 
-                for palavra in descricao_despesa: # como descrição é uma lista, cada palavra vai ser uma chave em um dicionario
-                    if palavra not in est.palavras_desc_despesas:
-                        est.palavras_desc_despesas[palavra] = set()
-                        est.palavras_desc_despesas[palavra].add(id)
-                    else: # cada palavra vai conter um set onde guarda os ID das entradas
-                        est.palavras_desc_despesas[palavra].add(id)
-                        
+                f.hash_palavra_desc(id,est.palavras_desc_despesas,'adicionar',descricao_despesa)
+  
 
                 est.lista_despesas.append({"id":id,
                                     "valor":valor_despesa,
@@ -138,20 +133,9 @@ def editar_despesa():
                     if nova_descricao == est.lista_despesas[indice]['descricao']:
                         return 'Campo "DESCRIÇÃO" alterado com sucesso!'
                     else:
-                        # loop para remover os indices antigos ligados a palavra
-                        for item in est.lista_despesas[indice]['descricao']:
-                            est.palavras_desc_despesas[item].discard(id_despesa)
-                            if not est.palavras_desc_despesas[item]:
-                                del est.palavras_desc_despesas[item] 
                         
-                        # loop para criar a hash das palavras da nova descrição
-                        for item in nova_descricao:
-                            if item not in est.palavras_desc_despesas:
-                                est.palavras_desc_despesas[item] = set()
-                                est.palavras_desc_despesas[item].add(id_despesa)
-                            
-                    est.lista_despesas[indice]['descricao'] = nova_descricao                        
-                    return 'Campo "DESCRIÇÃO" alterado com sucesso!'
+                        f.hash_palavra_desc(id_despesa,est.palavras_desc_despesas,'editar',nova_descricao,est.lista_despesas,indice)
+                        return 'Campo "DESCRIÇÃO" alterado com sucesso!'
 
                 case '3':
                     f.double_line()
@@ -203,12 +187,8 @@ def remover_despesa():
                 
         else:
             id_removido = est.lista_despesas[indice]['id']
-            # ex: ID 15 pode estar no indice [4]
 
-            for item in est.lista_despesas[indice]['descricao']:
-                est.palavras_desc_despesas[item].discard(id_removido)
-                if not est.palavras_desc_despesas[item]: # se o set ficou vazio (a palavra (key) so aparecia nesse log) então exclui a key
-                    del est.palavras_desc_despesas[item]
+            f.hash_palavra_desc(id_removido,est.palavras_desc_despesas,'excluir',est.lista_despesas[indice]['descricao'],est.lista_despesas,indice)
 
             est.lista_despesas.pop(indice)
             return (f'Despesa de ID: {id_removido} foi removida!')

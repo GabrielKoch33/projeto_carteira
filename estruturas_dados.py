@@ -28,14 +28,14 @@ lista_despesas = [
 logs = [
     # lista que será populada por cada ocorrência de entrada (1) e saída (0)
     # {TIPO: 1 ; VALOR ; ID_NA_LISTA},
-    #a cada novo registro, a função calcula_saldo_atual() será chamada.
+    # a cada novo registro, a função calcula_saldo_atual() será chamada.
     # ela vai analisar o tipo de operação e checar condições para somar ou subtrair
 ]
 
 '''
 Abaixo estão duas Tabelas Hash em que cada palavra fornecida dentro do campo descrição
 é armazenada como chave do dicionário, e os valores dentro dos sets{} são os ids
-dos registros
+dos registros.
 '''
 palavras_desc_entradas = {
     # "mercado": {2, 7}, -> a palavra mercado aparece nos registro de id 2 e 7

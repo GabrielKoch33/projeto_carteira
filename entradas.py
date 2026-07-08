@@ -54,6 +54,8 @@ def adicionar_entradas():
                                     "descricao":descricao_entrada,
                                     "categoria":est.lista_categorias[indice]["nome"],
                                     "data":data})
+                
+                f.insere_log('entrada',valor_entrada,id)
                 break
 
             else: 
@@ -134,8 +136,7 @@ def editar_entradas():
                     
                     else:
                         f.hash_palavra_desc(id_entrada,est.palavras_desc_entradas,'editar',nova_descricao,est.lista_entradas,indice)   
-                    #est.lista_entradas[indice]['descricao'] = nova_descricao                        
-                    return 'Campo "DESCRIÇÃO" alterado com sucesso!'
+                        return 'Campo "DESCRIÇÃO" alterado com sucesso!'
 
                 case '3':
                     f.double_line()

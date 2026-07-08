@@ -3,6 +3,7 @@ import sys
 import time
 from datetime import date,datetime, timedelta
 from categorias import listar_categorias
+from estruturas_dados import logs
 
 # variaveis importantes
 size = 82
@@ -178,13 +179,11 @@ def calcula_saldo():
 '''FUNÇÕES DE MANIPULAÇÃO DE ESTRUTURAS'''
 def hash_palavra_desc(ref_id,
                       lista_hash,
-                      caso,
-                      ref_desc=[],
-                      tipo_lista=[],
-                      ref_indice=0):
-    '''
-    caso: Criar/Excluir/Editar
-    '''
+                      caso, # Criar/Excluir/Editar
+                      ref_desc=[], #nova descricao
+                      tipo_lista=[], # estamos percorrendo uma descricao de uma lista de entradas ou saída?
+                      ref_indice=0): # indice não é usado na entrada
+
     match caso:
         case 'adicionar':
 
@@ -218,36 +217,16 @@ def hash_palavra_desc(ref_id,
 
             tipo_lista[ref_indice]['descricao'] = ref_desc
 
+break
+def insere_log(tipo_operacao,ref_valor,ref_id):
+    '''
+    Função chamada ao:
+    -> criar entrada/despesa
+    -> editar valor de entrada/despesa
+    -> excluir entrada/despesa
+    '''
+    if tipo_operacao == 'entrada':
+        logs.append('')
 
-'''
-cria
-                for palavra in descricao_entrada: # como descrição é uma lista, cada palavra vai ser uma chave em um dicionario
-                    if palavra not in est.palavras_desc_entradas:
-                        est.palavras_desc_entradas[palavra] = set()
-                        est.palavras_desc_entradas[palavra].add(id)
-                    else: # cada palavra vai conter um set onde guarda os ID das entradas
-                        est.palavras_desc_entradas[palavra].add(id)
-'''
-'''
-exc
-
-            for item in est.lista_entradas[indice]['descricao']:
-                est.palavras_desc_entradas[item].discard(id_removido)
-                if not est.palavras_desc_entradas[item]: # se o set ficou vazio (a palavra (key) so aparecia nesse log) então exclui a key
-                    del est.palavras_desc_entradas[item]
-'''
-'''
-edit
-                        for item in est.lista_entradas[indice]['descricao']:
-                            est.palavras_desc_entradas[item].discard(id_entrada)
-                            if not est.palavras_desc_entradas[item]:
-                                del est.palavras_desc_entradas[item] 
-                        
-                        # loop para criar a hash das palavras da nova descrição
-                        for item in nova_descricao:
-                            if item not in est.palavras_desc_entradas:
-                                est.palavras_desc_entradas[item] = set()
-                                est.palavras_desc_entradas[item].add(id_entrada)
-                            else: # cada palavra vai conter um set onde guarda os ID das entradas
-                                est.palavras_desc_entradas[palavra].add(id)
-'''
+    elif tipo_operacao == 'saida':
+        pass
