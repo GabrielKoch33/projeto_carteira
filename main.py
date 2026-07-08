@@ -10,6 +10,7 @@ import metas as met
 import funcoes as f
 import dados
 
+
 ''' TO DO
 -> Solicitação de saldo e total em cofrinhos ao iniciar o programa pela primeira vez.
 -> Salvamento de dados.
@@ -30,6 +31,7 @@ def main_menu():
         print('6 - VISUALIZAÇÕES')         #
         print('7 - ANÁLISES AUTOMÁTICAS')  #
         print('8 - METAS FINANCEIRAS')     #
+        print('9 - ALTERAR SALDO INICIAL')
         print('0 - SALVAR E SAIR')
         f.double_line()
         opcao = f.ler_opcao_menu(8)
@@ -50,6 +52,8 @@ def main_menu():
             anl.menu_analises()
         elif opcao == 8:
             met.menu_metas()
+        elif opcao == 9:
+            f.redefine_saldo()
         elif opcao == 0:
             print('Salvando...')
             f.pause()
@@ -58,7 +62,7 @@ def main_menu():
 if __name__ == '__main__':
 
     while True:
-        f.saldo = input('Qual é o seu saldo atual?\nLembre-se: O saldo não poderá ser alterado posteriormente!\nSaldo: ').strip()
+        f.saldo = input('Qual é o seu saldo atual?\nSaldo: ').strip()
 
         if not f.saldo:
             print('Valores vazios não são permitidos!')

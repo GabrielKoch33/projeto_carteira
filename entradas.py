@@ -2,9 +2,6 @@ import funcoes as f
 from categorias import listar_categorias
 import estruturas_dados as est
 
-'''
--> output lista: total de registros
-'''
 def adicionar_entradas():
 
     valor_entrada = input('Digite o valor em R$ da entrada: ')
@@ -50,14 +47,8 @@ def adicionar_entradas():
             if achou:
                 id = f.gera_id(est.lista_entradas)# depois que tudo dá certo é gerado um ID
 
-                for palavra in descricao_entrada: # como descrição é uma lista, cada palavra vai ser uma chave em um dicionario
-                    if palavra not in est.palavras_desc_entradas:
-                        est.palavras_desc_entradas[palavra] = set()
-                        est.palavras_desc_entradas[palavra].add(id)
-                    else: # cada palavra vai conter um set onde guarda os ID das entradas
-                        est.palavras_desc_entradas[palavra].add(id)
-                        
-
+                f.hash_palavra_desc(id,est.palavras_desc_entradas,'adicionar',descricao_entrada)
+  
                 est.lista_entradas.append({"id":id,
                                     "valor":valor_entrada,
                                     "descricao":descricao_entrada,
@@ -137,23 +128,13 @@ def editar_entradas():
                 case '2':
                     f.double_line()
                     nova_descricao = input('Digite a nova descrição: ').strip().lower().split()
-                    # antiga = oi meu amor id = 1 // nova = eae mano
+
                     if nova_descricao == est.lista_entradas[indice]['descricao']:
                         return 'Campo "DESCRIÇÃO" alterado com sucesso!'
+                    
                     else:
-                        # loop para remover os indices antigos ligados a palavra
-                        for item in est.lista_entradas[indice]['descricao']:
-                            est.palavras_desc_entradas[item].discard(id_entrada)
-                            if not est.palavras_desc_entradas[item]:
-                                del est.palavras_desc_entradas[item] 
-                        
-                        # loop para criar a hash das palavras da nova descrição
-                        for item in nova_descricao:
-                            if item not in est.palavras_desc_entradas:
-                                est.palavras_desc_entradas[item] = set()
-                                est.palavras_desc_entradas[item].add(id_entrada)
-                            
-                    est.lista_entradas[indice]['descricao'] = nova_descricao                        
+                        f.hash_palavra_desc(id_entrada,est.palavras_desc_entradas,'editar',nova_descricao,est.lista_entradas,indice)   
+                    #est.lista_entradas[indice]['descricao'] = nova_descricao                        
                     return 'Campo "DESCRIÇÃO" alterado com sucesso!'
 
                 case '3':
@@ -207,11 +188,7 @@ def remover_entradas():
         else:
             id_removido = est.lista_entradas[indice]['id']
             # ex: ID 15 pode estar no indice [4]
-
-            for item in est.lista_entradas[indice]['descricao']:
-                est.palavras_desc_entradas[item].discard(id_removido)
-                if not est.palavras_desc_entradas[item]: # se o set ficou vazio (a palavra (key) so aparecia nesse log) então exclui a key
-                    del est.palavras_desc_entradas[item]
+            f.hash_palavra_desc(id_removido,est.palavras_desc_entradas,'excluir',est.lista_entradas[indice]['descricao'],est.lista_entradas,indice)
 
             est.lista_entradas.pop(indice)
             return (f'Entrada de ID: {id_removido} foi removida!')
