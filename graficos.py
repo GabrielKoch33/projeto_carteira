@@ -1,4 +1,6 @@
 import funcoes as f
+#--import pandas as p
+#--import matplotlib as mp
 
 def grafico_pizza_por_categoria():
     f.read_key()

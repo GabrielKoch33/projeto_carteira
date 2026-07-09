@@ -1,6 +1,8 @@
 import funcoes as f
 
 def criar_meta():
+
+    
     f.read_key()
     pass
 def editar_meta():

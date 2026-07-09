@@ -1,4 +1,5 @@
 import funcoes as f
+#--import pandas as p
 
 def media_gastos():
     f.read_key()

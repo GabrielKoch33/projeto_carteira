@@ -1,4 +1,5 @@
 import funcoes as f
+#--import pandas as p
 
 def categoria_maior_consumo(): 
     f.read_key()
