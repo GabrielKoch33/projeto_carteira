@@ -34,7 +34,7 @@ def main_menu():
         print('9 - ALTERAR SALDO INICIAL')
         print('0 - SALVAR E SAIR')
         f.double_line()
-        opcao = f.ler_opcao_menu(8)
+        opcao = f.ler_opcao_menu(9)
         f.double_line()
         if opcao == 1:
             ent.menu_entradas()
@@ -62,26 +62,26 @@ def main_menu():
 if __name__ == '__main__':
 
     while True:
-        f.saldo = input('Qual é o seu saldo atual?\nSaldo: ').strip()
+        f.saldo_inicial = input('Qual é o seu saldo atual?\nSaldo: ').strip()
 
-        if not f.saldo:
+        if not f.saldo_inicial:
             print('Valores vazios não são permitidos!')
             continue
 
         try:
-            f.saldo = f.saldo.replace('.', '')
-            f.saldo = f.saldo.replace(',', '.')
-            f.saldo = float(f.saldo)
+            f.saldo_inicial = f.saldo_inicial.replace('.', '')
+            f.saldo_inicial = f.saldo_inicial.replace(',', '.')
+            f.saldo_inicial = float(f.saldo_inicial)
 
         except:
             print('Por favor, insira um valor numérico válido.')
             continue
 
-        if f.saldo < 0:
+        if f.saldo_inicial < 0:
             print('Valores negativos não são permitidos!')
             continue
         
-        f.saldo_inicial = f.saldo
+        f.saldo_atual = f.saldo_inicial
         break
 
     print('Iniciando...')

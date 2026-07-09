@@ -149,34 +149,8 @@ def gera_id(lista):
     else:
         return max(item["id"] for item in lista) + 1
 
-'''FUNÇÕES DE SALDO'''
-def redefine_saldo():
-    pass
 
-saldo = ''
-saldo_inicial = 0
-def calcula_saldo():
-    '''
-    common cases:
-    *Entradas*
-    -> add entrada: saldo += valor_entr
-    -> exc entrada: saldo -= valor_entr_excluida
-    -> upd entrada: 
-        -> vl_novo > vl_velho: saldo += (vl_novo - vl_velho)
-        -> vl_novo < vl_velho: saldo -= (vl_velho - vl_novo)
-    *Saídas*
-    -> add saida: saldo -= vl_saida
-    -> exc saida: saldo += vl_excl
-    -> upd saida: 
-        -> vl_novo > vl_velho: saldo -= (vl_novo - vl_velho)
-        -> vl_novo < vl_velho: saldo += (vl_velho - vl_novo) 
-    *Atualizar Saldo*
-        saldo += (ultimo_reg_saldo - saldo_inicial_informado)
-        -> sistema vai armazenar o ultimo valor automaticamente
-    '''
-    pass
-
-'''FUNÇÕES DE MANIPULAÇÃO DE ESTRUTURAS'''
+'''FUNÇÕES DE MANIPULAÇÃO DE ESTRUTURAS E SALDO'''
 def hash_palavra_desc(ref_id,
                       lista_hash,
                       caso, # Criar/Excluir/Editar
@@ -217,16 +191,114 @@ def hash_palavra_desc(ref_id,
 
             tipo_lista[ref_indice]['descricao'] = ref_desc
 
-break
-def insere_log(tipo_operacao,ref_valor,ref_id):
+'''
+common cases:
+*Entradas*
+-> add entrada: saldo += valor_entr
+-> exc entrada: saldo -= valor_entr_excluida
+-> upd entrada: 
+    -> vl_novo > vl_velho: saldo += (vl_novo - vl_velho)
+    -> vl_novo < vl_velho: saldo -= (vl_velho - vl_novo)
+*Saídas*
+-> add saida: saldo -= vl_saida
+-> exc saida: saldo += vl_excl
+-> upd saida: 
+    -> vl_novo > vl_velho: saldo -= (vl_novo - vl_velho)
+    -> vl_novo < vl_velho: saldo += (vl_velho - vl_novo) 
+*Atualizar Saldo*
+    saldo += (ultimo_reg_saldo - saldo_inicial_informado)
+    -> sistema vai armazenar o ultimo valor automaticamente
+    '''
+
+saldo_atual = 0 # valor que será alterado sempre que alguma movimentação for feita
+saldo_inicial = 0 # valor que é alterado quando: usuário loga pela primeira vez E quando solicita
+#corrigir/alterar o saldo informado no primeiro login
+
+def insere_log(tipo_operacao,ref_vl_entr,ref_id):
     '''
     Função chamada ao:
     -> criar entrada/despesa
-    -> editar valor de entrada/despesa
-    -> excluir entrada/despesa
     '''
-    if tipo_operacao == 'entrada':
-        logs.append('')
+    global saldo_atual
 
-    elif tipo_operacao == 'saida':
-        pass
+    logs.append({"tipo": tipo_operacao,"valor":ref_vl_entr,"id":ref_id})
+
+    if tipo_operacao == 'E':
+        saldo_atual += ref_vl_entr
+    else:
+        saldo_atual -= ref_vl_entr
+
+def edita_log(tipo_operacao,ref_vl_novo,ref_id):
+    '''
+    Função chamada ao:
+    -> editar o campo 'valor' de entrada ou despesa 
+    '''
+    global saldo_atual
+
+    for log in logs:
+        if log['tipo'] == tipo_operacao and log['id'] == ref_id:
+            vl_velho = log['valor']
+
+            if tipo_operacao == 'E':
+                if ref_vl_novo > vl_velho:
+                    saldo_atual += (ref_vl_novo - vl_velho)
+                elif ref_vl_novo < vl_velho:
+                    saldo_atual -= (vl_velho - ref_vl_novo)
+                else:
+                    saldo_atual += 0
+                log['valor'] = ref_vl_novo
+                break
+
+            else:
+                if ref_vl_novo > vl_velho:
+                    saldo_atual -= (ref_vl_novo - vl_velho)
+                elif ref_vl_novo < vl_velho:
+                    saldo_atual += (vl_velho - ref_vl_novo)
+                else:
+                    saldo_atual -= 0
+                log['valor'] = ref_vl_novo
+                break
+            
+
+def exclui_log(tipo_operacao,ref_vl_removido,ref_id):
+
+    global saldo_atual
+
+    for indice,log in enumerate(logs):
+
+        if log['tipo'] == tipo_operacao and log['id'] == ref_id:
+
+            if tipo_operacao == 'E':
+                saldo_atual -= ref_vl_removido
+            else:
+                saldo_atual += ref_vl_removido
+
+            removido = log.pop(indice)
+            break
+                
+
+def redefine_saldo():
+    global saldo_atual
+    global saldo_inicial
+
+    double_line()
+    print(saldo_atual)
+    double_line()
+    
+    confirm = input('Você tem certeza que deseja redefinir seu saldo inicial?\nY/any: ')
+    if confirm.upper() == 'Y':
+        
+        novo_saldo_inicial = input('Digite seu novo saldo: ')
+        novo_saldo_inicial = converte_moeda(novo_saldo_inicial)
+
+        if isinstance(novo_saldo_inicial,str):
+            return 'Erro ao alterar valor, verifique valor informado'
+        else:
+            print('Alterando saldo...')
+
+            diff = novo_saldo_inicial - saldo_inicial
+            saldo_atual += diff
+
+            saldo_inicial = novo_saldo_inicial
+
+        time.sleep(1)
