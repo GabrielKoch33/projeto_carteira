@@ -29,7 +29,7 @@ def menu_relatorio():
         f.double_line()
         print('RELATÓRIOS'.center(f.size,' '))
         f.double_line()
-        print('1 - SALDO INICIAL X SALDO ATUAL')
+        print('1 - TAXA DE CRESCIMENTO: SALDO INICIAL X SALDO ATUAL')
         print('2 - TOTAL DE ENTRADAS')
         print('3 - TOTAL DE DESPESAS')
         print('4 - GASTOS POR CATEGORIA')

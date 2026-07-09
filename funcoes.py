@@ -281,18 +281,21 @@ def redefine_saldo():
     global saldo_atual
     global saldo_inicial
 
+    limpar_tela()
     double_line()
     print(saldo_atual)
     double_line()
     
     confirm = input('Você tem certeza que deseja redefinir seu saldo inicial?\nY/any: ')
     if confirm.upper() == 'Y':
-        
+
+        double_line()
         novo_saldo_inicial = input('Digite seu novo saldo: ')
         novo_saldo_inicial = converte_moeda(novo_saldo_inicial)
 
         if isinstance(novo_saldo_inicial,str):
             return 'Erro ao alterar valor, verifique valor informado'
+        
         else:
             print('Alterando saldo...')
 
