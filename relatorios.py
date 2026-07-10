@@ -30,14 +30,16 @@ def menu_relatorio():
         f.double_line()
         print('RELATÓRIOS'.center(f.size,' '))
         f.double_line()
-        print('1 - TAXA DE CRESCIMENTO: SALDO INICIAL X SALDO ATUAL')
-        print('2 - TOTAL DE ENTRADAS')
-        print('3 - TOTAL DE DESPESAS')
-        print('4 - GASTOS POR CATEGORIA')
-        print('5 - ENTRADAS POR CATEGORIA')
-        print('6 - RELATÓRIO MENSAL')
-        print('7 - RELATÓRIO ANUAL')
-        print('0 - VOLTAR')
+        print(
+        '1 - TAXA DE CRESCIMENTO: SALDO INICIAL X SALDO ATUAL\n'
+        '2 - TOTAL DE ENTRADAS\n'
+        '3 - TOTAL DE DESPESAS\n'
+        '4 - GASTOS POR CATEGORIA\n'
+        '5 - ENTRADAS POR CATEGORIA\n'
+        '6 - RELATÓRIO MENSAL\n'
+        '7 - RELATÓRIO ANUAL\n'
+        '0 - VOLTAR'
+        )
         f.double_line()
         opcao = f.ler_opcao_menu(7)
         f.double_line()

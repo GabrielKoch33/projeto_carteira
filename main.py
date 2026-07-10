@@ -23,16 +23,18 @@ def main_menu():
         f.double_line()
         print('CARTEIRA DE GABRIEL'.center(f.size,' '))
         f.double_line()
-        print('1 - ENTRADAS')              # FEITO
-        print('2 - DESPESAS')              # FEITO
-        print('3 - CATEGORIAS')            # FEITO
-        print('4 - RELATÓRIOS')            #
-        print('5 - ESTATÍSTICAS')          #
-        print('6 - VISUALIZAÇÕES')         #
-        print('7 - ANÁLISES AUTOMÁTICAS')  #
-        print('8 - METAS FINANCEIRAS')     #
-        print('9 - ALTERAR SALDO INICIAL')
-        print('0 - SALVAR E SAIR')
+        print(
+        '1 - ENTRADAS\n'            # FEITO
+        '2 - DESPESAS\n'            # FEITO
+        '3 - CATEGORIAS\n'          # FEITO
+        '4 - RELATÓRIOS\n'          #
+        '5 - ESTATÍSTICAS\n'        #
+        '6 - VISUALIZAÇÕES\n'       #
+        '7 - ANÁLISES AUTOMÁTICAS\n'#
+        '8 - METAS FINANCEIRAS\n'   #
+        '9 - ALTERAR SALDO INICIAL\n'
+        '0 - SALVAR E SAIR'
+        )
         f.double_line()
         opcao = f.ler_opcao_menu(9)
         f.double_line()

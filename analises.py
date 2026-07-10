@@ -23,12 +23,14 @@ def menu_analises():
         f.double_line()
         print('ANÁLISES DO USUÁRIO'.center(f.size,' '))
         f.double_line()
-        print('1 - CATEGORIA QUE MAIS CONSOME ')
-        print('2 - MÊS COM MAIOR GASTO')
-        print('3 - MÊS COM MENOR GASTO')
-        print('4 - TAXA MÉDIA DE ECONOMIA')
-        print('5 - TENDÊNCIA DO SALDO')
-        print('0 - VOLTAR')
+        print(
+        '1 - CATEGORIA QUE MAIS CONSOME\n'
+        '2 - MÊS COM MAIOR GASTO\n'
+        '3 - MÊS COM MENOR GASTO\n'
+        '4 - TAXA MÉDIA DE ECONOMIA\n'
+        '5 - TENDÊNCIA DO SALDO\n'
+        '0 - VOLTAR'
+        )
         f.double_line()
         opcao = f.ler_opcao_menu(5)
         f.double_line()

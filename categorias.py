@@ -82,11 +82,13 @@ def menu_categorias():
         f.double_line()
         print('CATEGORIAS'.center(f.size,' '))
         f.double_line()
-        print('1 - LISTAR CATEGORIAS')
-        print('2 - CRIAR CATEGORIA PERSONALIZADA')
-        print('3 - EDITAR CATEGORIA PERSONALIZADA')
-        print('4 - EXCLUIR CATEGORIA PERSONALIZADA')
-        print('0 - VOLTAR')
+        print(
+        '1 - LISTAR CATEGORIAS\n'
+        '2 - CRIAR CATEGORIA PERSONALIZADA\n'
+        '3 - EDITAR CATEGORIA PERSONALIZADA\n'
+        '4 - EXCLUIR CATEGORIA PERSONALIZADA\n'
+        '0 - VOLTAR'
+        )
         f.double_line()
         opcao = f.ler_opcao_menu(4)
         f.double_line()

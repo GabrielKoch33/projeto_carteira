@@ -23,12 +23,14 @@ def menu_estatisticas():
         f.double_line()
         print('ESTATÍSTICAS'.center(f.size,' '))
         f.double_line()
-        print('1 - MÉDIA DE GASTOS')
-        print('2 - MAIOR E MENOR DESPESA')
-        print('3 - MAIOR E MENOR ENTRADA')
-        print('4 - DESVIO PADRÃO')
-        print('5 - PERCENTUAL POR CATEGORIA')
-        print('0 - VOLTAR')
+        print(
+        '1 - MÉDIA DE GASTOS\n'
+        '2 - MAIOR E MENOR DESPESA\n'
+        '3 - MAIOR E MENOR ENTRADA\n'
+        '4 - DESVIO PADRÃO\n'
+        '5 - PERCENTUAL POR CATEGORIA\n'
+        '0 - VOLTAR'
+        )
         f.double_line()
         opcao = f.ler_opcao_menu(5)
         f.double_line()

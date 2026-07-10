@@ -363,14 +363,16 @@ def menu_despesa():
         f.double_line()
         print('DESPESAS'.center(f.size,' '))
         f.double_line()
-        print('1 - ADICIONAR DESPESA')
-        print('2 - EDITAR DESPESA')
-        print('3 - REMOVER DESPESA')
-        print('4 - LISTAR DESPESAS')
-        print('5 - BUSCA POR DESCRIÇÃO')
-        print('6 - BUSCA POR CATEGORIA')
-        print('7 - BUSCA POR PERÍODO')
-        print('0 - VOLTAR')
+        print(
+        '1 - ADICIONAR DESPESA\n'
+        '2 - EDITAR DESPESA\n'
+        '3 - REMOVER DESPESA\n'
+        '4 - LISTAR DESPESAS\n'
+        '5 - BUSCA POR DESCRIÇÃO\n'
+        '6 - BUSCA POR CATEGORIA\n'
+        '7 - BUSCA POR PERÍODO\n'
+        '0 - VOLTAR'
+        )
         f.double_line()
         opcao = f.ler_opcao_menu(7)
         f.double_line()

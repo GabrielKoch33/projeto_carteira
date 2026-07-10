@@ -24,11 +24,13 @@ def menu_metas():
         f.double_line()
         print('METAS'.center(f.size,' '))
         f.double_line()
-        print('1 - CRIAR META')
-        print('2 - EDITAR META')
-        print('3 - EXCLUIR META')
-        print('4 - LISTAR METAS E PORCENTAGEM')
-        print('0 - VOLTAR')
+        print(
+        '1 - CRIAR META\n'
+        '2 - EDITAR META\n'
+        '3 - EXCLUIR META\n'
+        '4 - LISTAR METAS E PORCENTAGEM\n'
+        '0 - VOLTAR'
+        )
         f.double_line()
         opcao = f.ler_opcao_menu(4)
         f.double_line()
