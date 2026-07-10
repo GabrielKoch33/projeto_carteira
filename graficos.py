@@ -19,7 +19,7 @@ def menu_visualizacoes():
     while True:
         f.limpar_tela()
         f.double_line()
-        print('VISUALIZAÇÕES & GRÁFICOS'.center(f.size,' '))
+        print('GRÁFICOS'.center(f.size,' '))
         f.double_line()
         print(
         '1 - PIZZA POR CATEGORIA\n'

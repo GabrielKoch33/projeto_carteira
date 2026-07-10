@@ -6,7 +6,7 @@ import relatorios as rel
 import estatisticas as est
 import graficos as views
 import analises as anl
-import metas as met
+import metas_cofrinhos as met
 import funcoes as f
 import dados
 
@@ -29,9 +29,9 @@ def main_menu():
         '3 - CATEGORIAS\n'          # FEITO
         '4 - RELATÓRIOS\n'          #
         '5 - ESTATÍSTICAS\n'        #
-        '6 - VISUALIZAÇÕES\n'       #
+        '6 - GRÁFICOS\n'       #
         '7 - ANÁLISES AUTOMÁTICAS\n'#
-        '8 - METAS FINANCEIRAS\n'   #
+        '8 - METAS & COFRINHOS\n'   #
         '9 - ALTERAR SALDO INICIAL\n'
         '0 - SALVAR E SAIR'
         )
