@@ -10,11 +10,12 @@ def listar_categorias():
     for categoria in est.lista_categorias:
         print(f'{categoria["id"]:<5}{categoria["nome"]:<10}')
 
+
 def criar_cat_personalizada():
     '''
     Para o python, '' é visto como Falsy, enquanto '  ' é Truthy
     O que determina isso é a quantidade de caracteres, se == 0 -> false, se <> 0 -> true
-    Se o user digitasse '   ' ele seria válido. Por isso usamos strip(), ele removerá todos os espaços em branco
+    Se o user digitasse '   ' ele seria válido. Por isso usamos strip(), ele removerá todos os espaços em branco.
     Se mesmo tirando os espaços em branco o tamanho for > 0 então temos uma entrada válida
     '''
     while True:
@@ -31,15 +32,17 @@ def criar_cat_personalizada():
         return 'Essa categoria já existe, duplicadas não são permitidas!'
     
     else:
-        est.lista_categorias.append({"id":f.gera_id(est.lista_categorias),
-                                 "nome":nome_categoria,"default":False})
+        est.lista_categorias.append({"id": f.gera_id(est.lista_categorias),
+                                    "nome": nome_categoria,
+                                    "default": False})
         
         return 'Categoria adicionada!'
 
+
 def editar_cat_personalizada():
-                   # impede o user de por valores inexistentes, editar cat defaults ou valores inválidos
+# impede o user de por valores inexistentes, editar cat defaults ou valores inválidos
     id_categoria = f.valida_editar_ou_excluir_categoria(est.lista_categorias)
-                   # retorna o id que o user inseriu 
+# retorna o id que o user inseriu 
     if isinstance(id_categoria,int):
         # vai usar o valor de id informado para checar se existe essa categoria criada
         achou, indice = f.encontra_campo_e_indice(id_categoria,est.lista_categorias,'id')
@@ -54,6 +57,7 @@ def editar_cat_personalizada():
         
     else:
         return id_categoria
+
 
 def excluir_cat_personalizada():
     id_categoria = f.valida_editar_ou_excluir_categoria(est.lista_categorias)
@@ -70,6 +74,7 @@ def excluir_cat_personalizada():
 
     else:
         return id_categoria
+
 
 def menu_categorias():
     while True:

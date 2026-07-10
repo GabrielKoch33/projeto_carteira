@@ -2,8 +2,8 @@ import funcoes as f
 from categorias import listar_categorias
 import estruturas_dados as est
 
-def adicionar_entradas():
 
+def adicionar_entradas():
     valor_entrada = input('Digite o valor em R$ da entrada: ')
     valor_entrada = f.converte_moeda(valor_entrada)
 
@@ -49,11 +49,11 @@ def adicionar_entradas():
 
                 f.hash_palavra_desc(id,est.palavras_desc_entradas,'adicionar',descricao_entrada)
   
-                est.lista_entradas.append({"id":id,
-                                    "valor":valor_entrada,
-                                    "descricao":descricao_entrada,
-                                    "categoria":est.lista_categorias[indice]["nome"],
-                                    "data":data})
+                est.lista_entradas.append({"id": id,
+                                    "valor": valor_entrada,
+                                    "descricao": descricao_entrada,
+                                    "categoria": est.lista_categorias[indice]["nome"],
+                                    "data": data})
                 # E = entrada
                 f.insere_log('E',valor_entrada,id)
                 break
@@ -65,8 +65,8 @@ def adicionar_entradas():
         f.limpar_tela()
         return('Entrada cadastrada!')
 
-def listar_entradas():
 
+def listar_entradas():
     if not est.lista_entradas:
         return 'Registro de entradas vazio. Nenhuma entrada para listar!'
     
@@ -89,8 +89,8 @@ def listar_entradas():
         print(f'Total de registros: {num_registros}') 
         return 'Lista retornada com sucesso!'
     
-def editar_entradas():
 
+def editar_entradas():
     if est.lista_entradas: #se conter logs de entrada, da inicio ao processo
         listar_entradas()
         f.double_line()
@@ -175,8 +175,8 @@ def editar_entradas():
     else:
         return('Nenhuma entrada foi registrada ainda! Nada para editar')
            
+
 def remover_entradas():
-    
     if est.lista_entradas: #se conter logs de entrada, da inicio ao processo
         listar_entradas()
         f.double_line()
@@ -202,7 +202,6 @@ def remover_entradas():
     
 
 def buscar_por_descricao():
-
     if est.lista_entradas:
 
         while True:
@@ -238,8 +237,8 @@ def buscar_por_descricao():
     else:
         return('Nenhuma entrada foi registrada ainda! Nada para consultar!')
 
+
 def buscar_por_categoria():
-    
     if est.lista_entradas: #verifica se a lista de entrada possui elementos
 
         f.listar_categorias()
@@ -282,6 +281,7 @@ def buscar_por_categoria():
     else:
         return('Nenhuma entrada foi registrada ainda! Nada para consultar!')
 
+
 def buscar_por_periodo():
     if est.lista_entradas:
         while True:
@@ -295,7 +295,7 @@ def buscar_por_periodo():
                     f.double_line()
                     print("Erro: Digite exatamente 8 números.")
                     f.double_line()
-                    continue # se voltar erro, pede data novamente
+                    continue 
                 break
 
             while True:
@@ -306,7 +306,7 @@ def buscar_por_periodo():
                 if not data_fim:
                     print("Erro: Digite exatamente 8 números.")
                     f.double_line()
-                    continue # se voltar erro, pede data novamente
+                    continue  
                 break
 
             if data_inicio > data_fim:
@@ -357,6 +357,7 @@ def buscar_por_periodo():
 
     else:
         return('Nenhuma entrada foi registrada ainda! Nada para consultar!')
+
 
 def menu_entradas():
     while True:

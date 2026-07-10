@@ -3,15 +3,12 @@ from categorias import listar_categorias
 import estruturas_dados as est
 
 def adicionar_despesa():
-
     valor_despesa = input('Digite o valor em R$ da despesa: ')
     valor_despesa = f.converte_moeda(valor_despesa)
 
-    # isinstance(varivael que vamos verificar, tipo esperado que ela seja)
-    # retorna True se valor_despesa for str / caso o tipo for tupla e o valor um elemento q esta na tupla, ent True
     if isinstance(valor_despesa,str):
         return valor_despesa
-    
+
     else: 
         # descrição será uma lista, assim podemos procurar por plavras chaves
         while True:
@@ -21,7 +18,6 @@ def adicionar_despesa():
             else:
                 descricao_despesa = descricao_despesa.split()
                 break
-
 
         while True:
             data = f.converte_data()
@@ -65,9 +61,9 @@ def adicionar_despesa():
         
         f.limpar_tela()
         return('Despesa cadastrada!')
+    
 
 def listar_despesas():
-
     if not est.lista_despesas:
         return 'Registro de despesas vazio. Nenhuma despesa para listar!'
     
@@ -90,8 +86,8 @@ def listar_despesas():
         print(f'Total de registros: {num_registros}') 
         return 'Lista retornada com sucesso!'
     
-def editar_despesa():
 
+def editar_despesa():
     if est.lista_despesas: #se conter logs de entrada, da inicio ao processo
         listar_despesas()
         f.double_line()
@@ -175,9 +171,9 @@ def editar_despesa():
                     return('Insira um campo válido!')      
     else:
         return('Nenhuma despesa foi registrada ainda! Nada para editar')
-           
+
+
 def remover_despesa():
-    
     if est.lista_despesas: #se conter logs de entrada, da inicio ao processo
         listar_despesas()
         f.double_line()
@@ -204,7 +200,6 @@ def remover_despesa():
     
 
 def buscar_por_descricao():
-
     if est.lista_despesas:
 
         while True:
@@ -240,8 +235,8 @@ def buscar_por_descricao():
     else:
         return('Nenhuma despesa foi registrada ainda! Nada para consultar!')
 
+
 def buscar_por_categoria():
-    
     if est.lista_despesas: #verifica se a lista de entrada possui elementos
 
         listar_categorias()
@@ -283,6 +278,7 @@ def buscar_por_categoria():
 
     else:
         return('Nenhuma despesa foi registrada ainda! Nada para consultar!')
+
 
 def buscar_por_periodo():
     if est.lista_despesas:
@@ -359,6 +355,7 @@ def buscar_por_periodo():
 
     else:
         return('Nenhuma despesa foi registrada ainda! Nada para consultar!')
+
 
 def menu_despesa():
     while True:
