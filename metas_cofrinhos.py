@@ -1,30 +1,36 @@
 import funcoes as f
 '''
 Cofrinhos:
-    -> um cofrinho poderá ter ou não ter uma meta. (0:1).
-    -> cofrinhos terão atributos como: Nome, Objetivo, Qtd Atual, Qtd Desejada, Valor Faltante.
-    -> por limitações que me impedem de sincronizar os rendimentos do cofrinho, a função de editar
-    .. será algo recorrente (sempre alterar ao usar o sistema)
+
+-Estrutura
+ID, Nome, Objetivo, QtdAtual, QtdDesejada, ValorFaltante, sugestaoMensal, dtCriacao
+-Logs
+ID_cofr, valor, ação, data
+-Casos
+Cofrinhos vazios podem existir;
+Nomes não podem repetir
+Somente valores > 0 podem entrar
+Não pode retirar um valor maior do que o que existe no cofre
+- Porcentagens, sugestões serão recalculadas ao fazer qualquer remoção
+Excluir um cofrinho faz com que o dinheiro vá para o saldo
+- Um cofrinho pode existir sem meta, alguns atributos não existirão
+- Uma meta não pode existir sem estar atrelada a um cofrinho
 
 
 Metas:
-    -> poderão ser criadas para cofrinhos ou para conquistas (ex: alcançar 6k de saldo).
-    -> Metas se referem a atributos financeiros, não coisas materiais (comprar um carro ou item X)
 
-Relação com saldo:
-    -> adicionar um valor ao cofrinho implica em descontar do saldo.
-    -> deverá ser registrado um log.
-    -> ao apagar um cofrinho, todo o valor dentro dele deve retornar ao saldo.
-    -> editar valor inserido: 
--> cofr -= vl_velho_inserido - nv_vl_inserido) & (saldo += vl_velho_inserido - nv_vl_inserido) (quando nv_vl < vl_antigo)
--> cofr += (vl_novo - vl_antigo) & (saldo -= vl_novo - vl_antigo) (quando nv_vl > vl antigo)
+Metas serão adicionadas em cofrinhos
 '''
+
+
+
 
 def criar_cofrinho():
     pass
 
 
 def editar_cofrinho():
+    # user escolhe um campo para editar
     pass
 
 
@@ -40,7 +46,7 @@ def retirar_vl_cofrinho():
     pass
 
 
-def editar_vl_inserido_cofrinho():
+def listar_cofrinhos():
     pass
 
 def criar_meta():    
@@ -77,11 +83,12 @@ def menu_metas():
         '3 - EXCLUIR COFRINHO\n'
         '4 - INSERIR QUANTIA NO COFRINHO\n'
         '5 - RETIRAR QUANTIA DO COFRINHO\n'
-        '6 - EDITAR QUANTIA INSERIDA\n'
-        '7 - CRIAR META\n'
-        '8 - EDITAR META\n'
-        '9 - EXCLUIR META\n'
-        '10 - LISTAR METAS E PORCENTAGEM\n'
+        '6 - LISTAR COFRINHOS\n'
+        '7 - CONSULTAR COFRINHO\n'
+        '8 - CRIAR META\n'
+        '9 - EDITAR META\n'
+        '10 - EXCLUIR META\n'
+        '11 - LISTAR METAS E PORCENTAGEM\n'
         '0 - VOLTAR'
         )
         f.double_line()
@@ -110,7 +117,7 @@ def menu_metas():
 
         elif opcao == 6:
             f.limpar_tela()
-            editar_vl_inserido_cofrinho()
+            listar_cofrinhos()
 
         if opcao == 7:
             f.limpar_tela()
@@ -128,6 +135,10 @@ def menu_metas():
             f.limpar_tela()
             listar_metas_and_porcentagem()
 
+        elif opcao == 11:
+            f.limpar_tela()
+
+
         elif opcao == 0:
             f.limpar_tela()
             break
@@ -135,3 +146,24 @@ def menu_metas():
 if __name__ == '__main__':
     menu_metas()
 
+'''
+cofre
+    -> um cofrinho poderá ter ou não ter uma meta. (0:1).
+    -> cofrinhos terão atributos como: ID, Nome, DT_criacao, Objetivo, Qtd Atual, Qtd Desejada, Valor Faltante.
+    -> por limitações que me impedem de sincronizar os rendimentos do cofrinho, a função de editar
+    .. será algo recorrente (sempre alterar ao usar o sistema)
+
+
+Metas:
+    -> poderão ser criadas para cofrinhos ou para conquistas (ex: alcançar 6k de saldo).
+    -> metas serão criadas como objetivos financeiros, o campo objetivo dirá para que serve (ex: meta: 6k; obejtivo= comprar notebook)
+
+Relação com saldo:
+    -> adicionar um valor ao cofrinho implica em descontar do saldo.
+    -> deverá ser registrado um log.
+    -> ao apagar um cofrinho, todo o valor dentro dele deve retornar ao saldo.
+    -> editar valor inserido: 
+-> cofr -= vl_velho_inserido - nv_vl_inserido) & (saldo += vl_velho_inserido - nv_vl_inserido) (quando nv_vl < vl_antigo)
+-> cofr += (vl_novo - vl_antigo) & (saldo -= vl_novo - vl_antigo) (quando nv_vl > vl antigo)
+
+'''

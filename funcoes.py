@@ -3,7 +3,7 @@ import sys
 import time
 from datetime import date,datetime, timedelta
 from categorias import listar_categorias
-from estruturas_dados import logs
+from estruturas_dados import logs_valores_entr_saida
 
 # variaveis importantes
 size = 82
@@ -214,32 +214,32 @@ saldo_atual = 0 # valor que será alterado sempre que alguma movimentação for 
 saldo_inicial = 0 # valor que é alterado quando: usuário loga pela primeira vez E quando solicita
 #corrigir/alterar o saldo informado no primeiro login
 
-def insere_log(tipo_operacao,ref_vl_entr,ref_id):
+def insere_log(tipo_operacao,ref_id,ref_vl_entr):
     '''
     Função chamada ao:
     -> criar entrada/despesa
     '''
     global saldo_atual
 
-    logs.append({"tipo": tipo_operacao,"valor":ref_vl_entr,"id":ref_id})
+    logs_valores_entr_saida.append({"tipo": tipo_operacao,"valor":ref_vl_entr,"id":ref_id})
 
-    if tipo_operacao == 'E':
+    if tipo_operacao == 'entrada':
         saldo_atual += ref_vl_entr
     else:
         saldo_atual -= ref_vl_entr
 
-def edita_log(tipo_operacao,ref_vl_novo,ref_id):
+def edita_log(tipo_operacao,ref_id,ref_vl_novo):
     '''
     Função chamada ao:
     -> editar o campo 'valor' de entrada ou despesa 
     '''
     global saldo_atual
 
-    for log in logs:
+    for log in logs_valores_entr_saida:
         if log['tipo'] == tipo_operacao and log['id'] == ref_id:
             vl_velho = log['valor']
 
-            if tipo_operacao == 'E':
+            if tipo_operacao == 'entrada':
                 if ref_vl_novo > vl_velho:
                     saldo_atual += (ref_vl_novo - vl_velho)
                 elif ref_vl_novo < vl_velho:
@@ -260,20 +260,20 @@ def edita_log(tipo_operacao,ref_vl_novo,ref_id):
                 break
             
 
-def exclui_log(tipo_operacao,ref_vl_removido,ref_id):
+def exclui_log(tipo_operacao,ref_id,ref_vl_removido):
 
     global saldo_atual
 
-    for indice,log in enumerate(logs):
+    for indice,log in enumerate(logs_valores_entr_saida):
 
         if log['tipo'] == tipo_operacao and log['id'] == ref_id:
 
-            if tipo_operacao == 'E':
+            if tipo_operacao == 'entrada':
                 saldo_atual -= ref_vl_removido
             else:
                 saldo_atual += ref_vl_removido
 
-            removido = log.pop(indice)
+            _ = log.pop(indice)
             break
                 
 

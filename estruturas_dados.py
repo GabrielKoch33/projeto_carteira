@@ -25,11 +25,16 @@ lista_despesas = [
 
 ]
 
-logs = [
+logs_valores_entr_saida = [
+    #{"tipo": 'entrada',"id_lista":12,"valor":120,}
     # lista que será populada por cada ocorrência de entrada (1) e saída (0)
-    # {TIPO: 1 ; VALOR ; ID_NA_LISTA},
+    # {TIPO: E/S ; ID NA LISTA; VALOR ; ACAO(EDITAR,EXCLUIR,ADD)},
     # a cada novo registro, a função calcula_saldo_atual() será chamada.
     # ela vai analisar o tipo de operação e checar condições para somar ou subtrair
+]
+
+logs_cofrinhos = [
+    #{"id_cofr":1,"valor":1234,"acao":'excluir',"data":123456}
 ]
 
 '''

@@ -55,7 +55,7 @@ def adicionar_entradas():
                                     "categoria": est.lista_categorias[indice]["nome"],
                                     "data": data})
                 # E = entrada
-                f.insere_log('E',valor_entrada,id)
+                f.insere_log('entrada',id,valor_entrada)
                 break
 
             else: 
@@ -124,7 +124,7 @@ def editar_entradas():
                     if isinstance(novo_valor,str):
                         return novo_valor
                     else:
-                        f.edita_log('E',novo_valor,id_entrada)
+                        f.edita_log('entrada',id_entrada,novo_valor)
 
                         est.lista_entradas[indice]["valor"] = novo_valor
                         return 'Campo "VALOR" alterado com sucesso!'
@@ -192,7 +192,9 @@ def remover_entradas():
             id_removido = est.lista_entradas[indice]['id']
             # ex: ID 15 pode estar no indice [4]
             f.hash_palavra_desc(id_removido,est.palavras_desc_entradas,'excluir',est.lista_entradas[indice]['descricao'],est.lista_entradas,indice)
-            f.exclui_log('E',est.lista_entradas[indice]['valor'],id_removido)
+            
+            valor_entr_excluido = est.lista_entradas[indice]['valor']
+            f.exclui_log('entrada',id_removido, valor_entr_excluido)
 
             est.lista_entradas.pop(indice)
             return (f'Entrada de ID: {id_removido} foi removida!')

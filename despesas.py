@@ -52,7 +52,7 @@ def adicionar_despesa():
                                     "categoria":est.lista_categorias[indice]["nome"],
                                     "data":data})
                 
-                f.insere_log('S',valor_despesa,id)
+                f.insere_log('saida',id,valor_despesa)
                 break
 
             else: 
@@ -121,7 +121,7 @@ def editar_despesa():
                     if isinstance(novo_valor,str):
                         return novo_valor
                     else:
-                        f.edita_log('S',novo_valor,id_despesa)
+                        f.edita_log('saida',id_despesa,novo_valor)
 
                         est.lista_despesas[indice]["valor"] = novo_valor
                         return 'Campo "VALOR" alterado com sucesso!'
@@ -189,8 +189,9 @@ def remover_despesa():
             id_removido = est.lista_despesas[indice]['id']
 
             f.hash_palavra_desc(id_removido,est.palavras_desc_despesas,'excluir',est.lista_despesas[indice]['descricao'],est.lista_despesas,indice)
-            f.exclui_log('S',est.lista_despesas[indice]['valor'],id_removido)
 
+            valor_saida_removido = est.lista_despesas[indice]['valor']
+            f.exclui_log('saida',id_removido, valor_saida_removido)
 
             est.lista_despesas.pop(indice)
             return (f'Despesa de ID: {id_removido} foi removida!')
