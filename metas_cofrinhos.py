@@ -1,36 +1,44 @@
 import funcoes as f
+
 '''
-Cofrinhos:
+COFRINHO (SEM META)
+->ID, NOME, DATA CRIACAO, VALOR ATUAL
 
--Estrutura
-ID, Nome, Objetivo, QtdAtual, QtdDesejada, ValorFaltante, sugestaoMensal, dtCriacao
--Logs
-ID_cofr, valor, ação, data
--Casos
-Cofrinhos vazios podem existir;
-Nomes não podem repetir
-Somente valores > 0 podem entrar
-Não pode retirar um valor maior do que o que existe no cofre
-- Porcentagens, sugestões serão recalculadas ao fazer qualquer remoção
-Excluir um cofrinho faz com que o dinheiro vá para o saldo
-- Um cofrinho pode existir sem meta, alguns atributos não existirão
-- Uma meta não pode existir sem estar atrelada a um cofrinho
+COFRINHO (COM META)
+->ID, NOME, OBJETIVO, DATA CRIACAO, VALOR ATUAL, VALOR FINAL DESEJADO,...
+...PORCENTAGEM PARA COMPLETAR.
 
+Relação com saldo:
+    -> adicionar um valor ao cofrinho implica em descontar do saldo.
+    -> deverá ser registrado um log.
+    -> ao apagar um cofrinho, todo o valor dentro dele deve retornar ao saldo.
+    -> editar valor inserido: 
+    --quando o novo valor editado for menor que o antigo: COFRINHO -= vl_velho_inserido - nv_vl_inserido
+                                                          SALDO += vl_velho_inserido - nv_vl_inserido
+                                                        
+    --quando o novo valor editado for maior que o antigo: COFRINHO += vl_novo - vl_antigo
+                                                             SALDO -= vl_novo - vl_antigo
 
-Metas:
+-> cofrinhos podem ser criados livremente.
+-> cofrinhos podem ser criados sem ter nenhuma quantidade dentro deles.
+-> excluir um cofrinho faz com que o valor presente nele seja...
+depositado no saldo.
+-> deverá ter opção de corrigir o valor, isso não terá efeito no saldo...
+logo poderá ser feito livremente
 
-Metas serão adicionadas em cofrinhos
+METAS
+-> metas adicionarão atributos como VALOR FINAL DESEJADO e...
+PORCENTAGEM PARA COMPLETAR ao cofrinho.
+-> para uma meta existir é necessário que existam cofrinhos criados e...
+sem metas à eles atribuídos.
+->
 '''
-
-
-
 
 def criar_cofrinho():
     pass
 
 
 def editar_cofrinho():
-    # user escolhe um campo para editar
     pass
 
 
@@ -38,7 +46,7 @@ def excluir_cofrinho():
     pass
 
 
-def inseir_vl_cofrinho():
+def depositar_vl_cofrinho():
     pass
 
 
@@ -48,6 +56,11 @@ def retirar_vl_cofrinho():
 
 def listar_cofrinhos():
     pass
+
+
+def consultar_dados_do_cofrinho():
+    pass
+
 
 def criar_meta():    
     f.read_key()
@@ -64,13 +77,11 @@ def excluir_meta():
     pass
 
 
-def listar_metas_and_porcentagem():
+def listar_metas_e_porcentagem():
     f.read_key()
     pass
 
-#Campos: nome, valor alvo, prazo
-#Indicadores: percentual concluído e valor restante
-#Dar uma sugestão de X por Mês para atingir a Meta
+
 def menu_metas():
     while True:
         f.limpar_tela()
@@ -81,12 +92,12 @@ def menu_metas():
         '1 - CRIAR COFRINHO\n'
         '2 - EDITAR COFRINHO\n'
         '3 - EXCLUIR COFRINHO\n'
-        '4 - INSERIR QUANTIA NO COFRINHO\n'
+        '4 - DEPOSITAR QUANTIA NO COFRINHO\n'
         '5 - RETIRAR QUANTIA DO COFRINHO\n'
-        '6 - LISTAR COFRINHOS\n'
-        '7 - CONSULTAR COFRINHO\n'
+        '6 - LISTAR COFRINHOS\n'# nome cofrinho | valor | Meta (sim/não)
+        '7 - CONSULTAR DADOS DO COFRINHO\n'
         '8 - CRIAR META\n'
-        '9 - EDITAR META\n'
+        '9 - EDITAR META\n'# mudar valor desejado
         '10 - EXCLUIR META\n'
         '11 - LISTAR METAS E PORCENTAGEM\n'
         '0 - VOLTAR'
@@ -109,7 +120,7 @@ def menu_metas():
 
         elif opcao == 4:
             f.limpar_tela()
-            inseir_vl_cofrinho()
+            depositar_vl_cofrinho()
 
         elif opcao == 5:
             f.limpar_tela()
@@ -121,23 +132,24 @@ def menu_metas():
 
         if opcao == 7:
             f.limpar_tela()
+            consultar_dados_do_cofrinho()
             criar_meta()
 
         elif opcao == 8:
             f.limpar_tela()
-            editar_meta()
+            criar_meta()
 
         elif opcao == 9:
             f.limpar_tela()
-            excluir_meta()
+            editar_meta()
 
         elif opcao == 10:
             f.limpar_tela()
-            listar_metas_and_porcentagem()
-
+            excluir_meta()
+            
         elif opcao == 11:
             f.limpar_tela()
-
+            listar_metas_e_porcentagem()
 
         elif opcao == 0:
             f.limpar_tela()
@@ -146,24 +158,3 @@ def menu_metas():
 if __name__ == '__main__':
     menu_metas()
 
-'''
-cofre
-    -> um cofrinho poderá ter ou não ter uma meta. (0:1).
-    -> cofrinhos terão atributos como: ID, Nome, DT_criacao, Objetivo, Qtd Atual, Qtd Desejada, Valor Faltante.
-    -> por limitações que me impedem de sincronizar os rendimentos do cofrinho, a função de editar
-    .. será algo recorrente (sempre alterar ao usar o sistema)
-
-
-Metas:
-    -> poderão ser criadas para cofrinhos ou para conquistas (ex: alcançar 6k de saldo).
-    -> metas serão criadas como objetivos financeiros, o campo objetivo dirá para que serve (ex: meta: 6k; obejtivo= comprar notebook)
-
-Relação com saldo:
-    -> adicionar um valor ao cofrinho implica em descontar do saldo.
-    -> deverá ser registrado um log.
-    -> ao apagar um cofrinho, todo o valor dentro dele deve retornar ao saldo.
-    -> editar valor inserido: 
--> cofr -= vl_velho_inserido - nv_vl_inserido) & (saldo += vl_velho_inserido - nv_vl_inserido) (quando nv_vl < vl_antigo)
--> cofr += (vl_novo - vl_antigo) & (saldo -= vl_novo - vl_antigo) (quando nv_vl > vl antigo)
-
-'''

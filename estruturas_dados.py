@@ -34,7 +34,7 @@ logs_valores_entr_saida = [
 ]
 
 logs_cofrinhos = [
-    #{"id_cofr":1,"valor":1234,"acao":'excluir',"data":123456}
+
 ]
 
 '''
