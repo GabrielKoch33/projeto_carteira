@@ -3,14 +3,14 @@ import sys
 import time
 from datetime import date,datetime, timedelta
 from categorias import listar_categorias
-from estruturas_dados import logs_valores_entr_saida
+from estruturas_dados import logs_entr_saida
 
 # variaveis importantes
 size = 82
 
 '''FUNÇÕES DE INTERFACE'''
 def limpar_tela():
-    # Usa o módulo subprocess, recomendado pelas diretrizes atuais do Python
+
     if sys.platform.startswith("win"):
         subprocess.run("cls", shell=True)
     else:
@@ -221,7 +221,7 @@ def insere_log(tipo_operacao,ref_id,ref_vl_entr):
     '''
     global saldo_atual
 
-    logs_valores_entr_saida.append({"tipo": tipo_operacao,"valor":ref_vl_entr,"id":ref_id})
+    logs_entr_saida.append({"tipo": tipo_operacao,"valor":ref_vl_entr,"id":ref_id})
 
     if tipo_operacao == 'entrada':
         saldo_atual += ref_vl_entr
@@ -235,7 +235,7 @@ def edita_log(tipo_operacao,ref_id,ref_vl_novo):
     '''
     global saldo_atual
 
-    for log in logs_valores_entr_saida:
+    for log in logs_entr_saida:
         if log['tipo'] == tipo_operacao and log['id'] == ref_id:
             vl_velho = log['valor']
 
@@ -264,7 +264,7 @@ def exclui_log(tipo_operacao,ref_id,ref_vl_removido):
 
     global saldo_atual
 
-    for indice,log in enumerate(logs_valores_entr_saida):
+    for indice,log in enumerate(logs_entr_saida):
 
         if log['tipo'] == tipo_operacao and log['id'] == ref_id:
 

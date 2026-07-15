@@ -18,23 +18,64 @@ lista_entradas = [
     #     "descricao": ["mercado", "mensal"],
     #     "categoria": "alimentação",
     #     "data": "06/06/2026"
-    # }
+    # },
+    # {
+    #  ...
+    # }...
 ]
 
 lista_despesas = [
-
+    # {
+    #     "id": 4,
+    #     "valor": 212.00,
+    #     "descricao": ["presente", "namorada"],
+    #     "categoria": "presentes",
+    #     "data": "02/04/2026"
+    # },
+    # {
+    # ...
+    # }...
 ]
 
-logs_valores_entr_saida = [
-    #{"tipo": 'entrada',"id_lista":12,"valor":120,}
-    # lista que será populada por cada ocorrência de entrada (1) e saída (0)
-    # {TIPO: E/S ; ID NA LISTA; VALOR ; ACAO(EDITAR,EXCLUIR,ADD)},
-    # a cada novo registro, a função calcula_saldo_atual() será chamada.
-    # ela vai analisar o tipo de operação e checar condições para somar ou subtrair
+logs_entr_saida = [
+    # {
+    #   "tipo": 'saida', 
+    #   "id_lista": 4,
+    #   "valor": 212.00,
+    #   "acao": 'adicionar',
+    # },
+    # {
+    # ...
+    # }...
 ]
 
 logs_cofrinhos = [
+    # {
+    #   "id": 1, 
+    #   "nome": 'Reserva Financeira',
+    #   "data_criacao": '25/01/2025',
+    #   "valor_atual": 5434.00,
+    #   "auto_deposito": True,
+    #   "qtd_automatica": 10.00,
+    #   "meta": False
+    # }
+    # {
+    #   "id": 1, 
+    #   "nome": 'Reserva Financeira',
+    #   "data_criacao": '25/01/2025',
+    #   "valor_atual": '5434.00',
+    #   "meta": True,
+    #   "valor_final_desejado": 10.000,00,
+    #   "porcentagem_conclusao": 52
+    # }
+]
 
+logs_metas = [
+    # {
+    #   "id_cofrinho": 2,
+    #   "valor_meta": 10,000.00,
+    #   ""
+    # }
 ]
 
 '''
@@ -44,10 +85,12 @@ dos registros.
 '''
 palavras_desc_entradas = {
     # "mercado": {2, 7}, -> a palavra mercado aparece nos registro de id 2 e 7
-    # "churrasco": {7}
+    # "churrasco": {7}...
 }
 
 palavras_desc_despesas = {
-
+    # "presente": {2, 3}, -> a palavra mercado aparece nos registro de id 2 e 7
+    # "namorada": {3},
+    # "amigo":{2},...
 }
 
