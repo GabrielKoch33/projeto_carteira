@@ -1,4 +1,5 @@
 import funcoes as f
+import estruturas_dados as est
 
 '''
 COFRINHO (SEM META)
@@ -35,10 +36,10 @@ sem metas à eles atribuídos.
 '''
     # {
     #   "id": 1, 
-    #   "nome": 'Reserva Financeira',
-    #   "data_criacao": '25/01/2025',
-    #   "valor_atual": 5434.00,
-    #   "auto_deposito": True,
+    #   "nome": 'Reserva Financeira', ok
+    #   "data_criacao": '25/01/2025', ok
+    #   "valor_atual": 5434.00, ok
+    #   "auto_deposito": True, 
     #   "qtd_automatica": 10.00,
     #   "meta": False
     # }
@@ -47,15 +48,15 @@ def criar_cofrinho():
     while True:
         nome_cofrinho = input('Dê um nome para o cofrinho: ').strip().lower()
         if not nome_cofrinho:
-            print('Nomes vazios não são válidos! Tente novamente.')
-            continue
+            return 'Nomes vazios não são válidos! Voltando para o menu...'
+
         else:
             break
     
     while True:
-        data = f.converte_data()
+        data_cofrinho = f.converte_data()
 
-        if not data:
+        if not data_cofrinho:
             f.double_line()
             print("Erro: Digite exatamente 8 números.")
             f.double_line()
@@ -74,9 +75,18 @@ def criar_cofrinho():
         else:
             break
 
+    id_cofrinho = f.gera_id(est.lista_cofrinhos)
+    est.lista_cofrinhos.append({
+                            "id": id_cofrinho,
+                            "nome": nome_cofrinho,
+                            "data_criacao": data_cofrinho,
+                            "valor atual": valor_cofrinho,
+                            "auto_deposito": False,
+                            "qtd_automatica": 0,
+                            "meta": False,
+                            })
 
-    f.read_key()
-    pass
+    return 'Cofrinho cadastrado com sucesso'
 
 
 def editar_cofrinho():
@@ -100,8 +110,30 @@ def retirar_vl_cofrinho():
 
 
 def listar_cofrinhos():
-    f.read_key()
-    pass
+    if not est.lista_cofrinhos:
+        return 'Registro de cofrinhos vazio. Nenhum cofrinho para listar'
+    
+    else:
+        f.imprime_colunas('COFRINHOS')
+        print(
+            f'{"ID":<5}'
+            f'{"NOME":<20}'
+            f'{"DATA CRIAÇÃO":<15}'
+            f'{"VALOR ATUAL":<16}'
+            f'{"DEPÓSITO AUTOMÁTICO":<22}'   
+            f'{"QUANTIA AUTOMATICA":22}'
+            f'{"META":15}'
+            )
+        f.line()
+
+        num_registros = 0
+        for item in est.lista_cofrinhos:
+            data_ = item['data_criacao'].strftime("%d/%m/%Y")
+            num_registros += 1
+            pass
+
+        f.read_key()
+        pass
 
 
 def consultar_dados_do_cofrinho():
@@ -163,52 +195,93 @@ def menu_metas():
         
         if opcao == 1:
             f.limpar_tela()
-            criar_cofrinho()
+            msg = criar_cofrinho()
+            print(msg)
+            f.double_line()
+            f.read_key()            
 
         elif opcao == 2:
             f.limpar_tela()
-            editar_cofrinho()
+            msg = editar_cofrinho()
+            print(msg)
+            f.double_line()
+            f.read_key()
+
 
         elif opcao == 3:
             f.limpar_tela()
-            excluir_cofrinho()
+            msg = excluir_cofrinho()
+            print(msg)
+            f.double_line()
+            f.read_key()
+
 
         elif opcao == 4:
             f.limpar_tela()
-            depositar_vl_cofrinho()
+            msg = depositar_vl_cofrinho()
+            print(msg)
+            f.double_line()
+            f.read_key()
+
 
         elif opcao == 5:
             f.limpar_tela()
-            retirar_vl_cofrinho()
+            msg = retirar_vl_cofrinho()
+            print(msg)
+            f.double_line()
+            f.read_key()
+
 
         elif opcao == 6:
             f.limpar_tela()
-            listar_cofrinhos()
+            msg = listar_cofrinhos()
+            print(msg)
+            f.double_line()
+            f.read_key()
+
 
         if opcao == 7:
             f.limpar_tela()
-            consultar_dados_do_cofrinho()
-            criar_meta()
+            msg = consultar_dados_do_cofrinho()
+            print(msg)
+            f.double_line()
+            f.read_key()
+            
 
         elif opcao == 8:
             f.limpar_tela()
-            criar_meta()
+            msg = criar_meta()
+            print(msg)
+            f.double_line()
+            f.read_key()
 
         elif opcao == 9:
             f.limpar_tela()
-            editar_meta()
+            msg = editar_meta()
+            print(msg)
+            f.double_line()
+            f.read_key()
 
         elif opcao == 10:
             f.limpar_tela()
-            excluir_meta()
+            msg = excluir_meta()
+            print(msg)
+            f.double_line()
+            f.read_key()
             
         elif opcao == 11:
             f.limpar_tela()
-            listar_metas_e_porcentagem()
+            msg = listar_metas_e_porcentagem()
+            print(msg)
+            f.double_line()
+            f.read_key()
         
         elif opcao == 12:
             f.limpar_tela()
-            habilitar_auto_deposito()
+            msg = habilitar_auto_deposito()
+            print(msg)
+            f.double_line()
+            f.read_key()            
 
         elif opcao == 0:
             f.limpar_tela()

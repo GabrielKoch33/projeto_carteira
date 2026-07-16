@@ -49,7 +49,7 @@ logs_entr_saida = [
     # }...
 ]
 
-logs_cofrinhos = [
+lista_cofrinhos = [
     # {
     #   "id": 1, 
     #   "nome": 'Reserva Financeira',

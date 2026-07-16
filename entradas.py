@@ -49,11 +49,13 @@ def adicionar_entradas():
 
                 f.hash_palavra_desc(id,est.palavras_desc_entradas,'adicionar',descricao_entrada)
   
-                est.lista_entradas.append({"id": id,
-                                    "valor": valor_entrada,
-                                    "descricao": descricao_entrada,
-                                    "categoria": est.lista_categorias[indice]["nome"],
-                                    "data": data})
+                est.lista_entradas.append({
+                                        "id": id,
+                                        "valor": valor_entrada,
+                                        "descricao": descricao_entrada,
+                                        "categoria": est.lista_categorias[indice]["nome"],
+                                        "data": data
+                                        })
                 # E = entrada
                 f.insere_log('entrada',id,valor_entrada)
                 break
@@ -63,7 +65,7 @@ def adicionar_entradas():
                 continue
         
         f.limpar_tela()
-        return('Entrada cadastrada!')
+        return 'Entrada cadastrada!'
 
 
 def listar_entradas():
@@ -72,6 +74,14 @@ def listar_entradas():
     
     else:
         f.imprime_colunas('ENTRADAS')
+        print(
+            f'{"ID":<5}'
+            f'{"VALOR":<15}'
+            f'{"DESCRIÇÃO":<30}'
+            f'{"CATEGORIA":<20}'
+            f'{"DATA":<12}'
+            )
+        f.line()
 
         num_registros = 0
         for item in est.lista_entradas:
@@ -84,7 +94,7 @@ def listar_entradas():
                 f"{descricao:<30}"
                 f'{item["categoria"]:<20}'
                 f'{data_:<12}'
-            )
+                )
         f.double_line()
         print(f'Total de registros: {num_registros}') 
         return 'Lista retornada com sucesso!'
@@ -171,7 +181,7 @@ def editar_entradas():
 
                 case _: # _ é como se fosse um 'ELSE'. usar | (barra reta) é como um OR
                     f.double_line()
-                    return('Insira um campo válido!')      
+                    return 'Insira um campo válido!'    
     else:
         return('Nenhuma entrada foi registrada ainda! Nada para editar')
            
@@ -197,7 +207,7 @@ def remover_entradas():
             f.exclui_log('entrada',id_removido, valor_entr_excluido)
 
             est.lista_entradas.pop(indice)
-            return (f'Entrada de ID: {id_removido} foi removida!')
+            return f'Entrada de ID: {id_removido} foi removida!'
             
     else:
         return('Nenhuma entrada foi registrada ainda! Nada para remover!')
@@ -219,6 +229,8 @@ def buscar_por_descricao():
             ids_encontrados = est.palavras_desc_entradas[palavra_chave_busca] #recebe os id das entradas da respectiva palavra chave
 
             f.imprime_colunas('ENTRADAS')
+            print(f'{"ID":<5}{"VALOR":<15}{"DESCRIÇÃO":<30}{"CATEGORIA":<20}{"DATA":<12}')
+            f.line()
             
             num_registros = 0
             for item in est.lista_entradas: #percorre a lista de entradas comparando [id] com os id relacionados a palavra-chave
@@ -232,7 +244,7 @@ def buscar_por_descricao():
                         f'{descricao:<30}'
                         f'{item["categoria"]:<20}'
                         f'{data_:<12}'
-                    )
+                        )
             f.double_line()
             print(f'Total de registros: {num_registros}')
             return ('Consulta por descrição retornada com sucesso!')
@@ -260,6 +272,8 @@ def buscar_por_categoria():
             if f.encontra_campo_e_indice(nome_categoria, est.lista_entradas,'categoria')[0]:
                 
                 f.imprime_colunas('ENTRADAS')
+                print(f'{"ID":<5}{"VALOR":<15}{"DESCRIÇÃO":<30}{"CATEGORIA":<20}{"DATA":<12}')
+                f.line()
 
                 num_registros = 0
                 for item in est.lista_entradas:
@@ -273,15 +287,15 @@ def buscar_por_categoria():
                             f'{descricao:<30}'
                             f'{item["categoria"]:<20}'
                             f'{data_:<12}'
-                        )
+                            )
                 f.double_line()
                 print(f'Total de registros: {num_registros}')
                 return 'Lista retornada com sucesso!'
             else:
-                return('Não existem entradas com a categoria indicada!')
+                return 'Não existem entradas com a categoria indicada!'
 
     else:
-        return('Nenhuma entrada foi registrada ainda! Nada para consultar!')
+        return 'Nenhuma entrada foi registrada ainda! Nada para consultar!'
 
 
 def buscar_por_periodo():
@@ -328,6 +342,15 @@ def buscar_por_periodo():
         primeiro_reg = est.lista_entradas[indice_inicio]['data']
 
         f.imprime_colunas('ENTRADAS')
+        print(
+            f'{"ID":<5}'
+            f'{"VALOR":<15}'
+            f'{"DESCRIÇÃO":<30}'
+            f'{"CATEGORIA":<20}'
+            f'{"DATA":<12}'
+            )
+        f.line()
+
         num_registros = 0
 
         while indice_inicio <= len(est.lista_entradas)-1 and est.lista_entradas[indice_inicio]['data'] <= data_fim:
@@ -341,7 +364,7 @@ def buscar_por_periodo():
                 f'{descricao:<30}'
                 f'{est.lista_entradas[indice_inicio]["categoria"]:<20}'
                 f'{data_:<12}'
-               )
+                )
             indice_inicio += 1
             num_registros += 1
 
@@ -358,7 +381,7 @@ def buscar_por_periodo():
         return 'Lista retornada com sucesso!'
 
     else:
-        return('Nenhuma entrada foi registrada ainda! Nada para consultar!')
+        return 'Nenhuma entrada foi registrada ainda! Nada para consultar!'
 
 
 def menu_entradas():

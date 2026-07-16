@@ -46,11 +46,13 @@ def adicionar_despesa():
                 f.hash_palavra_desc(id,est.palavras_desc_despesas,'adicionar',descricao_despesa)
   
 
-                est.lista_despesas.append({"id":id,
-                                    "valor":valor_despesa,
-                                    "descricao":descricao_despesa,
-                                    "categoria":est.lista_categorias[indice]["nome"],
-                                    "data":data})
+                est.lista_despesas.append({
+                                        "id":id,
+                                        "valor":valor_despesa,
+                                        "descricao":descricao_despesa,
+                                        "categoria":est.lista_categorias[indice]["nome"],
+                                        "data":data
+                                        })
                 
                 f.insere_log('saida',id,valor_despesa)
                 break
@@ -60,7 +62,7 @@ def adicionar_despesa():
                 continue
         
         f.limpar_tela()
-        return('Despesa cadastrada!')
+        return 'Despesa cadastrada!'
     
 
 def listar_despesas():
@@ -69,6 +71,8 @@ def listar_despesas():
     
     else:
         f.imprime_colunas('DESPESAS')
+        print(f'{"ID":<5}{"VALOR":<15}{"DESCRIÇÃO":<30}{"CATEGORIA":<20}{"DATA":<12}')
+        f.line()
 
         num_registros = 0
         for item in est.lista_despesas:
@@ -81,7 +85,7 @@ def listar_despesas():
                 f"{descricao:<30}"
                 f'{item["categoria"]:<20}'
                 f'{data_:<12}'
-            )
+                )
         f.double_line()
         print(f'Total de registros: {num_registros}') 
         return 'Lista retornada com sucesso!'
@@ -168,9 +172,9 @@ def editar_despesa():
 
                 case _: # _ é como se fosse um 'ELSE'. usar | (barra reta) é como um OR
                     f.double_line()
-                    return('Insira um campo válido!')      
+                    return 'Insira um campo válido!'    
     else:
-        return('Nenhuma despesa foi registrada ainda! Nada para editar')
+        return 'Nenhuma despesa foi registrada ainda! Nada para editar'
 
 
 def remover_despesa():
@@ -194,10 +198,10 @@ def remover_despesa():
             f.exclui_log('saida',id_removido, valor_saida_removido)
 
             est.lista_despesas.pop(indice)
-            return (f'Despesa de ID: {id_removido} foi removida!')
+            return f'Despesa de ID: {id_removido} foi removida!'
             
     else:
-        return('Nenhuma despesa foi registrada ainda! Nada para remover!')
+        return 'Nenhuma despesa foi registrada ainda! Nada para remover!'
     
 
 def buscar_por_descricao():
@@ -211,11 +215,13 @@ def buscar_por_descricao():
                 break
 
         if palavra_chave_busca not in est.palavras_desc_despesas:
-            return ('Nenhuma descrição com essa palavra-chave foi encontrada!')
+            return 'Nenhuma descrição com essa palavra-chave foi encontrada!'
         else:
             ids_encontrados = est.palavras_desc_despesas[palavra_chave_busca] #recebe os id das entradas da respectiva palavra chave
 
             f.imprime_colunas('DESPESAS')
+            print(f'{"ID":<5}{"VALOR":<15}{"DESCRIÇÃO":<30}{"CATEGORIA":<20}{"DATA":<12}')
+            f.line()
             
             num_registros = 0
             for item in est.lista_despesas: #percorre a lista de entradas comparando [id] com os id relacionados a palavra-chave
@@ -229,12 +235,12 @@ def buscar_por_descricao():
                         f'{descricao:<30}'
                         f'{item["categoria"]:<20}'
                         f'{data_:<12}'
-                    )
+                        )
             f.double_line()
             print(f'Total de registros: {num_registros}')
-            return ('Consulta por descrição retornada com sucesso!')
+            return 'Consulta por descrição retornada com sucesso!'
     else:
-        return('Nenhuma despesa foi registrada ainda! Nada para consultar!')
+        return 'Nenhuma despesa foi registrada ainda! Nada para consultar!'
 
 
 def buscar_por_categoria():
@@ -257,6 +263,8 @@ def buscar_por_categoria():
             if f.encontra_campo_e_indice(nome_categoria, est.lista_despesas,'categoria')[0]:
                 
                 f.imprime_colunas('DESPESAS')
+                print(f'{"ID":<5}{"VALOR":<15}{"DESCRIÇÃO":<30}{"CATEGORIA":<20}{"DATA":<12}')
+                f.line()
 
                 num_registros = 0
                 for item in est.lista_despesas:
@@ -270,12 +278,12 @@ def buscar_por_categoria():
                             f'{descricao:<30}'
                             f'{item["categoria"]:<20}'
                             f'{data_:<12}'
-                        )
+                            )
                 f.double_line()
                 print(f'Total de registros: {num_registros}')
                 return 'Lista retornada com sucesso!'
             else:
-                return('Não existem despesas com a categoria indicada!')
+                return 'Não existem despesas com a categoria indicada!'
 
     else:
         return('Nenhuma despesa foi registrada ainda! Nada para consultar!')
@@ -325,6 +333,9 @@ def buscar_por_periodo():
         primeiro_reg = est.lista_despesas[indice_inicio]['data']
 
         f.imprime_colunas('DESPESAS')
+        print(f'{"ID":<5}{"VALOR":<15}{"DESCRIÇÃO":<30}{"CATEGORIA":<20}{"DATA":<12}')
+        f.line()
+        
         num_registros = 0
 
         while indice_inicio <= len(est.lista_despesas)-1 and est.lista_despesas[indice_inicio]['data'] <= data_fim:
@@ -338,7 +349,7 @@ def buscar_por_periodo():
                 f'{descricao:<30}'
                 f'{est.lista_despesas[indice_inicio]["categoria"]:<20}'
                 f'{data_:<12}'
-               )
+                )
             indice_inicio += 1
             num_registros += 1
 
@@ -355,7 +366,7 @@ def buscar_por_periodo():
         return 'Lista retornada com sucesso!'
 
     else:
-        return('Nenhuma despesa foi registrada ainda! Nada para consultar!')
+        return 'Nenhuma despesa foi registrada ainda! Nada para consultar!'
 
 
 def menu_despesa():

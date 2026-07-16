@@ -34,8 +34,7 @@ def imprime_colunas(ref_modulo):
     double_line()
     print(f'LISTA DE {ref_modulo}'.center(size,' '))
     double_line()
-    print(f'{"ID":<5}{"VALOR":<15}{"DESCRIÇÃO":<30}{"CATEGORIA":<20}{"DATA":<12}')
-    line()
+
 
 '''FUNÇÕES DE VALIDAÇÃO'''
 def ler_opcao_menu(num_max_opcao):
