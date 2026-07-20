@@ -47,9 +47,9 @@ sem metas à eles atribuídos.
 def criar_cofrinho():
     while True:
         nome_cofrinho = input('Dê um nome para o cofrinho: ').strip().lower()
+
         if not nome_cofrinho:
             return 'Nomes vazios não são válidos! Voltando para o menu...'
-
         else:
             break
     
@@ -61,7 +61,6 @@ def criar_cofrinho():
             print("Erro: Digite exatamente 8 números.")
             f.double_line()
             continue # se voltar erro, pede data novamente
-
         else:
             break
 
