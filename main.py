@@ -24,15 +24,15 @@ def main_menu():
         print('CARTEIRA DE GABRIEL'.center(f.size,' '))
         f.double_line()
         print(
-        '1 - ENTRADAS\n'            # FEITO
-        '2 - DESPESAS\n'            # FEITO
-        '3 - CATEGORIAS\n'          # FEITO
-        '4 - RELATÓRIOS\n'          #
-        '5 - ESTATÍSTICAS\n'        #
-        '6 - GRÁFICOS\n'       #
-        '7 - ANÁLISES AUTOMÁTICAS\n'#
-        '8 - METAS & COFRINHOS\n'   #
-        '9 - ALTERAR SALDO INICIAL\n'
+        '1 - ENTRADAS\n'             # FEITO
+        '2 - DESPESAS\n'             # FEITO
+        '3 - CATEGORIAS\n'           # FEITO
+        '4 - RELATÓRIOS\n'           #
+        '5 - ESTATÍSTICAS\n'         #
+        '6 - GRÁFICOS\n'             #
+        '7 - ANÁLISES AUTOMÁTICAS\n' #
+        '8 - METAS & COFRINHOS\n'    #
+        '9 - ALTERAR SALDO INICIAL\n'# FEITO
         '0 - SALVAR E SAIR'
         )
         f.double_line()
@@ -55,7 +55,9 @@ def main_menu():
         elif opcao == 8:
             met.menu_metas()
         elif opcao == 9:
-            f.redefine_saldo()
+            msg = f.redefine_saldo()
+            print(msg)
+            f.read_key()
         elif opcao == 0:
             print('Salvando...')
             f.pause()

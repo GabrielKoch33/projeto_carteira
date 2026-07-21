@@ -56,7 +56,7 @@ def adicionar_entradas():
                                         "categoria": est.lista_categorias[indice]["nome"],
                                         "data": data
                                         })
-                # E = entrada
+   
                 f.insere_log('entrada',id,valor_entrada)
                 break
 

@@ -153,7 +153,7 @@ def gera_id(lista):
 def hash_palavra_desc(ref_id,
                       lista_hash,
                       caso, # Criar/Excluir/Editar
-                      ref_desc=[], #nova descricao
+                      ref_desc=[], # nova descricao
                       tipo_lista=[], # estamos percorrendo uma descricao de uma lista de entradas ou saída?
                       ref_indice=0): # indice não é usado na entrada
 
@@ -293,6 +293,7 @@ def redefine_saldo():
         novo_saldo_inicial = converte_moeda(novo_saldo_inicial)
 
         if isinstance(novo_saldo_inicial,str):
+            time.sleep(1)
             return 'Erro ao alterar valor, verifique valor informado'
         
         else:
@@ -303,4 +304,9 @@ def redefine_saldo():
 
             saldo_inicial = novo_saldo_inicial
 
-        time.sleep(1)
+            time.sleep(1)
+            return 'Saldo alterado com sucesso!'        
+        
+
+    else:
+        return 'Operação Cancelada'
