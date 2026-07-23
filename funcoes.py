@@ -25,6 +25,7 @@ def read_key():
 
 def double_line():
     print('='*size) 
+    
 def line():
     print('-'*size)
 
@@ -50,7 +51,7 @@ def ler_opcao_menu(num_max_opcao):
             continue
 
         else:
-            if op < 0 or op > num_max_opcao:
+            if 0 < op < num_max_opcao:
                 print('Escolha uma opção dentre as apresentadas!')
                 continue
             else:
@@ -168,7 +169,7 @@ def hash_palavra_desc(ref_id,
                     lista_hash[palavra].add(ref_id)
     
         case 'excluir':
-
+            
             for palavra in tipo_lista[ref_indice]['descricao']:
                 lista_hash[palavra].discard(ref_id)
                 if not lista_hash[palavra]:
