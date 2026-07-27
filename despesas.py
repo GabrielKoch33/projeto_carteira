@@ -21,13 +21,11 @@ def adicionar_despesa():
 
         while True:
             data = f.converte_data()
-
             if not data:
                 f.double_line()
                 print("Erro: Digite exatamente 8 números.")
                 f.double_line()
                 continue # se voltar erro, pede data novamente
-
             else:
                 break # senão, valor válido e insere data
         
@@ -44,7 +42,6 @@ def adicionar_despesa():
                 id = f.gera_id(est.lista_despesas)# depois que tudo dá certo é gerado um ID
 
                 f.hash_palavra_desc(id,est.palavras_desc_despesas,'adicionar',descricao_despesa)
-  
 
                 est.lista_despesas.append({
                                         "id":id,
@@ -376,13 +373,13 @@ def menu_despesa():
         print('DESPESAS'.center(f.size,' '))
         f.double_line()
         print(
-        '1 - ADICIONAR DESPESA\n'
-        '2 - EDITAR DESPESA\n'
-        '3 - REMOVER DESPESA\n'
-        '4 - LISTAR DESPESAS\n'
-        '5 - BUSCA POR DESCRIÇÃO\n'
-        '6 - BUSCA POR CATEGORIA\n'
-        '7 - BUSCA POR PERÍODO\n'
+        f'1 - ADICIONAR DESPESA\n'
+        f'2 - EDITAR DESPESA\n'
+        f'3 - REMOVER DESPESA\n'
+        f'4 - LISTAR DESPESAS\n'
+        f'5 - BUSCA POR DESCRIÇÃO\n'
+        f'6 - BUSCA POR CATEGORIA\n'
+        f'7 - BUSCA POR PERÍODO\n'
         '0 - VOLTAR'
         )
         f.double_line()

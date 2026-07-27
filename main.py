@@ -6,7 +6,7 @@ import relatorios as rel
 import estatisticas as est
 import graficos as views
 import analises as anl
-import metas_cofrinhos as met
+import menu_metas_cofrinho as met
 import funcoes as f
 import dados
 
@@ -24,17 +24,17 @@ def main_menu():
         print('CARTEIRA DE GABRIEL'.center(f.size,' '))
         f.double_line()
         print(
-        '1 - ENTRADAS\n'             # FEITO
-        '2 - DESPESAS\n'             # FEITO
-        '3 - CATEGORIAS\n'           # FEITO
-        '4 - RELATÓRIOS\n'           #
-        '5 - ESTATÍSTICAS\n'         #
-        '6 - GRÁFICOS\n'             #
-        '7 - ANÁLISES AUTOMÁTICAS\n' #
-        '8 - METAS & COFRINHOS\n'    #
-        '9 - ALTERAR SALDO INICIAL\n'# FEITO
-        '0 - SALVAR E SAIR'
-        )
+            f'1 - ENTRADAS\n'             # FEITO
+            f'2 - DESPESAS\n'             # FEITO
+            f'3 - CATEGORIAS\n'           # FEITO
+            f'4 - RELATÓRIOS\n'           #
+            f'5 - ESTATÍSTICAS\n'         #
+            f'6 - GRÁFICOS\n'             #
+            f'7 - ANÁLISES AUTOMÁTICAS\n' #
+            f'8 - METAS & COFRINHOS\n'    #
+            f'9 - ALTERAR SALDO INICIAL\n'# FEITO
+            '0 - SALVAR E SAIR'
+            )
         f.double_line()
         opcao = f.ler_opcao_menu(9)
         f.double_line()
@@ -53,7 +53,7 @@ def main_menu():
         elif opcao == 7:
             anl.menu_analises()
         elif opcao == 8:
-            met.menu_metas()
+            met.menu_cofrinhos_e_metas()
         elif opcao == 9:
             msg = f.redefine_saldo()
             print(msg)
@@ -66,7 +66,7 @@ def main_menu():
 if __name__ == '__main__':
 
     while True:
-        f.saldo_inicial = input('Qual é o seu saldo atual?\nSaldo: ').strip()
+        f.saldo_inicial = input(f'Qual é o seu saldo atual?\nSaldo: ').strip()
 
         if not f.saldo_inicial:
             print('Valores vazios não são permitidos!')

@@ -22,7 +22,6 @@ def adicionar_entradas():
                 descricao_entrada = descricao_entrada.split()
                 break
 
-
         while True:
             data = f.converte_data()
 
@@ -31,7 +30,6 @@ def adicionar_entradas():
                 print("Erro: Digite exatamente 8 números.")
                 f.double_line()
                 continue # se voltar erro, pede data novamente
-
             else:
                 break # senão, valor válido e insere data
         
@@ -391,13 +389,13 @@ def menu_entradas():
         print('ENTRADAS'.center(f.size,' '))
         f.double_line()
         print(
-        '1 - ADICIONAR ENTRADA\n'
-        '2 - EDITAR ENTRADA\n'
-        '3 - REMOVER ENTRADA\n'
-        '4 - LISTAR ENTRADAS\n'
-        '5 - BUSCA POR DESCRIÇÃO\n'
-        '6 - BUSCA POR CATEGORIA\n'
-        '7 - BUSCA POR PERÍODO\n'
+        f'1 - ADICIONAR ENTRADA\n'
+        f'2 - EDITAR ENTRADA\n'
+        f'3 - REMOVER ENTRADA\n'
+        f'4 - LISTAR ENTRADAS\n'
+        f'5 - BUSCA POR DESCRIÇÃO\n'
+        f'6 - BUSCA POR CATEGORIA\n'
+        f'7 - BUSCA POR PERÍODO\n'
         '0 - VOLTAR'
         )
         f.double_line()

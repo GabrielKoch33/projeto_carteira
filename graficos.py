@@ -22,12 +22,12 @@ def menu_visualizacoes():
         print('GRÁFICOS'.center(f.size,' '))
         f.double_line()
         print(
-        '1 - PIZZA POR CATEGORIA\n'
-        '2 - BARRAS POR CATEGORIA\n'
-        '3 - EVOLUÇÃO SALDO\n'
-        '4 - LINHA DE DESPESAS\n'
-        '0 - VOLTAR'
-        )
+            f'1 - PIZZA POR CATEGORIA\n'
+            f'2 - BARRAS POR CATEGORIA\n'
+            f'3 - EVOLUÇÃO SALDO\n'
+            f'4 - LINHA DE DESPESAS\n'
+            '0 - VOLTAR'
+            )
         f.double_line()
         opcao = f.ler_opcao_menu(4)
         f.double_line()

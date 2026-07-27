@@ -51,9 +51,10 @@ def ler_opcao_menu(num_max_opcao):
             continue
 
         else:
-            if 0 < op < num_max_opcao:
+            if op < 0 or op > num_max_opcao:
                 print('Escolha uma opção dentre as apresentadas!')
                 continue
+
             else:
                 return op
         
@@ -121,9 +122,7 @@ def converte_data():
 
     if len(entrada) == 8 and entrada.isdigit():
         texto_data = f"{entrada[:2]}/{entrada[2:4]}/{entrada[4:]}"
-        data_formatada = datetime.strptime(
-            texto_data,
-            "%d/%m/%Y")
+        data_formatada = datetime.strptime(texto_data,"%d/%m/%Y")
         return data_formatada
         # data agora é um OBJETO DATETIME, não string
     else:
