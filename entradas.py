@@ -7,8 +7,7 @@ def adicionar_entradas():
     valor_entrada = input('Digite o valor em R$ da entrada: ')
     valor_entrada = f.converte_moeda(valor_entrada)
 
-    # isinstance(varivael que vamos verificar, tipo esperado que ela seja)
-    # retorna True se valor_entrada for str / caso o tipo for tupla e o valor um elemento q esta na tupla, ent True
+
     if isinstance(valor_entrada,str):
         return valor_entrada
     

@@ -12,6 +12,7 @@ lista_categorias = [
 ]
 
 lista_entradas = [
+    # Registra as entradas cadastradas pelo user
     # {
     #     "id": 2,
     #     "valor": 120.50,
@@ -19,12 +20,10 @@ lista_entradas = [
     #     "categoria": "alimentação",
     #     "data": "06/06/2026"
     # },
-    # {
-    #  ...
-    # }...
 ]
 
 lista_despesas = [
+    # Registra as despesas cadastradas pelo user    
     # {
     #     "id": 4,
     #     "valor": 212.00,
@@ -32,49 +31,35 @@ lista_despesas = [
     #     "categoria": "presentes",
     #     "data": "02/04/2026"
     # },
-    # {
-    # ...
-    # }...
 ]
 
 logs_entr_saida = [
+    # Registra Entradas + Despesas com objetivo de controlar o saldo
     # {
     #   "tipo": 'saida', 
+    #   "valor": 212.00,    
     #   "id_lista": 4,
-    #   "valor": 212.00,
-    #   "acao": 'adicionar',
     # },
-    # {
-    # ...
-    # }...
 ]
 
 lista_cofrinhos = [
     # {
-    #   "id": 1, 
-    #   "nome": 'Reserva Financeira',
-    #   "data_criacao": '25/01/2025',
-    #   "valor_atual": 5434.00,
-    #   "auto_deposito": True,
-    #   "qtd_automatica": 10.00,
-    #   "meta": False
-    # }
-    # {
-    #   "id": 1, 
-    #   "nome": 'Reserva Financeira',
-    #   "data_criacao": '25/01/2025',
-    #   "valor_atual": '5434.00',
-    #   "meta": True,
-    #   "valor_final_desejado": 10.000,00,
-    #   "porcentagem_conclusao": 52
-    # }
+    # id
+    # nome
+    # data_criacao
+    # auto_deposito
+    # qtd_dep_auto
+    # meta
+    #},
 ]
 
-logs_metas = [
+lista_metas = [
     # {
-    #   "id_cofrinho": 2,
-    #   "valor_meta": 10,000.00,
-    #   ""
+    # "id_cofrinho": 2,
+    # "objetivo": "comprar um carro",
+    # "valor_atual": 100,
+    # "valor_meta": 10.000,00
+    # "porcentagem": 1 + "%"
     # }
 ]
 

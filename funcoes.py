@@ -220,7 +220,7 @@ def insere_log(tipo_operacao,ref_id,ref_vl_entr):
     '''
     global saldo_atual
 
-    logs_entr_saida.append({"tipo": tipo_operacao,"valor":ref_vl_entr,"id":ref_id})
+    logs_entr_saida.append({"tipo": tipo_operacao,"valor":ref_vl_entr,"id_lista":ref_id})
 
     if tipo_operacao == 'entrada':
         saldo_atual += ref_vl_entr
@@ -235,7 +235,7 @@ def edita_log(tipo_operacao,ref_id,ref_vl_novo):
     global saldo_atual
 
     for log in logs_entr_saida:
-        if log['tipo'] == tipo_operacao and log['id'] == ref_id:
+        if log['tipo'] == tipo_operacao and log['id_lista'] == ref_id:
             vl_velho = log['valor']
 
             if tipo_operacao == 'entrada':
@@ -265,7 +265,7 @@ def exclui_log(tipo_operacao,ref_id,ref_vl_removido):
 
     for indice,log in enumerate(logs_entr_saida):
 
-        if log['tipo'] == tipo_operacao and log['id'] == ref_id:
+        if log['tipo'] == tipo_operacao and log['id_lista'] == ref_id:
 
             if tipo_operacao == 'entrada':
                 saldo_atual -= ref_vl_removido

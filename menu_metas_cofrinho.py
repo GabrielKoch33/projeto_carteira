@@ -8,13 +8,6 @@ import menu_mov_meta_cofr as mMov
 #print("[bold blue]Texto azul em negrito usando Rich[/bold blue]")
 
 '''
-COFRINHO (SEM META)
-->ID, NOME, DATA CRIACAO, VALOR ATUAL, META
-
-COFRINHO (COM META)
-->ID, NOME, DATA CRIACAO, VALOR ATUAL, VALOR FINAL DESEJADO,...
-...PORCENTAGEM PARA COMPLETAR.
-
 Relação com saldo:
     -> adicionar um valor ao cofrinho implica em descontar do saldo.
     -> deverá ser registrado um log.
@@ -34,23 +27,15 @@ depositado no saldo.
 logo poderá ser feito livremente
 
 METAS
--> metas adicionarão atributos como VALOR FINAL DESEJADO e...
-PORCENTAGEM PARA COMPLETAR ao cofrinho.
 -> para uma meta existir é necessário que existam cofrinhos criados e...
 sem metas à eles atribuídos.
--> 
+
+
+Metas e Depósitos Automaticos podem ser criadas durante a criação de cofrinhos
+assim como podem ser inseridos posteriormentes de forma separada
+
+
 '''
-    # {
-    #   "id": 1, 
-    #   "nome": 'Reserva Financeira', ok
-    #   "data_criacao": '25/01/2025', ok
-    #   "valor_atual": 5434.00, ok
-    #   "auto_deposito": True, 
-    #   "qtd_automatica": 10.00,
-    #   "meta": False
-    # }
-
-
 
 def listar_cofrinhos():
     if not est.lista_cofrinhos:
@@ -78,13 +63,9 @@ def listar_cofrinhos():
         f.read_key()
         pass
 
-
 def listar_metas():
     f.read_key()
     pass
-
-
-
 
 def menu_cofrinhos_e_metas():
     f.line()
@@ -108,15 +89,15 @@ def menu_cofrinhos_e_metas():
             # editar meta existente, atribuir meta, remover meta
             f' 3 - GERENCIAR MOVIMENTAÇÃO\n'
             # retirar, depositar, editar mov, 
-            f' 4 - LISTAR COFRINHOS\n'
+            f' 4 - RELATÓRIO\n'
+            # Lista todos os cofres, com ou sem meta
             # Id, nome, dtcriacao, val atual, auto dep(float/false), meta(float/false) 
-            f' 5 - LISTAR METAS\n'
-            # Id cofrinho, objetivo, valor atual, valor desejado, % 
+            # objetivo, valor desejado, %
             f' 0 - VOLTAR'
         )
         
         f.double_line()
-        opcao = f.ler_opcao_menu(5)
+        opcao = f.ler_opcao_menu(4)
         f.double_line()
         
         if opcao == 1:
@@ -153,6 +134,10 @@ def menu_cofrinhos_e_metas():
             print(msg)
             f.double_line()
             f.read_key()
+
+        elif opcao == 0:
+            f.limpar_tela()
+            break
 
 
 if __name__ == '__main__':
