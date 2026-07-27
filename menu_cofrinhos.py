@@ -2,7 +2,17 @@ import funcoes as f
 import estruturas_dados as est
 
 def criar_cofrinho():
-
+    '''
+    INT id,
+    STR NOME,
+    DATE data criacao,
+    FLOAT valor inicial
+    (definir/redefinir o valor inicial n afeta o saldo),
+    BOOL auto deposito,
+    FLOAT valor auto deposito
+    FLOAT id meta 
+    (acessar campo: ['valor meta'] para buscar o valor desejado)
+    '''
     pass
 
 def editar_cofrinho():

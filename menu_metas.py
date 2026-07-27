@@ -1,6 +1,13 @@
 import funcoes as f
 
 def criar_meta():
+    '''
+    INT ID
+    INT ID COFRINHO
+    STR OBJETIVO
+    FLOAT VALOR DESEJADO
+    (% será calculada no momento exibição)
+    '''
     pass
 
 def editar_meta():

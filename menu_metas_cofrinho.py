@@ -84,11 +84,8 @@ def menu_cofrinhos_e_metas():
         f.double_line()
         print(
             f' 1 - GERENCIAR COFRINHOS\n'
-            # Criar, editar, excluir
             f' 2 - GERENCIAR METAS\n'
-            # editar meta existente, atribuir meta, remover meta
-            f' 3 - GERENCIAR MOVIMENTAÇÃO\n'
-            # retirar, depositar, editar mov, 
+            f' 3 - GERENCIAR MOVIMENTAÇÃO\n' 
             f' 4 - RELATÓRIO\n'
             # Lista todos os cofres, com ou sem meta
             # Id, nome, dtcriacao, val atual, auto dep(float/false), meta(float/false) 
@@ -142,4 +139,3 @@ def menu_cofrinhos_e_metas():
 
 if __name__ == '__main__':
     menu_cofrinhos_e_metas()
-

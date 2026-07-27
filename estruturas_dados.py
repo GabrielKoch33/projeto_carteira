@@ -1,14 +1,14 @@
 lista_categorias = [ 
-  {"id":1,"nome":"alimentação","default":True},
-  {"id":2,"nome":"transporte","default":True},
-  {"id":3,"nome":"moradia","default":True},
-  {"id":4,"nome":"saúde","default":True},
-  {"id":5,"nome":"educação","default":True},
-  {"id":6,"nome":"lazer","default":True},
-  {"id":7,"nome":"parcelas","default":True},
-  {"id":8,"nome":"salário","default":True},
-  {"id":9,"nome":"investimentos","default":True},
-  {"id":10,"nome":"outros","default":True}
+    {"id":1,"nome":"alimentação","default":True},
+    {"id":2,"nome":"transporte","default":True},
+    {"id":3,"nome":"moradia","default":True},
+    {"id":4,"nome":"saúde","default":True},
+    {"id":5,"nome":"educação","default":True},
+    {"id":6,"nome":"lazer","default":True},
+    {"id":7,"nome":"parcelas","default":True},
+    {"id":8,"nome":"salário","default":True},
+    {"id":9,"nome":"investimentos","default":True},
+    {"id":10,"nome":"outros","default":True}
 ]
 
 lista_entradas = [
@@ -47,10 +47,11 @@ lista_cofrinhos = [
     # id
     # nome
     # data_criacao
-    # auto_deposito
-    # qtd_dep_auto
-    # meta
-    #},
+    # valor atual
+    # auto_deposito (perguntar ao final do cadastro de um cofrinho)
+    # valor_dep_auto
+    # id meta ()
+    # },
 ]
 
 lista_metas = [
@@ -59,7 +60,6 @@ lista_metas = [
     # "objetivo": "comprar um carro",
     # "valor_atual": 100,
     # "valor_meta": 10.000,00
-    # "porcentagem": 1 + "%"
     # }
 ]
 
@@ -78,4 +78,3 @@ palavras_desc_despesas = {
     # "namorada": {3},
     # "amigo":{2},...
 }
-
