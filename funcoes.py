@@ -150,12 +150,13 @@ def gera_id(lista):
 
 
 '''FUNÇÕES DE MANIPULAÇÃO DE ESTRUTURAS E SALDO'''
-def hash_palavra_desc(ref_id,
-                      lista_hash,
-                      caso, # Criar/Excluir/Editar
-                      ref_desc=[], # nova descricao
-                      tipo_lista=[], # estamos percorrendo uma descricao de uma lista de entradas ou saída?
-                      ref_indice=0): # indice não é usado na entrada
+def hash_palavra_desc(
+                ref_id,
+                lista_hash,
+                caso, # Criar/Excluir/Editar
+                ref_desc=[], # nova descricao
+                tipo_lista=[], # estamos percorrendo uma descricao de uma lista de entradas ou saída?
+                ref_indice=0): # indice não é usado na entrada
 
     match caso:
         case 'adicionar':
@@ -220,7 +221,11 @@ def insere_log(tipo_operacao,ref_id,ref_vl_entr):
     '''
     global saldo_atual
 
-    logs_entr_saida.append({"tipo": tipo_operacao,"valor":ref_vl_entr,"id_lista":ref_id})
+    logs_entr_saida.append({
+                        "tipo": tipo_operacao,
+                        "valor":ref_vl_entr,
+                        "id_lista":ref_id
+                        })
 
     if tipo_operacao == 'entrada':
         saldo_atual += ref_vl_entr

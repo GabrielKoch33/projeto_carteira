@@ -26,7 +26,7 @@ def adicionar_entradas():
 
             if not data:
                 f.double_line()
-                print("Erro: Digite exatamente 8 números.")
+                print('ERRO: Digite exatamente 8 números.')
                 f.double_line()
                 continue # se voltar erro, pede data novamente
             else:
@@ -68,7 +68,6 @@ def adicionar_entradas():
 def listar_entradas():
     if not est.lista_entradas:
         return 'Registro de entradas vazio. Nenhuma entrada para listar!'
-    
     else:
         f.imprime_colunas('ENTRADAS')
         print(

@@ -23,7 +23,7 @@ def adicionar_despesa():
             data = f.converte_data()
             if not data:
                 f.double_line()
-                print("Erro: Digite exatamente 8 números.")
+                print("ERRO: Digite exatamente 8 números.")
                 f.double_line()
                 continue # se voltar erro, pede data novamente
             else:

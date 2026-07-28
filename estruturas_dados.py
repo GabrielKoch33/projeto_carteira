@@ -43,6 +43,8 @@ logs_entr_saida = [
 ]
 
 lista_cofrinhos = [
+    # ID meta estará None/0 e só será alterado quando 
+    # uma meta for criada
     # {
     # id
     # nome
@@ -56,7 +58,8 @@ lista_cofrinhos = [
 
 lista_metas = [
     # {
-    # "id_cofrinho": 2,
+    # "id_meta": 1,
+    # "id_cofr": 2,
     # "objetivo": "comprar um carro",
     # "valor_atual": 100,
     # "valor_meta": 10.000,00
