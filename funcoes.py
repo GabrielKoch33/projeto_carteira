@@ -6,7 +6,7 @@ from categorias import listar_categorias
 from estruturas_dados import logs_entr_saida
 
 # variaveis importantes
-size = 82
+size = 106
 
 '''FUNÇÕES DE INTERFACE'''
 def limpar_tela():
@@ -105,7 +105,7 @@ def converte_moeda(valor):
         valor = float(valor)
 
     except (ValueError,AttributeError):
-        return 'Formato inválido'
+        return 'Formato inválido.'
 
     if valor <= 0:
         return 'Valores negativos ou nulos não são permitidos!'
@@ -113,8 +113,10 @@ def converte_moeda(valor):
     return valor
 
 
-def formata_valor(valor):
-    return f"{valor:.2f}" if isinstance(valor, (int, float)) else valor
+def formata_moeda(valor):
+    if isinstance(valor, (int, float)):
+        return f"R${valor:.2f}"
+    return valor  # ex: "Nenhuma" passa direto, sem prefixo
 
 
 def calcula_dias_totais(ref_inicio,ref_fim):

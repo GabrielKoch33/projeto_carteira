@@ -105,9 +105,9 @@ def editar_despesa():
             f.double_line()
 
             while True:
-                campo = int(input(f'[1] - VALOR\n[2] - DESCRIÇÃO\n[3] - CATEGORIA\n[4] - DATA\nR: '))
+                campo = input(f'[1] - VALOR\n[2] - DESCRIÇÃO\n[3] - CATEGORIA\n[4] - DATA\nR: ').strip()
 
-                if campo not in {1,2,3,4}:
+                if campo not in {'1','2','3','4'}:
                     continue
                 else:
                     break
