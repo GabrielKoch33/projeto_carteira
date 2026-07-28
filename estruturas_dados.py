@@ -36,32 +36,34 @@ lista_despesas = [
 logs_entr_saida = [
     # Registra Entradas + Despesas com objetivo de controlar o saldo
     # {
-    #   "tipo": 'saida', 
-    #   "valor": 212.00,    
-    #   "id_lista": 4,
+    #   "tipo": 'saida', STR
+    #   "valor": 212.00, FLOAT   
+    #   "id_lista": 4,   INT
     # },
 ]
 
 lista_cofrinhos = [
-    # ID meta estará None/0 e só será alterado quando 
-    # uma meta for criada
     # {
-    # id
-    # nome
-    # data_criacao
-    # valor atual
-    # auto_deposito (perguntar ao final do cadastro de um cofrinho)
-    # valor_dep_auto
-    # id meta ()
+        # "id_cofr":        INT,
+        # "nome_cofr":      STR,
+        # "dt_cofr":        STR,
+        # "val_atual_cofr": FLOAT,
+        # "auto_depo":      BOOL
+        # "val_auto_depo":  FLOAT,
+        # "id_meta":        BOLL/INT,
     # },
 ]
 
+tabela_assoc_metas = {
+    # id_cofr id_meta->
+    # 1 : 2     INT
+    # 2 : 4     INT
+}
+  
 lista_metas = [
     # {
     # "id_meta": 1,
-    # "id_cofr": 2,
     # "objetivo": "comprar um carro",
-    # "valor_atual": 100,
     # "valor_meta": 10.000,00
     # }
 ]

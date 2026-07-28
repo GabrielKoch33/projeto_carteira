@@ -75,6 +75,11 @@ def criar_cofrinho():
         "id_meta":None,
         })
 
+    est.tabela_assoc_metas[id_cofr] = None
+    # Usamos id_cofr para que todo cofrinho criado esteja mapeado
+    # Iremos inicialmente assumir None, posteriormente acessamos
+    # a chave e inserimos a meta. 
+    
 
 def editar_cofrinho():
 
@@ -107,8 +112,15 @@ def listar_cofrinhos():
         for item in est.lista_cofrinhos:
             data_ = item['dt_cofr'].strftime("%d/%m/%Y")
             num_registros += 1
+
             campo_autodep_str = "Ativado" if item['auto_depo'] == True else "Desativado"
-            campo_meta_str = 'finalizar, precisa procurar nos logs de meta onde o cofrinho atual esteja e retornar o valor de meta'
+            achou_meta, indice = f.encontra_campo_e_indice(est.tabela_assoc_metas[item["id_cofr"]],est.lista_metas,'id_meta')
+            campo_valor_meta = (
+                "Nenhuma" # <-- Atribui 'nenhuma' caso não exista Meta associada ao Cofrinho
+                if not achou_meta
+                else est.lista_metas[indice]['val_meta'] # <-- Atribui o valor da meta
+            )
+            campo_valor_meta = f.formata_valor(campo_valor_meta)
             print(
                 f'{item["id_cofr"]:<5}'
                 f'{item["nome_cofr"]:<30}'
@@ -116,12 +128,12 @@ def listar_cofrinhos():
                 f'{item["val_atual_cofr"]:<15}'
                 f'{campo_autodep_str:<5}'
                 f'{item["val_auto_depo"]:<15}'
-                f'{item["id_meta"]:<15}'
+                f'{campo_valor_meta}'
                 )
         f.double_line()
         print(f'Total de registros: {num_registros}') 
         return 'Lista retornada com sucesso!'
-    
+
 
 def menu_cofrinhos():
     while True:

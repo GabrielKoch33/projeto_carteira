@@ -18,14 +18,14 @@ def limpar_tela():
 
 def pause():
     time.sleep(1.5)
-        
+
 def read_key():
     input("Pressione ENTER para voltar ao menu...")
 
 
 def double_line():
     print('='*size) 
-    
+
 def line():
     print('-'*size)
 
@@ -57,7 +57,7 @@ def ler_opcao_menu(num_max_opcao):
 
             else:
                 return op
-        
+
 def valida_editar_ou_excluir_categoria(lista):
     '''
     requer ser chamada para validar o ID que da entrada que o user informar
@@ -92,13 +92,13 @@ def ler_valida_id ():
 
         else:
             return id_entrada
-        
+
 '''FUNÇÕES DE CONVERSÃO'''
 def converte_moeda(valor):
 
     if valor == '':
         return 'Valores vazios não são permitidos!'
-    
+
     try:
         valor = valor.replace('.', '')
         valor = valor.replace(',', '.')
@@ -106,17 +106,22 @@ def converte_moeda(valor):
 
     except (ValueError,AttributeError):
         return 'Formato inválido'
-    
+
     if valor <= 0:
         return 'Valores negativos ou nulos não são permitidos!'
-    
+
     return valor
+
+
+def formata_valor(valor):
+    return f"{valor:.2f}" if isinstance(valor, (int, float)) else valor
+
 
 def calcula_dias_totais(ref_inicio,ref_fim):
     periodo = ref_fim - ref_inicio
     dias = periodo.days
     return dias
-              
+
 def converte_data():
     entrada = input("Digite a data (apenas números, ex: 25122026): ").strip()
 
@@ -138,7 +143,7 @@ def encontra_campo_e_indice(ref_valor, ref_lista,campo_alvo):
             return True, index
     else:  
         return False, -1
-    
+
 def gera_id(lista):
     '''
     acessa uma lista, se for vazia retorna id 1 para o 1º elemento, senão encontra o maior nº id e + 1
@@ -147,7 +152,6 @@ def gera_id(lista):
         return 1
     else:
         return max(item["id"] for item in lista) + 1
-
 
 '''FUNÇÕES DE MANIPULAÇÃO DE ESTRUTURAS E SALDO'''
 def hash_palavra_desc(
@@ -212,7 +216,7 @@ common cases:
 
 saldo_atual = 0 # valor que será alterado sempre que alguma movimentação for feita
 saldo_inicial = 0 # valor que é alterado quando: usuário loga pela primeira vez E quando solicita
-#corrigir/alterar o saldo informado no primeiro login
+# corrigir/alterar o saldo informado no primeiro login
 
 def insere_log(tipo_operacao,ref_id,ref_vl_entr):
     '''
@@ -262,7 +266,7 @@ def edita_log(tipo_operacao,ref_id,ref_vl_novo):
                     saldo_atual -= 0
                 log['valor'] = ref_vl_novo
                 break
-            
+
 
 def exclui_log(tipo_operacao,ref_id,ref_vl_removido):
 
@@ -279,7 +283,7 @@ def exclui_log(tipo_operacao,ref_id,ref_vl_removido):
 
             _ = log.pop(indice)
             break
-                
+
 
 def redefine_saldo():
     global saldo_atual
