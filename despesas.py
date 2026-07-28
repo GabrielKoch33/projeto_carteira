@@ -39,7 +39,7 @@ def adicionar_despesa():
             achou, indice = f.encontra_campo_e_indice(id_despesa, est.lista_categorias, 'id')
 
             if achou:
-                id = f.gera_id(est.lista_despesas)# depois que tudo dá certo é gerado um ID
+                id = f.gera_id(est.lista_despesas,'id')# depois que tudo dá certo é gerado um ID
 
                 f.hash_palavra_desc(id,est.palavras_desc_despesas,'adicionar',descricao_despesa)
 
@@ -105,9 +105,9 @@ def editar_despesa():
             f.double_line()
 
             while True:
-                campo = input(f'[1] - VALOR\n[2] - DESCRIÇÃO\n[3] - CATEGORIA\n[4] - DATA\nR: ').strip()
+                campo = int(input(f'[1] - VALOR\n[2] - DESCRIÇÃO\n[3] - CATEGORIA\n[4] - DATA\nR: '))
 
-                if campo not in {'1','2','3','4'}:
+                if campo not in {1,2,3,4}:
                     continue
                 else:
                     break

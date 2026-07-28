@@ -144,14 +144,14 @@ def encontra_campo_e_indice(ref_valor, ref_lista,campo_alvo):
     else:  
         return False, -1
 
-def gera_id(lista):
+def gera_id(lista,id):
     '''
     acessa uma lista, se for vazia retorna id 1 para o 1º elemento, senão encontra o maior nº id e + 1
     '''
     if not lista:
         return 1
     else:
-        return max(item["id"] for item in lista) + 1
+        return max(item[id] for item in lista) + 1
 
 '''FUNÇÕES DE MANIPULAÇÃO DE ESTRUTURAS E SALDO'''
 def hash_palavra_desc(

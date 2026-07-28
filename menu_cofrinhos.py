@@ -2,17 +2,6 @@ import funcoes as f
 import estruturas_dados as est
 
 def criar_cofrinho():
-    '''
-    INT id,
-    STR NOME,
-    DATETIME data criacao,
-    FLOAT valor inicial
-    (definir/redefinir o valor inicial n afeta o saldo),
-    BOOL auto deposito,
-    FLOAT valor auto deposito
-    FLOAT id meta 
-    (acessar campo: ['valor meta'] para buscar o valor desejado)
-    '''
     while True:
         nome_cofr = input('Digite um nome para o cofrinho: ').strip().lower()
         if not nome_cofr:
@@ -50,7 +39,7 @@ def criar_cofrinho():
 
         while True:
             valor_auto_depo = input('Digite o valor (em R$) para ser depositado automaticamente: ').strip()
-            valor_cofr = f.converte_moeda(valor_auto_depo)
+            valor_auto_depo = f.converte_moeda(valor_auto_depo)
             if isinstance(valor_auto_depo,str):
                 f.double_line()
                 print(f'{valor_auto_depo}\nTente novamente!')
@@ -64,7 +53,7 @@ def criar_cofrinho():
         print('Caso deseje ativar o Auto-Depósito posteriormente, vá para a opção de "Editar Cofrinho"')
         f.pause()
 
-    id_cofr = f.gera_id(est.lista_cofrinhos)
+    id_cofr = f.gera_id(est.lista_cofrinhos,'id_cofr')
     est.lista_cofrinhos.append({
         "id_cofr":id_cofr,
         "nome_cofr":nome_cofr,
@@ -79,7 +68,7 @@ def criar_cofrinho():
     # Usamos id_cofr para que todo cofrinho criado esteja mapeado
     # Iremos inicialmente assumir None, posteriormente acessamos
     # a chave e inserimos a meta. 
-    
+    return 'Cofrinho cadastrado!'
 
 def editar_cofrinho():
 
@@ -98,12 +87,12 @@ def listar_cofrinhos():
     else:
         f.imprime_colunas('COFRINHOS')
         print(
-            f'{"ID":<5}',
-            f'{"NOME":<30}',
-            f'{"DATA":<12}',
-            f'{"VALOR":<15}',
-            f'{"AUTO DEPOSITO":<5}',
-            f'{"VALOR AUTO DEPOSITO":<15}',
+            f'{"ID":<5}'
+            f'{"NOME":<22}'
+            f'{"DATA":<12}'
+            f'{"VALOR":<15}'
+            f'{"AUTO DEPOSITO":<15}'
+            f'{"VALOR AUTO DEPOSITO":<22}'
             f'{"META":<15}'
             )
         f.line()
@@ -123,12 +112,12 @@ def listar_cofrinhos():
             campo_valor_meta = f.formata_valor(campo_valor_meta)
             print(
                 f'{item["id_cofr"]:<5}'
-                f'{item["nome_cofr"]:<30}'
+                f'{item["nome_cofr"]:<22}'
                 f'{data_:<12}'
                 f'{item["val_atual_cofr"]:<15}'
-                f'{campo_autodep_str:<5}'
-                f'{item["val_auto_depo"]:<15}'
-                f'{campo_valor_meta}'
+                f'{campo_autodep_str:<15}'
+                f'{item["val_auto_depo"]:<22}'
+                f'{campo_valor_meta:<15}'
                 )
         f.double_line()
         print(f'Total de registros: {num_registros}') 
@@ -156,7 +145,8 @@ def menu_cofrinhos():
         
         if opcao == 1:
             f.limpar_tela()
-            criar_cofrinho()
+            msg = criar_cofrinho()
+            print(msg)
             f.double_line()
             f.read_key()            
 
