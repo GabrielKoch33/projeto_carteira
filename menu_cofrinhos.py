@@ -88,9 +88,15 @@ def editar_cofrinho():
             f.double_line()
 
             while True:
-                campo = input(f'[1] - NOME\n[2] - DATA\n[3] - AUTO DEPO.\n[4] - VALOR AUTO DEPO.\nR: ').strip()
+                campo = input(f'[1] - NOME\n'
+                              f'[2] - DATA\n'
+                              f'[3] - AUTO DEPO.\n'
+                              f'[4] - VALOR AUTO DEPO.\n'
+                              f'[5] - QUANTIA COFRINHO\n'
+                              f'R: '
+                            ).strip()
 
-                if campo not in {'1','2','3','4'}:
+                if campo not in {'1','2','3','4','5'}:
                     continue
                 else:
                     break
@@ -165,7 +171,22 @@ def editar_cofrinho():
                             break
                     lista_cofrinhos[indice] = novo_val_auto_depo
                     return "Campo VALOR AUTO DEPÓSITO alterado com sucesso!"
-                
+
+                case '5':
+                    f.double_line()
+                    while True:
+                        novo_valor = input("Qual será o novo valor (REDEFINIDO) desse cofrinho?: ")
+                        novo_valor = f.converte_moeda(novo_valor)
+
+                        if isinstance(novo_valor,str):
+                            print(f"{novo_valor} Tente novamente.")
+                            continue
+                        else:
+                            break
+                    lista_cofrinhos[indice]["val_atual_cofr"] = novo_valor
+                    f.limpar_tela()
+                    return 'Campo QUANTIA alterado com sucesso!'
+
                 case _:
                     return 'Insira uma opção válida!'
 
@@ -173,31 +194,28 @@ def excluir_cofrinho():
     if not lista_cofrinhos:
         return 'Registro de entradas vazio. Nenhum cofrinho para listar!'
     else:
-        pass
-
-def redefinir_val():
-    if not lista_cofrinhos:
-        return 'Registro de entradas vazio. Nenhum cofrinho para listar!'
-    else:
-
         f.double_line()
         listar_cofrinhos()
         f.double_line()
 
         id_cofrinho = f.ler_valida_id()
-        achou, indice = f.encontra_campo_e_indice(id_cofrinho, lista_cofrinhos, "id_cofr")
+        achou, indice = f.encontra_campo_e_indice(id_cofrinho,lista_cofrinhos,'id_cofr')
 
         if not achou:
-            return "Cofrinho não cadastrado!"
+            return 'Cofrinho não cadastrado!'
         else:
-            novo_valor = input("Qual será o novo valor (REDEFINIDO) desse cofrinho?: ")
-            novo_valor = f.converte_moeda(novo_valor)
+            lista_cofrinhos.pop(indice) # <-- remove o item da Lista de Cofrinhos
 
-            if isinstance(novo_valor,str):
-                return novo_valor + ' Tente novamente.'
+            if tabela_assoc_metas[id_cofrinho] == None:
+                del tabela_assoc_metas[id_cofrinho] # <-- remove 'registro' da ligação entre COFR x META
+                return f'O Cofrinho de ID: {id_cofrinho} foi removido!'
             else:
-                lista_cofrinhos[indice]['val_auto_depo'] = novo_valor
-                return 'Valor de Auto Depósito alterado com sucesso!'
+                id_meta_relacionada = tabela_assoc_metas[id_cofrinho]# <- Recebe o ID da Meta associado ao Cofrinho 
+                achou_meta, indice_meta = f.encontra_campo_e_indice(id_meta_relacionada,lista_metas,'id_meta')# <- Retorna o indice na lista dessa meta, para então remove-la
+
+                lista_metas.pop(indice_meta) # <- remove a meta da lista de metas
+                return f'O Cofrinho de ID: {id_cofrinho} foi removido junto com sua respectiva Meta!'
+
 
 def listar_cofrinhos():
     if not lista_cofrinhos:
@@ -256,13 +274,12 @@ def menu_cofrinhos():
             f' 1 - CRIAR COFRINHO\n'
             f' 2 - EDITAR COFRINHO\n'
             f' 3 - EXCLUIR COFRINHO\n'
-            f' 4 - REDEFINIR VALOR TOTAL\n'
-            f' 5 - LISTAR COFRINHOS\n'
+            f' 4 - LISTAR COFRINHOS\n'
             f' 0 - VOLTAR'
         )
 
         f.double_line()
-        opcao = f.ler_opcao_menu(5)
+        opcao = f.ler_opcao_menu(4)
         f.double_line()
         
         if opcao == 1:
@@ -287,13 +304,6 @@ def menu_cofrinhos():
             f.read_key()
 
         elif opcao == 4:
-            f.limpar_tela()
-            msg = redefinir_val()
-            print(msg)
-            f.double_line()
-            f.read_key()
-
-        elif opcao == 5:
             f.limpar_tela()
             msg = listar_cofrinhos()
             print(msg)

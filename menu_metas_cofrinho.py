@@ -20,20 +20,18 @@ Relação com saldo:
                                                              SALDO -= vl_novo - vl_antigo
 
 -> cofrinhos podem ser criados livremente.
+
 -> cofrinhos podem ser criados sem ter nenhuma quantidade dentro deles.
+
 -> excluir um cofrinho faz com que o valor presente nele seja...
 depositado no saldo.
+
 -> deverá ter opção de corrigir o valor, isso não terá efeito no saldo...
 logo poderá ser feito livremente
 
 METAS
 -> para uma meta existir é necessário que existam cofrinhos criados e...
 sem metas à eles atribuídos.
-
-
-Metas e Depósitos Automaticos podem ser criadas durante a criação de cofrinhos
-assim como podem ser inseridos posteriormentes de forma separada
-
 
 '''
 def relatorio_meta_cofrinho():
@@ -50,9 +48,6 @@ def menu_cofrinhos_e_metas():
             f' 2 - GERENCIAR METAS\n'
             f' 3 - GERENCIAR MOVIMENTAÇÃO\n' 
             f' 4 - RELATÓRIO\n'
-            # Lista todos os cofres, com ou sem meta
-            # Id, nome, dtcriacao, val atual, auto dep(float/false), meta(float/false) 
-            # objetivo, valor desejado, %
             f' 0 - VOLTAR'
         )
 

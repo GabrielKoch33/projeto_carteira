@@ -57,7 +57,7 @@ lista_cofrinhos = [
 tabela_assoc_metas = {
     # id_cofr id_meta->
     # 1 : 2     INT
-    # 2 : 4     INT
+    # 2 : None  NONE
 }
   
 lista_metas = [

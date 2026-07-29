@@ -296,7 +296,7 @@ def redefine_saldo():
 
     limpar_tela()
     double_line()
-    print(saldo_atual)
+    print(f'Seu saldo atual: {saldo_atual}')
     double_line()
     
     confirm = input('Você tem certeza que deseja redefinir seu saldo inicial?\nY/any: ')
