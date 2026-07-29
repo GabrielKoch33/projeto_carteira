@@ -97,6 +97,8 @@ def editar_cofrinho():
 
             match campo:
                 case '1':
+                    novo_nome = input('Digite o novo nome para seu cofrinho: ').
+
                     pass
                 case '2':
                     pass
@@ -142,7 +144,7 @@ def listar_cofrinhos():
         f.imprime_colunas('COFRINHOS')
         print(
             f'{"ID":<5}'
-            f'{"NOME":<30}'
+            f'{"NOME":<22}'
             f'{"DATA":<12}'
             f'{"QUANTIA":<15}'
             f'{"AUTO DEPO.":<15}'
@@ -170,7 +172,7 @@ def listar_cofrinhos():
             campo_quantia_cofr = f.formata_moeda(item['val_atual_cofr'])
             print(
                 f'{item["id_cofr"]:<5}'
-                f'{item["nome_cofr"]:<30}'
+                f'{item["nome_cofr"]:<22}'
                 f"{data_:<12}"
                 f'{campo_quantia_cofr:<15}'
                 f"{campo_autodep_str:<15}"

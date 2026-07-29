@@ -129,8 +129,16 @@ def editar_despesa():
                                     
                 case '2':
                     f.double_line()
-                    nova_descricao = input('Digite a nova descrição: ').strip().lower().split()
 
+                    while True:
+                        nova_descricao = input('Digite a nova descrição: ').strip()
+                        if not nova_descricao:
+                            print('Tente novamente!')
+                            continue
+                        else:
+                            break
+                        
+                    nova_descricao = nova_descricao.lower().split()
                     if nova_descricao == est.lista_despesas[indice]['descricao']:
                         return 'Campo "DESCRIÇÃO" alterado com sucesso!'
                     else:

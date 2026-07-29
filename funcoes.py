@@ -95,7 +95,10 @@ def ler_valida_id ():
 
 '''FUNÇÕES DE CONVERSÃO'''
 def converte_moeda(valor):
-
+    '''
+    Valida a entrada de valores
+    Converte modelo brasileiro -> americano
+    '''
     if valor == '':
         return 'Valores vazios não são permitidos!'
 
