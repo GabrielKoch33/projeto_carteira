@@ -164,7 +164,6 @@ def editar_despesa():
                     f.double_line()
                     while True:
                         data = f.converte_data()
-
                         if not data:
                             f.double_line()
                             print("Erro: Digite exatamente 8 números.")

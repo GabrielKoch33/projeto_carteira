@@ -33,7 +33,7 @@ def criar_cofrinho():
                 continue
         break
 
-    opt_auto_depo = input(f'Deseja ativar o Auto-Depósito para esse Cofrinho? [Y/n]\nR: ').strip().upper()
+    opt_auto_depo = input(f'Deseja ativar o Auto-Depósito para esse Cofrinho? [Y/any]\nR: ').strip().upper()
     if opt_auto_depo == 'Y':
         bool_auto_dep = True
 
@@ -96,17 +96,78 @@ def editar_cofrinho():
                     break
 
             match campo:
-                case '1':
-                    novo_nome = input('Digite o novo nome para seu cofrinho: ').
+                case "1":
+                    f.double_line()
 
-                    pass
+                    while True:
+                        novo_nome = input("Digite o novo nome: ").strip()
+                        if not novo_nome:
+                            print("Tente novamente!")
+                            continue
+                        break
+                    lista_cofrinhos[indice]["nome_cofr"] = novo_nome
+                    return "Campo NOME alterado com sucesso!"
+
                 case '2':
-                    pass
+                    f.double_line()
+                    while True:
+                        data = f.converte_data()
+                        if not data:
+                            f.double_line()
+                            print("Erro: Digite exatamente 8 números.")
+                            f.double_line()
+                            continue
+                        else:
+                            break
+                    lista_cofrinhos[indice]['dt_cofr'] = data
+                    return "Campo DATA alterado com sucesso!"
+
                 case '3':
-                    pass
+                    f.double_line()
+                    if lista_cofrinhos[indice]['auto_depo'] == True:
+                        opt_auto_depo = input(f'Deseja desativar o Auto-Depósito para esse Cofrinho? [Y/any]\nR: ').strip().upper()
+                        if opt_auto_depo == 'Y':
+                            bool_auto_dep = False
+                            valor_auto_depo = '--'
+                            lista_cofrinhos[indice]['auto_depo'] = bool_auto_dep
+                            lista_cofrinhos[indice]['val_auto_depo'] = valor_auto_depo 
+                            return "Campo AUTO DEPÓSITO alterado com sucesso!"
+                        else:
+                            return 'Operação cancelada'
+                    else:
+                        opt_auto_depo = input(f'Deseja ativar o Auto-Depósito para esse Cofrinho? [Y/any]\nR: ').strip().upper()
+                        if opt_auto_depo == 'Y':
+                            bool_auto_dep = True
+                            while True:
+                                valor_auto_depo = input('Digite o valor (em R$) para ser depositado automaticamente: ').strip()
+                                valor_auto_depo = f.converte_moeda(valor_auto_depo)
+                                if isinstance(valor_auto_depo,str):
+                                    f.double_line()
+                                    print(f'{valor_auto_depo}\nTente novamente!')
+                                    f.double_line()
+                                    continue
+                                break
+                            lista_cofrinhos[indice]['auto_depo'] = bool_auto_dep
+                            lista_cofrinhos[indice]['val_auto_depo'] = valor_auto_depo
+                            return "Campo AUTO DEPÓSITO alterado com sucesso!"
+                        else:
+                            return 'Operação cancelada'
+
                 case '4':
-                    pass
-        pass
+                    f.double_line()
+                    while True:
+                        novo_val_auto_depo = input("Digite o valor (em R$) para ser depositado automaticamente: ").strip()
+                        novo_val_auto_depo = f.converte_moeda(novo_val_auto_depo)
+                        if isinstance(novo_val_auto_depo,str):
+                            print('Tente novamente!')
+                            continue
+                        else:
+                            break
+                    lista_cofrinhos[indice] = novo_val_auto_depo
+                    return "Campo VALOR AUTO DEPÓSITO alterado com sucesso!"
+                case _:
+                    return 'Insira uma opção válida!'
+            pass
 
 def excluir_cofrinho():
     if not lista_cofrinhos:
