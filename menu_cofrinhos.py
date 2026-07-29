@@ -88,13 +88,13 @@ def editar_cofrinho():
             f.double_line()
 
             while True:
-                campo = input(f'[1] - NOME\n'
-                              f'[2] - DATA\n'
-                              f'[3] - AUTO DEPO.\n'
-                              f'[4] - VALOR AUTO DEPO.\n'
-                              f'[5] - QUANTIA COFRINHO\n'
-                              f'R: '
-                            ).strip()
+                campo = input(
+                            f'[1] - NOME\n'
+                            f'[2] - DATA\n'
+                            f'[3] - AUTO DEPO.\n'
+                            f'[4] - VALOR AUTO DEPO.\n'
+                            f'[5] - QUANTIA COFRINHO\n'
+                            f'R: ').strip()
 
                 if campo not in {'1','2','3','4','5'}:
                     continue
