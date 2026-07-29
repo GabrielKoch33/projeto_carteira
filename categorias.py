@@ -53,7 +53,7 @@ def editar_cat_personalizada():
             return 'Campo alterado com sucesso!'
 
         else:
-           return 'Não foi possível encontrar esse item!'
+            return 'Não foi possível encontrar esse item!'
         
     else:
         return id_categoria

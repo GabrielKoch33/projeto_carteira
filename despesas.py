@@ -73,10 +73,10 @@ def listar_despesas():
 
         num_registros = 0
         for item in est.lista_despesas:
-           descricao = ' '.join(item['descricao'])
-           data_ = item['data'].strftime("%d/%m/%Y")
-           num_registros += 1
-           print(
+            descricao = ' '.join(item['descricao'])
+            data_ = item['data'].strftime("%d/%m/%Y")
+            num_registros += 1
+            print(
                 f'{item["id"]:<5}'
                 f'R${item["valor"]:<13.2f}'#.2f = duas casas decimais
                 f"{descricao:<30}"
@@ -126,10 +126,9 @@ def editar_despesa():
 
                         est.lista_despesas[indice]["valor"] = novo_valor
                         return 'Campo "VALOR" alterado com sucesso!'
-                                    
+
                 case '2':
                     f.double_line()
-
                     while True:
                         nova_descricao = input('Digite a nova descrição: ').strip()
                         if not nova_descricao:
@@ -137,12 +136,10 @@ def editar_despesa():
                             continue
                         else:
                             break
-                        
                     nova_descricao = nova_descricao.lower().split()
                     if nova_descricao == est.lista_despesas[indice]['descricao']:
                         return 'Campo "DESCRIÇÃO" alterado com sucesso!'
                     else:
-                        
                         f.hash_palavra_desc(id_despesa,est.palavras_desc_despesas,'editar',nova_descricao,est.lista_despesas,indice)
                         return 'Campo "DESCRIÇÃO" alterado com sucesso!'
 
@@ -185,14 +182,12 @@ def remover_despesa():
     if est.lista_despesas: #se conter logs de entrada, da inicio ao processo
         listar_despesas()
         f.double_line()
-
         id_despesa = f.ler_valida_id()
         achou, indice = f.encontra_campo_e_indice(id_despesa, est.lista_despesas,'id')
-                        # verifica se o id informado pelo user existe e se existir retorna sua posição
-                        # indice será usado para sabermos onde o id informado está 
+            # verifica se o id informado pelo user existe e se existir retorna sua posição
+            # indice será usado para sabermos onde o id informado está 
         if not achou:
             return 'Despesa não cadastrada!'
-                
         else:
             id_removido = est.lista_despesas[indice]['id']
 
@@ -203,30 +198,24 @@ def remover_despesa():
 
             est.lista_despesas.pop(indice)
             return f'Despesa de ID: {id_removido} foi removida!'
-            
     else:
         return 'Nenhuma despesa foi registrada ainda! Nada para remover!'
-    
 
 def buscar_por_descricao():
     if est.lista_despesas:
-
         while True:
             palavra_chave_busca = input('Insira uma palavra-chave para a busca: ').strip().lower()
             if not palavra_chave_busca:
                 print('Tente novamente!')
             else:
                 break
-
         if palavra_chave_busca not in est.palavras_desc_despesas:
             return 'Nenhuma descrição com essa palavra-chave foi encontrada!'
         else:
             ids_encontrados = est.palavras_desc_despesas[palavra_chave_busca] #recebe os id das entradas da respectiva palavra chave
-
             f.imprime_colunas('DESPESAS')
             print(f'{"ID":<5}{"VALOR":<15}{"DESCRIÇÃO":<30}{"CATEGORIA":<20}{"DATA":<12}')
             f.line()
-            
             num_registros = 0
             for item in est.lista_despesas: #percorre a lista de entradas comparando [id] com os id relacionados a palavra-chave
                 if item['id'] in ids_encontrados:
@@ -249,27 +238,22 @@ def buscar_por_descricao():
 
 def buscar_por_categoria():
     if est.lista_despesas: #verifica se a lista de entrada possui elementos
-
         listar_categorias()
         f.double_line()
-
         id_despesa = f.ler_valida_id()
         achou, indice = f.encontra_campo_e_indice(id_despesa, est.lista_categorias,'id')
-                        # verifica se o id informado pelo user existe e se existir retorna sua posição
-                        # indice será usado para sabermos onde o id informado está 
+            # verifica se o id informado pelo user existe e se existir retorna sua posição
+            # indice será usado para sabermos onde o id informado está 
         if not achou: 
             return 'Não existe categoria com o ID informado!'
             #verifica se existem categoria com o ID informado
         else:
             f.limpar_tela()
             nome_categoria = est.lista_categorias[indice]['nome']
-
             if f.encontra_campo_e_indice(nome_categoria, est.lista_despesas,'categoria')[0]:
-                
                 f.imprime_colunas('DESPESAS')
                 print(f'{"ID":<5}{"VALOR":<15}{"DESCRIÇÃO":<30}{"CATEGORIA":<20}{"DATA":<12}')
                 f.line()
-
                 num_registros = 0
                 for item in est.lista_despesas:
                     if item['categoria'] == nome_categoria:
@@ -288,7 +272,6 @@ def buscar_por_categoria():
                 return 'Lista retornada com sucesso!'
             else:
                 return 'Não existem despesas com a categoria indicada!'
-
     else:
         return('Nenhuma despesa foi registrada ainda! Nada para consultar!')
 
@@ -296,57 +279,45 @@ def buscar_por_categoria():
 def buscar_por_periodo():
     if est.lista_despesas:
         while True:
-
             while True:
                 f.double_line()
                 print('Data inicial: ')
                 data_inicio = f.converte_data()
-
                 if not data_inicio:
                     f.double_line()
                     print("Erro: Digite exatamente 8 números.")
                     f.double_line()
                     continue # se voltar erro, pede data novamente
                 break
-
             while True:
                 f.double_line()
                 print('Data final: ')
                 data_fim = f.converte_data()
-
                 if not data_fim:
                     print("Erro: Digite exatamente 8 números.")
                     f.double_line()
                     continue # se voltar erro, pede data novamente
                 break
-
             if data_inicio > data_fim:
                 f.double_line()
                 print('A data de inicial não pode ser mais que a data final! Tente novamente.')
                 continue
             else:
                 break    
-        
         indice_inicio = 0
         while indice_inicio < len(est.lista_despesas) and est.lista_despesas[indice_inicio]['data'] < data_inicio:
             indice_inicio += 1
-        
         if indice_inicio == len(est.lista_despesas):
             return 'Não existem despesas dentro do período fornecido, considere buscar uma data de início mais antiga!'
-
         primeiro_reg = est.lista_despesas[indice_inicio]['data']
-
         f.imprime_colunas('DESPESAS')
         print(f'{"ID":<5}{"VALOR":<15}{"DESCRIÇÃO":<30}{"CATEGORIA":<20}{"DATA":<12}')
         f.line()
         
         num_registros = 0
-
         while indice_inicio <= len(est.lista_despesas)-1 and est.lista_despesas[indice_inicio]['data'] <= data_fim:
-
             descricao = ' '.join(est.lista_despesas[indice_inicio]['descricao'])
             data_ = est.lista_despesas[indice_inicio]['data'].strftime("%d/%m/%Y")
-
             print(
                 f'{est.lista_despesas[indice_inicio]["id"]:<5}'
                 f'R${est.lista_despesas[indice_inicio]["valor"]:<13.2f}'
@@ -356,19 +327,15 @@ def buscar_por_periodo():
                 )
             indice_inicio += 1
             num_registros += 1
-
         f.double_line()
-
         if num_registros == 0:
             print('Nenhum registro encontrado dentro do período informado.')
         else:
             ultimo_reg = est.lista_despesas[indice_inicio-1]['data']
             dias = f.calcula_dias_totais(primeiro_reg, ultimo_reg)
             print(f'Foram registrados um total de registros: {num_registros}\nEm um período de {dias} dias!')
-
         f.double_line()
         return 'Lista retornada com sucesso!'
-
     else:
         return 'Nenhuma despesa foi registrada ainda! Nada para consultar!'
 
@@ -392,7 +359,7 @@ def menu_despesa():
         f.double_line()
         opcao = f.ler_opcao_menu(7)
         f.double_line()
-        
+
         if opcao == 1:
             f.limpar_tela()
             msg = adicionar_despesa()

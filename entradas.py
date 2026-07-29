@@ -10,7 +10,6 @@ def adicionar_entradas():
 
     if isinstance(valor_entrada,str):
         return valor_entrada
-    
     else: 
         # descrição será uma lista, assim podemos procurar por plavras chaves
         while True:
@@ -20,10 +19,8 @@ def adicionar_entradas():
             else:
                 descricao_entrada = descricao_entrada.split()
                 break
-
         while True:
             data = f.converte_data()
-
             if not data:
                 f.double_line()
                 print('ERRO: Digite exatamente 8 números.')
@@ -31,7 +28,6 @@ def adicionar_entradas():
                 continue # se voltar erro, pede data novamente
             else:
                 break # senão, valor válido e insere data
-        
         f.limpar_tela()
         listar_categorias()
         f.double_line()
@@ -45,7 +41,7 @@ def adicionar_entradas():
                 id = f.gera_id(est.lista_entradas,'id')# depois que tudo dá certo é gerado um ID
 
                 f.hash_palavra_desc(id,est.palavras_desc_entradas,'adicionar',descricao_entrada)
-  
+
                 est.lista_entradas.append({
                                         "id": id,
                                         "valor": valor_entrada,

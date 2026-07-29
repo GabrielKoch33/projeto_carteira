@@ -165,9 +165,9 @@ def editar_cofrinho():
                             break
                     lista_cofrinhos[indice] = novo_val_auto_depo
                     return "Campo VALOR AUTO DEPÓSITO alterado com sucesso!"
+                
                 case _:
                     return 'Insira uma opção válida!'
-            pass
 
 def excluir_cofrinho():
     if not lista_cofrinhos:
@@ -196,7 +196,8 @@ def redefinir_val():
             if isinstance(novo_valor,str):
                 return novo_valor + ' Tente novamente.'
             else:
-                pass
+                lista_cofrinhos[indice]['val_auto_depo'] = novo_valor
+                return 'Valor de Auto Depósito alterado com sucesso!'
 
 def listar_cofrinhos():
     if not lista_cofrinhos:
@@ -273,19 +274,22 @@ def menu_cofrinhos():
 
         elif opcao == 2:
             f.limpar_tela()
-            editar_cofrinho()
+            msg = editar_cofrinho()
+            print(msg)
             f.double_line()
             f.read_key()
 
         elif opcao == 3:
             f.limpar_tela()
-            excluir_cofrinho()
+            msg = excluir_cofrinho()
+            print(msg)
             f.double_line()
             f.read_key()
 
         elif opcao == 4:
             f.limpar_tela()
-            redefinir_val()
+            msg = redefinir_val()
+            print(msg)
             f.double_line()
             f.read_key()
 
