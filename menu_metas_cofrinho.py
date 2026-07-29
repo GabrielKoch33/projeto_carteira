@@ -3,9 +3,9 @@ import estruturas_dados as est
 import menu_cofrinhos as mCofr
 import menu_metas as mMetas
 import menu_mov_meta_cofr as mMov
-#from rich import print
-#print("[red]Texto vermelho usando Rich[/red]")
-#print("[bold blue]Texto azul em negrito usando Rich[/bold blue]")
+# from rich import print
+# print("[red]Texto vermelho usando Rich[/red]")
+# print("[bold blue]Texto azul em negrito usando Rich[/bold blue]")
 
 '''
 Relação com saldo:
@@ -36,47 +36,10 @@ assim como podem ser inseridos posteriormentes de forma separada
 
 
 '''
-
-def listar_cofrinhos():
-    if not est.lista_cofrinhos:
-        return 'Registro de cofrinhos vazio. Nenhum cofrinho para listar'
-    
-    else:
-        f.imprime_colunas('COFRINHOS')
-        print(
-            f'{"ID":<5}'
-            f'{"NOME":<20}'
-            f'{"DATA CRIAÇÃO":<15}'
-            f'{"VALOR ATUAL":<16}'
-            f'{"DEPÓSITO AUTOMÁTICO":<22}'   
-            f'{"QUANTIA AUTOMATICA":22}'
-            f'{"META":15}'
-            )
-        f.line()
-
-        num_registros = 0
-        for item in est.lista_cofrinhos:
-            data_ = item['data_criacao'].strftime("%d/%m/%Y")
-            num_registros += 1
-            pass
-
-        f.read_key()
-        pass
-
-def listar_metas():
-    f.read_key()
+def relatorio_meta_cofrinho():
     pass
 
 def menu_cofrinhos_e_metas():
-    f.line()
-    print(
-        f'\033[31m!!! AVISO !!!\033[0m\n' # Deixando o texto em vermelho
-        f'Metas e Depósito Automático (DA) são propriedades dos Cofrinhos.\nLogo, para realizar quaisquer atividades com Metas e DA '
-        f'deve-se acessar a opção 2 e selecionar "Editar Meta" ou "Editar Depósito Automático".'
-        )
-    f.line()
-    f.read_key()
-
     while True:
         f.limpar_tela()
         f.double_line()
@@ -92,11 +55,11 @@ def menu_cofrinhos_e_metas():
             # objetivo, valor desejado, %
             f' 0 - VOLTAR'
         )
-        
+
         f.double_line()
         opcao = f.ler_opcao_menu(4)
         f.double_line()
-        
+
         if opcao == 1:
             f.limpar_tela()
             mCofr.menu_cofrinhos()
@@ -109,26 +72,15 @@ def menu_cofrinhos_e_metas():
             f.double_line()
             f.read_key()
 
-
         elif opcao == 3:
             f.limpar_tela()
             mMov.menu_movimentacoes_cofr_metas()
             f.double_line()
             f.read_key()
 
-
         elif opcao == 4:
             f.limpar_tela()
-            msg = listar_cofrinhos()
-            print(msg)
-            f.double_line()
-            f.read_key()
-
-
-        elif opcao == 5:
-            f.limpar_tela()
-            msg = listar_metas()
-            print(msg)
+            relatorio_meta_cofrinho()
             f.double_line()
             f.read_key()
 
