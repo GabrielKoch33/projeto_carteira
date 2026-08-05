@@ -139,7 +139,11 @@ def converte_data() -> date | False:
         return False
 
 '''FUNÇÕES DE BUSCA E GERAÇÃO'''  
-def encontra_campo_e_indice(ref_valor: str | int, ref_lista: list[dict], campo_alvo: str) -> tuple[bool,int]:
+def encontra_campo_e_indice(
+                            ref_valor: str | int,
+                            ref_lista: list[dict],
+                            campo_alvo: str
+                            ) -> tuple[bool,int]:
     '''
     Campo alvo deve existir como key dentro do dicionário
     '''
@@ -157,6 +161,13 @@ def gera_id(lista: list, id: str) -> int:
         return 1
     else:
         return max(item[id] for item in lista) + 1
+
+def busca_cofr_livre(lista_cofr: dict) -> set:
+    cofr_livres = set()
+    for chave, valor in lista_cofr.items():
+        if valor is None:
+            cofr_livres.add(chave)
+    return cofr_livres
 
 
 '''FUNÇÕES DE MANIPULAÇÃO DE ESTRUTURAS E SALDO'''
@@ -226,25 +237,35 @@ saldo_atual = 0 # valor que será alterado sempre que alguma movimentação for 
 saldo_inicial = 0 # valor que é alterado quando: usuário loga pela primeira vez E quando solicita
 # corrigir/alterar o saldo informado no primeiro login
 
-def insere_log(tipo_operacao: str,ref_id: int, ref_vl_entr: float) -> None:
+def insere_log(
+            tipo_operacao: str,
+            ref_id: int,
+            ref_vl_entr: float
+            ) -> None:
     '''
     Função chamada ao:
     -> criar entrada/despesa
     '''
     global saldo_atual
 
-    logs_entr_saida.append({
-                        "tipo": tipo_operacao,
-                        "valor":ref_vl_entr,
-                        "id_lista":ref_id
-                        })
+    logs_entr_saida.append(
+                           {
+                           "tipo": tipo_operacao,
+                           "valor":ref_vl_entr,
+                           "id_lista":ref_id
+                           }
+                          )
 
     if tipo_operacao == 'entrada':
         saldo_atual += ref_vl_entr
     else:
         saldo_atual -= ref_vl_entr
 
-def edita_log(tipo_operacao: str, ref_id: int, ref_vl_novo: float):
+def edita_log(
+            tipo_operacao: str,
+            ref_id: int,
+            ref_vl_novo: float
+            ):
     '''
     Função chamada ao:
     -> editar o campo 'valor' de entrada ou despesa 
@@ -276,7 +297,11 @@ def edita_log(tipo_operacao: str, ref_id: int, ref_vl_novo: float):
                 break
 
 
-def exclui_log(tipo_operacao: str, ref_id: int, ref_vl_removido: float):
+def exclui_log(
+            tipo_operacao: str,
+            ref_id: int,
+            ref_vl_removido: float
+            ):
 
     global saldo_atual
 

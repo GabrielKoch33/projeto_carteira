@@ -1,4 +1,6 @@
 import funcoes as f
+from estruturas_dados import lista_cofrinhos, tabela_assoc_metas, lista_metas
+
 
 def criar_meta():
     '''
@@ -8,7 +10,56 @@ def criar_meta():
     FLOAT VALOR DESEJADO
     (% será calculada no momento exibição)
     '''
-    pass
+    if not lista_cofrinhos:
+        return 'Para que uma meta seja criada é necessário que existam cofrinhos criados!'
+    id_cofr_livres = f.busca_cofr_livre(tabela_assoc_metas)
+    if not id_cofr_livres:
+        return 'Todos os cofrinhos existentes já possuem uma meta! Remova alguma já existência ou crie um novo cofrinho'
+    else:
+        f.imprime_colunas("COFRINHOS")
+        print(
+            f'{"ID":<5}'
+            f'{"NOME":<22}'
+            f'{"DATA":<12}'
+            f'{"QUANTIA":<15}'
+            f'{"AUTO DEPO.":<15}'
+            f'{"VAL. AUTO DEPO.":<18}'
+            f'{"META":<15}'
+            )
+        f.line()
+        num_registros = 0
+        for item in lista_cofrinhos:
+            if item['id_cofr'] in id_cofr_livres:
+                num_registros += 1
+
+                data_ = item["dt_cofr"].strftime("%d/%m/%Y")
+                campo_autodep_str = "Ativado" if item["auto_depo"] == True else "Desativado"
+
+                achou_meta, indice = f.encontra_campo_e_indice(
+                                                        tabela_assoc_metas[item["id_cofr"]],
+                                                        lista_metas, "id_meta"
+                                                        )
+                campo_valor_meta = (
+                    "Nenhuma"  # <-- Atribui 'nenhuma' caso não exista Meta associada ao Cofrinho
+                    if not achou_meta
+                    else lista_metas[indice]["val_meta"]  # <-- Atribui o valor da meta
+                )
+
+                campo_valor_meta = f.formata_moeda(campo_valor_meta)
+                campo_valor_autodep = f.formata_moeda(item["val_auto_depo"])
+                campo_quantia_cofr = f.formata_moeda(item["val_atual_cofr"])
+                print(
+                    f'{item["id_cofr"]:<5}'
+                    f'{item["nome_cofr"]:<22}'
+                    f"{data_:<12}"
+                    f"{campo_quantia_cofr:<15}"
+                    f"{campo_autodep_str:<15}"
+                    f"{campo_valor_autodep:<18}"
+                    f"{campo_valor_meta:<15}"
+                    )
+        f.double_line()
+        print(f"Total de registros: {num_registros}")
+    
 
 def editar_meta():
     pass
@@ -39,27 +90,31 @@ def menu_metas():
         
         if opcao == 1:
             f.limpar_tela()
-            criar_meta()
+            msg = criar_meta()
+            print(msg)
             f.double_line()
             f.read_key()            
 
         elif opcao == 2:
             f.limpar_tela()
-            editar_meta()
+            msg = editar_meta()
+            print(msg)
             f.double_line()
             f.read_key()
 
 
         elif opcao == 3:
             f.limpar_tela()
-            excluir_meta()
+            msg = excluir_meta()
+            print(msg)
             f.double_line()
             f.read_key()
 
 
         elif opcao == 4:
             f.limpar_tela()
-            listar_metas()
+            msg = listar_metas()
+            print(msg)
             f.double_line()
             f.read_key()
 

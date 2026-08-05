@@ -65,7 +65,7 @@ def criar_cofrinho():
         })
 
     tabela_assoc_metas[id_cofr] = None
-    # Usamos id_cofr para que todo cofrinho criado esteja mapeado
+    # Usamos o id_cofr para que todo cofrinho criado esteja mapeado
     # Iremos inicialmente assumir None, posteriormente acessamos
     # a chave e inserimos a meta. 
     return 'Cofrinho cadastrado!'
@@ -240,7 +240,10 @@ def listar_cofrinhos():
             data_ = item['dt_cofr'].strftime("%d/%m/%Y")
             campo_autodep_str = "Ativado" if item['auto_depo'] == True else "Desativado"
 
-            achou_meta, indice = f.encontra_campo_e_indice(tabela_assoc_metas[item["id_cofr"]],lista_metas,'id_meta')
+            achou_meta, indice = f.encontra_campo_e_indice(
+                                                tabela_assoc_metas[item["id_cofr"]],
+                                                lista_metas,'id_meta'
+                                                )
             campo_valor_meta = (
                 "Nenhuma" # <-- Atribui 'nenhuma' caso não exista Meta associada ao Cofrinho
                 if not achou_meta
