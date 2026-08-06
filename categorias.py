@@ -32,10 +32,11 @@ def criar_cat_personalizada():
         return 'Essa categoria já existe, duplicadas não são permitidas!'
     
     else:
-        est.lista_categorias.append({"id": f.gera_id(est.lista_categorias),
-                                    "nome": nome_categoria,
-                                    "default": False})
-        
+        est.lista_categorias.append({
+                                   "id": f.gera_id(est.lista_categorias),
+                                   "nome": nome_categoria,
+                                   "default": False
+                                   })
         return 'Categoria adicionada!'
 
 
@@ -51,7 +52,6 @@ def editar_cat_personalizada():
             novoValor = input('Qual será o novo nome?: ').lower()
             est.lista_categorias[indice]["nome"] = novoValor
             return 'Campo alterado com sucesso!'
-
         else:
             return 'Não foi possível encontrar esse item!'
         
