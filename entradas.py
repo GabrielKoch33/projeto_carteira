@@ -6,8 +6,7 @@ import estruturas_dados as est
 def adicionar_entradas():
     valor_entrada = input('Digite o valor em R$ da entrada: ')
     valor_entrada = f.converte_moeda(valor_entrada)
-
-
+    
     if isinstance(valor_entrada,str):
         return valor_entrada
     else: 

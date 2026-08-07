@@ -127,7 +127,7 @@ def calcula_dias_totais(ref_inicio: date,ref_fim: date) -> date:
     dias = periodo.days
     return dias
 
-def converte_data() -> date | False:
+def converte_data() -> date | bool:
     entrada = input("Digite a data (apenas números, ex: 25122026): ").strip()
 
     if len(entrada) == 8 and entrada.isdigit():

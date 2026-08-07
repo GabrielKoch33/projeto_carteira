@@ -29,6 +29,7 @@ def criar_meta():
         f.line()
         num_registros = 0
         for item in lista_cofrinhos:
+            # Exibe apenas aqueles registros os quais estão 'livres'
             if item['id_cofr'] in id_cofr_livres:
                 num_registros += 1
 
@@ -59,8 +60,31 @@ def criar_meta():
                     )
         f.double_line()
         print(f"Total de registros: {num_registros}")
-    
 
+        while True:
+            # Valida que o user informe um ID de cofrinho (VAZIO) e existênte
+            id_cofr_meta = f.ler_valida_id()
+            achou_cofr, indice = f.encontra_campo_e_indice(id_cofr_meta,lista_cofrinhos,"id_cofr")
+
+            if achou_cofr:
+                valor_meta = input(f"Defina um valor para ser a meta desse cofrinho [ESC] PARA SAIR: ")
+                valor_meta = f.converte_moeda(valor_meta)
+
+                if isinstance(valor_meta,str):
+                    return valor_meta
+                else:
+                    id_meta =  f.gera_id(lista_metas,'id_meta')
+                    lista_metas.append({
+                        "id_meta": id_meta,
+                        "val_meta": valor_meta,    
+                    })
+                    tabela_assoc_metas[id_cofr_meta] = id_meta
+                break
+            else:
+                print("Tente Novamente!")
+                continue
+        return "Meta criada com sucesso!"
+    
 def editar_meta():
     pass
 

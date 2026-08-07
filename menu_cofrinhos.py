@@ -240,9 +240,12 @@ def listar_cofrinhos():
             data_ = item['dt_cofr'].strftime("%d/%m/%Y")
             campo_autodep_str = "Ativado" if item['auto_depo'] == True else "Desativado"
 
+            # Usando o ID atual do Cofrinho, verifica se há alguma meta associada
+            # ao registro de cofrinho atual
             achou_meta, indice = f.encontra_campo_e_indice(
                                                 tabela_assoc_metas[item["id_cofr"]],
-                                                lista_metas,'id_meta'
+                                                lista_metas,
+                                                "id_meta"
                                                 )
             campo_valor_meta = (
                 "Nenhuma" # <-- Atribui 'nenhuma' caso não exista Meta associada ao Cofrinho
